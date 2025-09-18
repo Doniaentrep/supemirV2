@@ -2,17 +2,29 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Programs from "@/components/Programs";
 import FormationRapide from "@/components/FormationRapide";
+import CampusLife from "@/components/CampusLife";
+import Entreprises from "@/components/Entreprises";
 import Stats from "@/components/Stats";
+import MapSection from "@/components/MapSection";
 import Footer from "@/components/Footer";
-import WelcomePopup from "@/components/WelcomePopup";
+import FloatingActionButton from "@/components/FloatingActionButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Users, Award, Building, GraduationCap, Trophy } from "lucide-react";
-import { useState } from "react";
+import { Calendar, Users, Award, Building, GraduationCap, Trophy, Sparkles } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useFormation } from "@/contexts/FormationContext";
 
 const Portfolio = () => {
   const [activeCard, setActiveCard] = useState(0);
+  const { setSelectedFormation, setSelectedProgramType, setSelectedProgram } = useFormation();
+
+  // Clear all selections when on the home page
+  useEffect(() => {
+    setSelectedFormation(null);
+    setSelectedProgramType(null);
+    setSelectedProgram(null);
+  }, [setSelectedFormation, setSelectedProgramType, setSelectedProgram]);
 
   const portfolioCards = [
     {
@@ -100,7 +112,9 @@ const Portfolio = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <Badge variant="secondary" className="mb-4">Portfolio & Actualités</Badge>
-          <h2 className="text-4xl font-bold text-foreground mb-4">ACTUALITÉS & OPPORTUNITÉS</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-4">
+            ACTUALITÉS & OPPORTUNITÉS
+          </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Découvrez nos dernières actualités, offres d'emploi, et opportunités d'apprentissage
           </p>
@@ -202,25 +216,25 @@ const Portfolio = () => {
 
         {/* Quick Stats */}
         <div className="grid md:grid-cols-4 gap-6">
-          <div className="text-center p-6 bg-background rounded-xl shadow-sm hover-lift">
+          <div className="text-center p-6 bg-background rounded-xl shadow-sm hover-lift transition-all duration-300">
             <div className="text-3xl font-bold text-accent mb-2">12+</div>
             <div className="text-sm font-semibold text-foreground mb-1">Actualités</div>
             <div className="text-xs text-muted-foreground">Ce mois</div>
           </div>
           
-          <div className="text-center p-6 bg-background rounded-xl shadow-sm hover-lift">
+          <div className="text-center p-6 bg-background rounded-xl shadow-sm hover-lift transition-all duration-300" style={{animationDelay: '0.1s'}}>
             <div className="text-3xl font-bold text-supemir-green mb-2">8+</div>
             <div className="text-sm font-semibold text-foreground mb-1">Offres d'emploi</div>
             <div className="text-xs text-muted-foreground">Actives</div>
           </div>
           
-          <div className="text-center p-6 bg-background rounded-xl shadow-sm hover-lift">
+          <div className="text-center p-6 bg-background rounded-xl shadow-sm hover-lift transition-all duration-300" style={{animationDelay: '0.2s'}}>
             <div className="text-3xl font-bold text-primary mb-2">5+</div>
             <div className="text-sm font-semibold text-foreground mb-1">Publicités</div>
             <div className="text-xs text-muted-foreground">En cours</div>
           </div>
           
-          <div className="text-center p-6 bg-background rounded-xl shadow-sm hover-lift">
+          <div className="text-center p-6 bg-background rounded-xl shadow-sm hover-lift transition-all duration-300" style={{animationDelay: '0.3s'}}>
             <div className="text-3xl font-bold text-supemir-magenta mb-2">25+</div>
             <div className="text-sm font-semibold text-foreground mb-1">Total</div>
             <div className="text-xs text-muted-foreground">Publications</div>
@@ -233,14 +247,33 @@ const Portfolio = () => {
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="relative scroll-snap-container">
       <Header />
-      <Hero />
-      <Programs />
-      <FormationRapide />
-      <Stats />
-      <Footer />
-      <WelcomePopup />
+      <section id="hero" className="scroll-snap-section">
+        <Hero />
+      </section>
+      <section id="programs" className="scroll-snap-section">
+        <Programs />
+      </section>
+      <section id="formation-rapide" className="scroll-snap-section">
+        <FormationRapide />
+      </section>
+      <section id="campus-life" className="scroll-snap-section">
+        <CampusLife />
+      </section>
+      <section id="entreprises" className="scroll-snap-section">
+        <Entreprises />
+      </section>
+      <section id="stats" className="scroll-snap-section">
+        <Stats />
+      </section>
+      <section id="map" className="scroll-snap-section">
+        <MapSection />
+      </section>
+      <section id="footer" className="scroll-snap-section">
+        <Footer />
+      </section>
+      <FloatingActionButton />
     </div>
   );
 };

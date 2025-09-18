@@ -24,7 +24,7 @@ All colors MUST be HSL.
     --secondary-foreground: 251 35% 29%;
 
     --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 215.4 16.3% 35%;
 
     --accent: 337 70% 49%;
     --accent-foreground: 0 0% 100%;
@@ -96,7 +96,7 @@ All colors MUST be HSL.
     --secondary-foreground: 0 0% 100%;
 
     --muted: 221 39% 20%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted-foreground: 215 20.2% 45%;
 
     --accent: 337 70% 49%;
     --accent-foreground: 0 0% 100%;
@@ -125,6 +125,36 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    /* Improve text clarity */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Improve text contrast and readability */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  p, span, div {
+    line-height: 1.6;
+    color: hsl(var(--foreground));
+  }
+
+  /* Improve muted text visibility */
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground)) !important;
+    opacity: 0.9;
+  }
+
+  /* Better contrast for small text */
+  .text-sm, .text-xs {
+    font-weight: 500;
+    line-height: 1.5;
   }
 }
 
@@ -152,14 +182,90 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
 
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-8px) rotate(1deg); }
+    66% { transform: translateY(-4px) rotate(-1deg); }
+  }
+
   @keyframes glow {
     0%, 100% { box-shadow: 0 0 5px hsl(var(--supemir-orange)); }
     50% { box-shadow: 0 0 20px hsl(var(--supemir-orange)), 0 0 30px hsl(var(--supemir-orange)); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+    40%, 43% { transform: translate3d(0, -8px, 0); }
+    70% { transform: translate3d(0, -4px, 0); }
+    90% { transform: translate3d(0, -2px, 0); }
+  }
+
+  @keyframes wiggle {
+    0%, 7% { transform: rotateZ(0); }
+    15% { transform: rotateZ(-15deg); }
+    20% { transform: rotateZ(10deg); }
+    25% { transform: rotateZ(-10deg); }
+    30% { transform: rotateZ(6deg); }
+    35% { transform: rotateZ(-4deg); }
+    40%, 100% { transform: rotateZ(0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    0%, 50% { border-color: transparent; }
+    51%, 100% { border-color: currentColor; }
   }
 
   /* Utility Classes */
@@ -171,17 +277,58 @@ All colors MUST be HSL.
     animation: slideUp 0.8s ease-out;
   }
 
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out;
+  }
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: floatSlow 4s ease-in-out infinite;
   }
 
   .animate-glow {
     animation: glow 2s ease-in-out infinite;
   }
 
+  .animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  .animate-wiggle {
+    animation: wiggle 1s ease-in-out;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 3s ease infinite;
+  }
+
+  .animate-typewriter {
+    overflow: hidden;
+    border-right: 2px solid;
+    white-space: nowrap;
+    animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
   }
 
   @keyframes gradient {
@@ -190,20 +337,367 @@ All colors MUST be HSL.
     100% { background-position: 0% 50%; }
   }
 
-  /* Hover Effects */
+  /* Advanced Hover Effects */
   .hover-lift {
-    transition: transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .hover-lift:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
   .hover-scale {
-    transition: transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .hover-scale:hover {
     transform: scale(1.05);
   }
+
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+  }
+
+  .hover-rotate {
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-rotate:hover {
+    transform: rotate(5deg);
+  }
+
+  .hover-tilt {
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-tilt:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+  }
+
+  /* Scroll-triggered animations */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+
+  .scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+  }
+
+  .scroll-slide-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+  }
+
+  .scroll-slide-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-scale-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s ease-out;
+  }
+
+  .scroll-scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Stagger animations */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+
+  /* Parallax effects */
+  .parallax-slow {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Loading animations */
+  .loading-dots::after {
+    content: '';
+    animation: loading-dots 1.5s infinite;
+  }
+
+  @keyframes loading-dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+  }
+
+  /* Text animations */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-shimmer {
+    background: linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--accent)), hsl(var(--foreground)));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  /* Custom opacity utilities */
+  .opacity-2 {
+    opacity: 0.02;
+  }
+
+  /* Force full opacity to override animations */
+  .force-opacity-100 {
+    opacity: 1 !important;
+  }
+
+  /* Specific override for Hero title and subtitle */
+  .hero-title, .hero-subtitle {
+    opacity: 1 !important;
+    color: inherit !important;
+  }
+
+  /* Ensure Hero text is always visible */
+  .hero-title {
+    color: white !important;
+    opacity: 1 !important;
+  }
+
+  .hero-subtitle {
+    color: hsl(var(--accent)) !important;
+    opacity: 1 !important;
+  }
+
+  /* Fix dropdown z-index issues */
+  [data-radix-select-content] {
+    z-index: 99999 !important;
+  }
+
+  /* Flowy text animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .flowy-text {
+    animation: fadeInUp 1.2s ease-out;
+  }
+
+  /* Text clarity utilities */
+  .text-clear {
+    color: hsl(var(--foreground)) !important;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .text-clear-bold {
+    color: hsl(var(--foreground)) !important;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .text-clear-muted {
+    color: hsl(var(--muted-foreground)) !important;
+    opacity: 0.95;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  /* Improve button text clarity */
+  .btn-text-clear {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Card text improvements */
+  .card-text {
+    color: hsl(var(--card-foreground)) !important;
+    line-height: 1.6;
+  }
+
+  .card-text-muted {
+    color: hsl(var(--muted-foreground)) !important;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+
+  /* Header text clarity */
+  .header-text {
+    color: hsl(var(--foreground)) !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Footer text clarity */
+  .footer-text {
+    color: hsl(var(--primary-foreground)) !important;
+    line-height: 1.6;
+  }
+
+  .footer-text-muted {
+    color: hsl(var(--primary-foreground) / 0.8) !important;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+
+  /* Scroll snapping utilities */
+  .scroll-snap-container {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 60px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height: 100vh;
+    /* Ensure smooth scrolling on all devices */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scroll-snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    /* Add some padding to prevent content from being cut off */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  /* Ensure sections take full viewport height - exclude footer */
+  .scroll-snap-section:not(#footer) {
+    min-height: 100vh;
+  }
+
+  /* Footer should only take the space it needs */
+  #footer {
+    min-height: auto;
+  }
+
+  /* Ensure proper height for scroll snapping on mobile - exclude footer */
+  @media (max-width: 768px) {
+    .scroll-snap-section:not(#footer) {
+      min-height: 100vh;
+      /* Account for mobile browser UI */
+      min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    }
+  }
+
+  /* Smooth scrolling for all elements */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Ensure body takes full height for proper scroll snapping */
+  body {
+    height: 100vh;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll on mobile */
+    position: relative;
+  }
+
+  #root {
+    height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Improve scroll snapping on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .scroll-snap-container {
+      scroll-snap-type: y mandatory;
+      /* More aggressive snapping on touch devices */
+      scroll-snap-stop: always;
+    }
+  }
+
+  /* Ensure header doesn't interfere with scroll snapping */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Force button visibility */
+.force-visible-button {
+  background-color: #facc15 !important;
+  color: #000000 !important;
+  border: 4px solid #eab308 !important;
+  font-weight: 900 !important;
+  font-size: 1.25rem !important;
+  padding: 1.5rem 1rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.force-visible-button:hover {
+  background-color: #eab308 !important;
+  color: #000000 !important;
+}
+
+.force-visible-orange {
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  border: 6px solid #ea580c !important;
+  font-weight: 900 !important;
+  font-size: 1.5rem !important;
+  padding: 1.5rem 4rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.force-visible-orange:hover {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+.force-visible-purple {
+  background-color: #9333ea !important;
+  color: #ffffff !important;
+  border: 6px solid #7c3aed !important;
+  font-weight: 900 !important;
+  font-size: 1.25rem !important;
+  padding: 1rem 2rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.force-visible-purple:hover {
+  background-color: #7c3aed !important;
+  color: #ffffff !important;
+}
 }

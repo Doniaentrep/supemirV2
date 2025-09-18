@@ -1,14 +1,17 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Clock, Users, Award, BookOpen, Target, CheckCircle, Star, Phone, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useFormation } from "@/contexts/FormationContext";
 
 const ProgramDetail = () => {
   const { type, program } = useParams();
   const navigate = useNavigate();
+  const { setSelectedProgramType, setSelectedProgram, setSelectedFormation } = useFormation();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -24,7 +27,7 @@ const ProgramDetail = () => {
         title: "Développement Web Full Stack",
         description: "Formation complète en développement web front-end et back-end avec les technologies les plus demandées du marché",
         detailedDescription: "Cette formation vous permet de maîtriser toutes les technologies nécessaires pour créer des applications web modernes. Vous apprendrez à développer des interfaces utilisateur attrayantes, des APIs robustes et à gérer des bases de données. Formation pratique avec de nombreux projets concrets.",
-        duration: "3 ans",
+        duration: "1 ans",
         level: "Bac+3",
         modules: [
           "HTML5 et CSS3 avancés",
@@ -53,7 +56,7 @@ const ProgramDetail = () => {
           "Résolution de problèmes techniques"
         ],
         admission: "Baccalauréat ou équivalent + Entretien + Test technique",
-        certification: "Diplôme d'État reconnu par le Ministère de l'Enseignement Supérieur",
+        certification: "Diplôme Professionnel reconnu",
         price: "45,000 DH",
         prerequisites: "Bases en informatique recommandées",
         schedule: "Lundi au Vendredi, 9h-17h",
@@ -72,7 +75,7 @@ const ProgramDetail = () => {
         title: "Développement Mobile",
         description: "Création d'applications mobiles iOS et Android avec les technologies modernes",
         detailedDescription: "Cette formation vous transforme en développeur mobile professionnel. Vous apprendrez à créer des applications natives et cross-platform pour iOS et Android. Formation pratique avec des projets réels et publication sur les stores.",
-        duration: "3 ans",
+        duration: "1 an",
         level: "Bac+3",
         modules: [
           "Swift et développement iOS",
@@ -101,7 +104,7 @@ const ProgramDetail = () => {
           "Optimisation des performances"
         ],
         admission: "Baccalauréat ou équivalent + Entretien",
-        certification: "Diplôme d'État reconnu par le Ministère de l'Enseignement Supérieur",
+        certification: "Diplôme Professionnel reconnu",
         price: "45,000 DH",
         prerequisites: "Bases en programmation recommandées",
         schedule: "Lundi au Vendredi, 9h-17h",
@@ -120,7 +123,7 @@ const ProgramDetail = () => {
         title: "Intelligence Artificielle & Data Analytics",
         description: "Maîtrisez l'IA, le machine learning et l'analyse de données pour les entreprises modernes",
         detailedDescription: "Cette formation vous donne toutes les compétences pour devenir un expert en intelligence artificielle et analyse de données. Vous apprendrez à créer des modèles prédictifs, analyser des données massives et développer des solutions IA. Formation pratique avec des datasets réels.",
-        duration: "3 ans",
+        duration: "1 an",
         level: "Bac+3",
         modules: [
           "Python pour l'IA et la data science",
@@ -149,7 +152,7 @@ const ProgramDetail = () => {
           "Communication des insights"
         ],
         admission: "Baccalauréat scientifique + Entretien",
-        certification: "Diplôme d'État reconnu par le Ministère de l'Enseignement Supérieur",
+        certification: "Diplôme Professionnel reconnu",
         price: "45,000 DH",
         prerequisites: "Bases en mathématiques et logique",
         schedule: "Lundi au Vendredi, 9h-17h",
@@ -167,7 +170,7 @@ const ProgramDetail = () => {
       "cybersecurite-reseaux": {
         title: "Licence Pro - Réseaux et Cybersécurité",
         description: "Expertise en sécurité informatique, administration réseaux et cloud computing",
-        duration: "3 ans",
+        duration: "1 an",
         level: "Bac+3",
         modules: [
           "Administration systèmes (Linux, Windows Server)",
@@ -203,7 +206,7 @@ const ProgramDetail = () => {
       "entrepreneuriat-audit-finance": {
         title: "Licence Pro - Entrepreneuriat, Audit et Finance",
         description: "Formation en gestion financière, audit et développement entrepreneurial",
-        duration: "3 ans",
+        duration: "1 an",
         level: "Bac+3",
         modules: [
           "Comptabilité générale et analytique",
@@ -237,7 +240,7 @@ const ProgramDetail = () => {
       "developpement-commercial-marketing": {
         title: "Licence Pro - Développement Commercial et Marketing Digital",
         description: "Formation en stratégies commerciales et marketing digital",
-        duration: "3 ans",
+        duration: "1 an",
         level: "Bac+3",
         modules: [
           "Marketing digital et e-commerce",
@@ -271,7 +274,7 @@ const ProgramDetail = () => {
       "electrotechnique-systemes": {
         title: "Licence Pro - Électrotechnique & Systèmes",
         description: "Formation en électricité industrielle, automatisation et systèmes électriques",
-        duration: "3 ans",
+        duration: "1 an",
         level: "Bac+3",
         modules: [
           "Électricité industrielle et distribution",
@@ -304,7 +307,7 @@ const ProgramDetail = () => {
       "domaine-sante": {
         title: "Licence Pro - Domaine de Santé",
         description: "Formation en soins infirmiers et techniques de laboratoire",
-        duration: "3 ans",
+        duration: "1 an",
         level: "Bac+3",
         modules: [
           "Soins infirmiers fondamentaux",
@@ -332,6 +335,123 @@ const ProgramDetail = () => {
           "Respect des protocoles de sécurité"
         ],
         admission: "Baccalauréat + Entretien + Test d'aptitude",
+        certification: "Diplôme d'État reconnu par le Ministère de l'Enseignement Supérieur"
+      },
+      "domaine-sante-aide-soignant": {
+        title: "Licence Pro - Domaine de Santé - Aide-Soignant",
+        description: "Formation professionnelle spécialisée pour devenir aide-soignant qualifié",
+        detailedDescription: "Cette formation vous prépare à exercer le métier d'aide-soignant dans différents établissements de santé. Vous apprendrez les techniques de soins de base, l'accompagnement des patients, et les protocoles de sécurité. Formation pratique avec stages en milieu hospitalier et extra-hospitalier.",
+        duration: "1 an",
+        level: "Bac+3",
+        image: "/sante-aide-soignant.jpg",
+        modules: [
+          "Soins de base et hygiène",
+          "Anatomie et physiologie humaine",
+          "Techniques de mobilisation et transfert",
+          "Aide à la toilette et confort du patient",
+          "Surveillance et observation clinique",
+          "Communication et relation d'aide",
+          "Éthique et déontologie professionnelle",
+          "Sécurité et prévention des risques",
+          "Stage clinique en établissement de santé"
+        ],
+        careers: [
+          "Aide-soignant en hôpital",
+          "Aide-soignant en EHPAD",
+          "Aide-soignant à domicile",
+          "Auxiliaire de puériculture",
+          "Agent de service hospitalier",
+          "Coordinateur d'équipe de soins"
+        ],
+        skills: [
+          "Techniques de soins de base",
+          "Aide à la mobilité et au confort",
+          "Surveillance et observation",
+          "Communication avec les patients et familles",
+          "Respect des protocoles d'hygiène",
+          "Travail en équipe pluridisciplinaire",
+          "Gestion du stress et des situations d'urgence"
+        ],
+        admission: "Baccalauréat + Entretien + Test d'aptitude + Certificat médical",
+        certification: "Diplôme d'État d'Aide-Soignant reconnu par le Ministère de la Santé",
+        price: "35,000 DH",
+        prerequisites: "Aptitude physique et psychologique pour les soins",
+        schedule: "Lundi au Vendredi, 8h-16h + Stages",
+        location: "Campus SUPEMIR Casablanca + Centres de stage",
+        startDate: "Prochaine session : 15 Janvier 2025",
+        features: [
+          "Formation 70% pratique et 30% théorique",
+          "Stages en établissements de santé partenaires",
+          "Encadrement par des professionnels de santé",
+          "Préparation aux concours d'entrée",
+          "Suivi personnalisé et accompagnement",
+          "Certification professionnelle reconnue"
+        ]
+      },
+      "automatisation-industrielle": {
+        title: "Licence Pro - Automatisation Industrielle",
+        description: "Formation en systèmes automatisés et robotique industrielle",
+        duration: "1 an",
+        level: "Bac+3",
+        modules: [
+          "Automatisation et contrôle-commande",
+          "Robotique industrielle",
+          "Programmation des automates",
+          "Systèmes de supervision (SCADA)",
+          "Maintenance préventive et corrective",
+          "Sécurité des installations",
+          "Projet technique et stage"
+        ],
+        careers: [
+          "Automaticien",
+          "Technicien en robotique",
+          "Maintenancier industriel",
+          "Chef d'équipe maintenance",
+          "Responsable d'installation",
+          "Technicien de production"
+        ],
+        skills: [
+          "Programmation d'automates",
+          "Installation et maintenance robotique",
+          "Gestion des systèmes automatisés",
+          "Maintenance préventive",
+          "Sécurité au travail",
+          "Lecture de plans techniques"
+        ],
+        admission: "Baccalauréat technique + Entretien",
+        certification: "Diplôme d'État reconnu par le Ministère de l'Enseignement Supérieur"
+      },
+      "energies-renouvelables": {
+        title: "Licence Pro - Énergies Renouvelables",
+        description: "Formation en technologies solaires, éoliennes et hydroélectriques",
+        duration: "1 an",
+        level: "Bac+3",
+        modules: [
+          "Technologies solaires photovoltaïques",
+          "Énergie éolienne",
+          "Hydroélectricité",
+          "Énergies marines",
+          "Stockage d'énergie",
+          "Réseaux intelligents",
+          "Projet technique et stage"
+        ],
+        careers: [
+          "Technicien en énergies renouvelables",
+          "Installateur photovoltaïque",
+          "Maintenancier éolien",
+          "Chef de projet énergies vertes",
+          "Conseiller en efficacité énergétique",
+          "Technicien de maintenance"
+        ],
+        skills: [
+          "Installation de panneaux solaires",
+          "Maintenance d'éoliennes",
+          "Gestion des réseaux intelligents",
+          "Audit énergétique",
+          "Sécurité des installations",
+          "Communication technique"
+        ],
+        admission: "Baccalauréat technique + Entretien",
         certification: "Diplôme d'État reconnu par le Ministère de l'Enseignement Supérieur"
       }
     },
@@ -370,7 +490,7 @@ const ProgramDetail = () => {
           "Leadership technique et management d'équipe"
         ],
         admission: "Licence en informatique + Dossier académique + Entretien",
-        certification: "Master d'État reconnu par le Ministère de l'Enseignement Supérieur"
+        certification: "Master Professionnel reconnu"
       },
       "cybersecurite-transformation": {
         title: "Master Pro - Cyber Sécurité et Transformation Digitale",
@@ -406,7 +526,7 @@ const ProgramDetail = () => {
           "Audit et évaluation des risques"
         ],
         admission: "Licence en informatique/sécurité + 3 ans d'expérience + Entretien",
-        certification: "Master d'État reconnu par le Ministère de l'Enseignement Supérieur"
+        certification: "Master Professionnel reconnu"
       },
       "finance-strategie-entrepreneuriale": {
         title: "Master Pro - Finance et Stratégie Entrepreneuriale",
@@ -440,7 +560,7 @@ const ProgramDetail = () => {
           "Communication financière"
         ],
         admission: "Licence en gestion/finance + Entretien",
-        certification: "Master d'État reconnu par le Ministère de l'Enseignement Supérieur"
+        certification: "Master Professionnel reconnu"
       },
       "developpement-commercial-marketing-digital": {
         title: "Master Pro - Développement Commercial et Marketing Digital",
@@ -474,7 +594,7 @@ const ProgramDetail = () => {
           "Communication et influence digitale"
         ],
         admission: "Licence en marketing/gestion + Entretien",
-        certification: "Master d'État reconnu par le Ministère de l'Enseignement Supérieur"
+        certification: "Master Professionnel reconnu"
       },
       "management-systemes-information": {
         title: "Master Pro - Management des Systèmes d'Information",
@@ -508,7 +628,7 @@ const ProgramDetail = () => {
           "Gestion d'équipe"
         ],
         admission: "Licence en informatique/gestion + Entretien",
-        certification: "Master d'État reconnu par le Ministère de l'Enseignement Supérieur"
+        certification: "Master Professionnel reconnu"
       },
       "qualite-securite-developpement-durable": {
         title: "Master Pro - Qualité, Sécurité & Développement Durable",
@@ -542,12 +662,170 @@ const ProgramDetail = () => {
           "Communication et formation"
         ],
         admission: "Licence technique/gestion + Entretien",
-        certification: "Master d'État reconnu par le Ministère de l'Enseignement Supérieur"
+        certification: "Master Professionnel reconnu"
+      },
+      "management-leadership-sante": {
+        title: "Master Pro - Management et Leadership en Santé",
+        description: "Formation avancée en management des établissements de santé",
+        duration: "2 ans",
+        level: "Bac+5",
+        modules: [
+          "Management des établissements de santé",
+          "Gestion financière et comptable",
+          "Qualité et sécurité des soins",
+          "Ressources humaines en santé",
+          "Innovation et transformation digitale",
+          "Leadership et communication",
+          "Éthique et déontologie",
+          "Mémoire professionnel et stage"
+        ],
+        careers: [
+          "Directeur d'établissement de santé",
+          "Responsable qualité et sécurité",
+          "Coordinateur de soins",
+          "Consultant en management de santé",
+          "Responsable des ressources humaines",
+          "Chef de projet innovation santé"
+        ],
+        skills: [
+          "Management d'équipes de soins",
+          "Gestion financière et comptable",
+          "Qualité et sécurité des soins",
+          "Leadership et communication",
+          "Innovation en santé",
+          "Gestion des ressources humaines"
+        ],
+        admission: "Licence en santé/gestion + Entretien",
+        certification: "Master Professionnel reconnu"
+      }
+    },
+    mba: {
+      "mba-management-projets": {
+        title: "MBA - Management de Projets",
+        description: "Formation de leaders capables de relever les défis du monde des affaires",
+        detailedDescription: "Ce MBA vous prépare à devenir un leader dans la gestion de projets complexes. Vous développerez des compétences en pilotage de projets, stratégie d'entreprise et innovation. Formation pratique avec des cas d'études réels et des projets d'entreprise.",
+        duration: "2 ans",
+        level: "Bac+5",
+        modules: [
+          "Performance & Pilotage de projets",
+          "Stratégie et Environnement géopolitique",
+          "Environnement économique et juridique",
+          "Innovations et transformation digitale",
+          "Leadership et management d'équipe",
+          "Gestion des risques et qualité",
+          "Communication et négociation",
+          "Mémoire professionnel et stage"
+        ],
+        careers: [
+          "Directeur de projet",
+          "Chef de projet senior",
+          "Consultant en management",
+          "Directeur d'opérations",
+          "Entrepreneur",
+          "Responsable innovation"
+        ],
+        skills: [
+          "Pilotage de projets complexes",
+          "Stratégie d'entreprise",
+          "Leadership et management",
+          "Innovation et transformation",
+          "Gestion des risques",
+          "Communication interculturelle"
+        ],
+        admission: "Bac+3 + 3 ans d'expérience + Entretien",
+        certification: "MBA reconnu internationalement"
+      },
+      "mba-business-management-transformation-digitale": {
+        title: "MBA - Business Management et Transformation Digitale",
+        description: "Leadership et transformation digitale pour les entreprises modernes",
+        detailedDescription: "Ce MBA vous forme aux enjeux de la transformation digitale et du management moderne. Vous maîtriserez l'architecture des systèmes d'information, la stratégie digitale et le diagnostic organisationnel. Formation avec des experts du secteur et des projets concrets.",
+        duration: "2 ans",
+        level: "Bac+5",
+        modules: [
+          "Architecture des Systèmes d'information",
+          "Transformation Digitale",
+          "Diagnostic stratégique",
+          "Management du changement",
+          "Data Analytics et Business Intelligence",
+          "Cybersécurité et gouvernance IT",
+          "Innovation et nouveaux business models",
+          "Mémoire professionnel et stage"
+        ],
+        careers: [
+          "Directeur de la transformation digitale",
+          "Chief Digital Officer (CDO)",
+          "Directeur des systèmes d'information",
+          "Consultant en transformation",
+          "Entrepreneur digital",
+          "Responsable innovation"
+        ],
+        skills: [
+          "Stratégie de transformation digitale",
+          "Architecture des systèmes d'information",
+          "Management du changement",
+          "Data Analytics et BI",
+          "Cybersécurité et gouvernance",
+          "Innovation et leadership"
+        ],
+        admission: "Bac+3 + 3 ans d'expérience + Entretien",
+        certification: "MBA reconnu internationalement"
+      },
+      "mba-finance-banques-assurances": {
+        title: "MBA - Finance, Banques et Assurances",
+        description: "Expertise avancée en finance internationale et Fintech",
+        detailedDescription: "Ce MBA vous prépare aux métiers de la finance moderne, des banques et des assurances. Vous maîtriserez la finance internationale, la Fintech, le management stratégique et la gestion de patrimoine. Formation avec des professionnels du secteur financier.",
+        duration: "2 ans",
+        level: "Bac+5",
+        modules: [
+          "Finance international et Fintech",
+          "Management Stratégique",
+          "Gestion de Patrimoine et Private Banking",
+          "Réglementation bancaire et assurance",
+          "Analyse financière avancée",
+          "Gestion des risques financiers",
+          "Innovation financière et blockchain",
+          "Mémoire professionnel et stage"
+        ],
+        careers: [
+          "Directeur financier (CFO)",
+          "Directeur de banque",
+          "Gestionnaire de patrimoine",
+          "Analyste financier senior",
+          "Consultant en finance",
+          "Entrepreneur Fintech"
+        ],
+        skills: [
+          "Finance internationale et Fintech",
+          "Management stratégique",
+          "Gestion de patrimoine",
+          "Analyse financière avancée",
+          "Gestion des risques",
+          "Innovation financière"
+        ],
+        admission: "Bac+3 + 3 ans d'expérience + Entretien",
+        certification: "MBA reconnu internationalement"
       }
     }
   };
 
   const currentProgram = programsData[type as keyof typeof programsData]?.[program as string];
+
+  // Set the selected program when component mounts
+  useEffect(() => {
+    if (type && program) {
+      // Clear any previous formation selections
+      setSelectedFormation(null);
+      // Set the current program
+      setSelectedProgramType(type);
+      setSelectedProgram(program);
+    }
+    
+    // Clean up when component unmounts
+    return () => {
+      setSelectedProgramType(null);
+      setSelectedProgram(null);
+    };
+  }, [type, program, setSelectedProgramType, setSelectedProgram, setSelectedFormation]);
 
   if (!currentProgram) {
     return (
@@ -610,21 +888,13 @@ const ProgramDetail = () => {
                     ? 'bg-accent-foreground text-accent hover:bg-accent-foreground/90'
                     : 'bg-primary-foreground text-primary hover:bg-primary-foreground/90'
                 }`}
-                onClick={() => scrollToSection('footer')}
+                onClick={() => {
+                  // Trigger the registration form to open
+                  const event = new CustomEvent('openRegistration');
+                  window.dispatchEvent(event);
+                }}
               >
                 🚀 S'inscrire maintenant
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className={`font-semibold ${
-                  type === 'licence'
-                    ? 'border-white text-white bg-white/10 hover:bg-white hover:text-accent shadow-lg backdrop-blur-sm'
-                    : 'border-white text-white bg-white/10 hover:bg-white hover:text-primary shadow-lg backdrop-blur-sm'
-                }`}
-                onClick={() => window.open('mailto:infos@supemir.com?subject=Demande de brochure - ' + currentProgram.title, '_blank')}
-              >
-                📄 Télécharger la brochure
               </Button>
             </div>
           </div>
@@ -645,6 +915,22 @@ const ProgramDetail = () => {
                     <p className="text-muted-foreground leading-relaxed">
                       {currentProgram.detailedDescription}
                     </p>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Program Image */}
+              {currentProgram.image && (
+                <Card className="animate-slide-up" style={{animationDelay: '0.05s'}}>
+                  <CardContent className="p-0">
+                    <div className="relative overflow-hidden rounded-lg">
+                      <img 
+                        src={currentProgram.image} 
+                        alt={currentProgram.title}
+                        className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
                   </CardContent>
                 </Card>
               )}

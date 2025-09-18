@@ -68,13 +68,13 @@ const Hero = () => {
     }
   };
 
-  const scrollToFormationRapide = () => {
-    console.log('Scroll to formation rapide clicked');
+  const scrollToFormationCertifiee = () => {
+    console.log('Scroll to formation certifiée clicked');
     // Try multiple approaches to find the section
-    let element = document.getElementById('formation-rapide');
+    let element = document.getElementById('formation-certifiee');
     
     if (!element) {
-      console.log('formation-rapide not found, trying alternatives...');
+      console.log('formation-certifiee not found, trying alternatives...');
       // Try finding by class or other selectors
       element = document.querySelector('[id*="formation"]');
     }
@@ -83,7 +83,7 @@ const Hero = () => {
       // Try finding by text content
       const sections = document.querySelectorAll('section');
       for (let section of sections) {
-        if (section.textContent?.includes('FORMATION RAPIDE') || section.textContent?.includes('Formation Rapide')) {
+        if (section.textContent?.includes('FORMATION CERTIFIÉE') || section.textContent?.includes('Formation Certifiée')) {
           element = section;
           break;
         }
@@ -107,56 +107,71 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative flex items-center bg-gradient-to-r from-primary via-primary/95 to-primary/90 overflow-hidden animate-fade-in">
+    <section id="hero" className="relative flex items-center overflow-hidden py-8 pt-16">
+      {/* Background Image with blur effect */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url(/hero-background.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          filter: 'blur(1px) brightness(0.7)'
+        }}
+      ></div>
+      
+      {/* Background Overlay - subtle and flowy */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/10"></div>
+      
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-20 w-32 h-32 border-2 border-accent rounded-full animate-float"></div>
         <div className="absolute bottom-40 right-32 w-24 h-24 bg-accent/20 rounded-lg rotate-45 animate-float" style={{animationDelay: '1s'}}></div>
         <div className="absolute top-1/2 right-20 w-16 h-16 border-2 border-accent rounded-lg rotate-12 animate-float" style={{animationDelay: '2s'}}></div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 py-4">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Content */}
-          <div className="text-primary-foreground animate-slide-up">
-            <div className="inline-flex items-center bg-accent/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+          <div className="text-white relative z-10">
+            <div className="inline-flex items-center bg-accent/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
               <Award className="h-4 w-4 text-accent mr-2" />
-              <span className="text-sm font-medium">Excellence Académique à Marrakech</span>
+              <span className="text-sm font-medium text-white">Excellence Académique à Marrakech</span>
             </div>
             
-            <h1 className="text-3xl lg:text-4xl font-bold leading-tight mb-6">
+            <h1 className="text-2xl lg:text-3xl font-bold leading-tight mb-4 flowy-text text-white" style={{ animationDelay: '0.2s' }}>
               🚀 Démarrez votre 
               <span className="text-accent"> carrière de rêve</span> avec SMA !
             </h1>
             
-            <div className="mb-6">
-              <p className="text-xl font-medium text-accent mb-2">SUPEMIR = SUPER Motivation, Innovation & Révolution</p>
-              <p className="text-lg opacity-90 italic">Là où la motivation nourrit l'innovation et inspire la révolution</p>
+            <div className="mb-4">
+              <p className="text-lg font-medium text-accent mb-2 flowy-text" style={{ animationDelay: '0.4s' }}>SUPEMIR = SUPER Motivation, Innovation & Révolution</p>
+              <p className="text-base text-white font-medium italic flowy-text" style={{ animationDelay: '0.6s' }}>Là où la motivation nourrit l'innovation et inspire la révolution</p>
             </div>
             
-            <div className="space-y-3 mb-8 text-lg">
-              <p className="flex items-center">
+            <div className="space-y-2 mb-6 text-base">
+              <p className="flex items-center text-white">
                 <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
                 Des formations qui éveillent votre potentiel
               </p>
-              <p className="flex items-center">
+              <p className="flex items-center text-white">
                 <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
                 Une expérience d'apprentissage révolutionnaire
               </p>
-              <p className="flex items-center">
+              <p className="flex items-center text-white">
                 <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
                 Votre futur commence ici
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <div 
                 onClick={() => {
                   const element = document.getElementById('programmes');
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   } else {
-                    window.scrollTo({ top: 800, behavior: 'smooth' });
+                    console.log('Programmes section not found');
                   }
                 }}
                 style={{
@@ -185,17 +200,17 @@ const Hero = () => {
                   e.currentTarget.style.boxShadow = '0 4px 15px rgba(236, 72, 153, 0.4)';
                 }}
               >
-                Explorez nos formations
+                Explorez nos diplômes
                 <ArrowRight style={{width: '20px', height: '20px'}} />
               </div>
               
               <div 
                 onClick={() => {
-                  const element = document.getElementById('formation-rapide');
+                  const element = document.getElementById('formation-certifiee');
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   } else {
-                    window.scrollTo({ top: 1200, behavior: 'smooth' });
+                    console.log('Formation certifiée section not found');
                   }
                 }}
                 style={{
@@ -224,7 +239,7 @@ const Hero = () => {
                   e.currentTarget.style.boxShadow = '0 4px 15px rgba(34, 197, 94, 0.4)';
                 }}
               >
-                ⚡ Formation Rapide
+                ⚡ Formation Certifiée
               </div>
             </div>
 
@@ -233,22 +248,22 @@ const Hero = () => {
               <div className="flex items-center">
                 <Users className="h-8 w-8 text-accent mr-3" />
                 <div>
-                  <p className="text-2xl font-bold">500+</p>
-                  <p className="text-sm opacity-90">Étudiants formés</p>
+                  <p className="text-2xl font-bold text-white">500+</p>
+                  <p className="text-sm text-white opacity-90">Étudiants formés</p>
                 </div>
               </div>
               <div className="flex items-center">
                 <TrendingUp className="h-8 w-8 text-accent mr-3" />
                 <div>
-                  <p className="text-2xl font-bold">95%</p>
-                  <p className="text-sm opacity-90">Taux d'emploi</p>
+                  <p className="text-2xl font-bold text-white">95%</p>
+                  <p className="text-sm text-white opacity-90">Taux d'emploi</p>
                 </div>
               </div>
               <div className="flex items-center">
                 <Award className="h-8 w-8 text-accent mr-3" />
                 <div>
-                  <p className="text-2xl font-bold">15+</p>
-                  <p className="text-sm opacity-90">Années d'expérience</p>
+                  <p className="text-2xl font-bold text-white">15+</p>
+                  <p className="text-sm text-white opacity-90">Années d'expérience</p>
                 </div>
               </div>
             </div>

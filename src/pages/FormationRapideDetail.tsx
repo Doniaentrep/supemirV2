@@ -1,14 +1,20 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Clock, Award, Users, Target, CheckCircle, Star, Calendar, MapPin, Phone, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useFormation } from "@/contexts/FormationContext";
 
 const FormationRapideDetail = () => {
   const { formation } = useParams();
   const navigate = useNavigate();
+  const { setSelectedFormation } = useFormation();
+
+  // Debug: Log the formation parameter
+  console.log('Formation parameter:', formation);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -22,9 +28,9 @@ const FormationRapideDetail = () => {
     "developpement-web-express": {
       title: "Développement Web Express",
       duration: "3 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Formation intensive en développement web front-end et back-end avec les technologies les plus demandées du marché",
-      detailedDescription: "Cette formation express vous permet de maîtriser rapidement les technologies web essentielles. Vous apprendrez à créer des sites web modernes, des applications web dynamiques et à gérer des bases de données. La formation combine théorie et pratique avec de nombreux projets concrets.",
+      detailedDescription: "Cette formation certifiée vous permet de maîtriser les technologies web essentielles. Vous apprendrez à créer des sites web modernes, des applications web dynamiques et à gérer des bases de données. La formation combine théorie et pratique avec de nombreux projets concrets.",
       modules: [
         "HTML5 et CSS3 avancés",
         "JavaScript ES6+ et frameworks modernes",
@@ -69,7 +75,7 @@ const FormationRapideDetail = () => {
     "marketing-digital-intensif": {
       title: "Marketing Digital Intensif",
       duration: "2 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Maîtrisez les outils et stratégies du marketing digital moderne pour booster votre carrière",
       detailedDescription: "Cette formation intensive vous donne toutes les clés pour réussir dans le marketing digital. Vous apprendrez à créer des campagnes efficaces, analyser les performances et optimiser votre présence en ligne. Formation pratique avec des cas réels d'entreprises.",
       modules: [
@@ -116,9 +122,10 @@ const FormationRapideDetail = () => {
     "cybersecurite-pratique": {
       title: "Cybersécurité Pratique",
       duration: "4 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Formation pratique en sécurité informatique et protection des systèmes pour devenir expert cybersécurité",
       detailedDescription: "Cette formation vous prépare aux défis de la cybersécurité moderne. Vous apprendrez les techniques d'attaque et de défense, l'audit de sécurité, et la gestion des incidents. Formation très pratique avec des laboratoires de sécurité réels.",
+      image: "/cyber.jpg",
       modules: [
         "Fondamentaux de la cybersécurité",
         "Ethical hacking et penetration testing",
@@ -163,7 +170,7 @@ const FormationRapideDetail = () => {
     "data-analytics-express": {
       title: "Data Analytics Express",
       duration: "3 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Analyse de données et business intelligence pour les entreprises modernes",
       detailedDescription: "Cette formation vous transforme en expert de l'analyse de données. Vous apprendrez à collecter, traiter et analyser des données pour prendre des décisions éclairées. Formation pratique avec des datasets réels d'entreprises.",
       modules: [
@@ -210,7 +217,7 @@ const FormationRapideDetail = () => {
     "management-projet-agile": {
       title: "Management de Projet Agile",
       duration: "1.5 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Méthodes agiles et gestion de projet moderne pour les professionnels",
       detailedDescription: "Cette formation vous donne toutes les compétences pour gérer des projets avec les méthodes agiles. Vous apprendrez Scrum, Kanban, et les outils modernes de gestion de projet. Formation très pratique avec des simulations de projets réels.",
       modules: [
@@ -257,7 +264,7 @@ const FormationRapideDetail = () => {
     "design-ux-ui-intensif": {
       title: "Design UX/UI Intensif",
       duration: "2.5 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Conception d'interfaces utilisateur modernes et ergonomiques",
       detailedDescription: "Cette formation vous transforme en designer UX/UI professionnel. Vous apprendrez à créer des interfaces intuitives, à mener des recherches utilisateur et à prototyper vos idées. Formation pratique avec des projets réels.",
       modules: [
@@ -304,7 +311,7 @@ const FormationRapideDetail = () => {
     "domaine-sante-soins-infirmiers": {
       title: "Domaine de Santé - Soins Infirmiers",
       duration: "4 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Formation complète en soins infirmiers et techniques médicales",
       detailedDescription: "Cette formation vous prépare à exercer le métier d'infirmier avec toutes les compétences nécessaires. Vous apprendrez les soins de base, la pharmacologie, l'anatomie et la physiologie. Formation pratique avec des stages en milieu hospitalier.",
       modules: [
@@ -326,7 +333,7 @@ const FormationRapideDetail = () => {
         "Travail en équipe pluridisciplinaire"
       ],
       careers: [
-        "Infirmier diplômé d'État",
+        "Infirmier diplômé professionnel",
         "Infirmier en service hospitalier",
         "Infirmier libéral",
         "Infirmier en entreprise",
@@ -342,7 +349,7 @@ const FormationRapideDetail = () => {
       features: [
         "Stages en hôpitaux",
         "Formation pratique intensive",
-        "Certification d'État",
+        "Certification Professionnelle",
         "Accompagnement personnalisé",
         "Réseau professionnel santé",
         "Aide à l'insertion"
@@ -448,6 +455,7 @@ const FormationRapideDetail = () => {
       certification: "Certificat de Formation",
       description: "Techniques de gestion du stress et amélioration du bien-être professionnel",
       detailedDescription: "Cette formation vous donne des outils concrets pour gérer le stress et améliorer votre bien-être au travail. Vous apprendrez des techniques de relaxation, de mindfulness et de communication pour un équilibre vie professionnelle/personnelle optimal.",
+      image: "/gestion-stress-bien-etre.jpg",
       modules: [
         "Comprendre le stress et ses mécanismes",
         "Techniques de relaxation et respiration",
@@ -492,9 +500,10 @@ const FormationRapideDetail = () => {
     "domaine-sante-aide-soignant": {
       title: "Domaine de Santé - Aide-Soignant",
       duration: "3 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Formation professionnelle en aide-soignant et accompagnement des patients",
       detailedDescription: "Cette formation vous prépare au métier d'aide-soignant avec toutes les compétences nécessaires pour accompagner les patients. Vous apprendrez les soins de base, l'hygiène hospitalière et la communication avec les patients et leurs familles.",
+      image: "/sante-aide-soignant.jpg",
       modules: [
         "Hygiène hospitalière et asepsie",
         "Aide aux soins de base",
@@ -530,7 +539,7 @@ const FormationRapideDetail = () => {
       features: [
         "Stages en établissements",
         "Formation pratique intensive",
-        "Certification d'État",
+        "Certification Professionnelle",
         "Accompagnement personnalisé",
         "Réseau professionnel",
         "Aide à l'insertion"
@@ -586,9 +595,10 @@ const FormationRapideDetail = () => {
     "modelisation-3d-animation": {
       title: "Modélisation 3D & Animation",
       duration: "2 mois",
-      certification: "Accrédité par l'État",
+      certification: "Certification Professionnelle",
       description: "Formation complète en modélisation 3D, animation et rendu",
       detailedDescription: "Cette formation vous transforme en artiste 3D professionnel. Vous apprendrez à créer des modèles 3D, des animations et des rendus de qualité professionnelle pour le cinéma, les jeux vidéo, l'architecture et la publicité.",
+      image: "/modelisation-3d-animation.jpg",
       modules: [
         "Fondamentaux de la 3D",
         "Modélisation avec Blender",
@@ -632,18 +642,46 @@ const FormationRapideDetail = () => {
     }
   };
 
-  const currentFormation = formationsData[formation as keyof typeof formationsData];
+  const currentFormation = formation ? formationsData[formation as keyof typeof formationsData] : null;
 
-  if (!currentFormation) {
+  // Set the selected formation when component mounts
+  useEffect(() => {
+    if (formation) {
+      // Clear any previous program selections
+      setSelectedProgramType(null);
+      setSelectedProgram(null);
+      // Set the current formation
+      setSelectedFormation(formation);
+    }
+    
+    // Clean up when component unmounts
+    return () => {
+      setSelectedFormation(null);
+    };
+  }, [formation, setSelectedFormation, setSelectedProgramType, setSelectedProgram]);
+
+  // If formation not found, show error message
+  if (!formation || !currentFormation) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Formation non trouvée</h1>
-          <Button onClick={() => navigate('/')}>Retour à l'accueil</Button>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+        <Header />
+        <div className="container mx-auto px-4 pt-20 pb-8">
+          <div className="text-center py-20">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Formation non trouvée</h1>
+            <p className="text-lg text-gray-600 mb-8">
+              La formation que vous recherchez n'existe pas ou a été supprimée.
+            </p>
+            <Button onClick={() => navigate('/')} className="bg-primary hover:bg-primary/90">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Retour à l'accueil
+            </Button>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -656,7 +694,7 @@ const FormationRapideDetail = () => {
           className="mb-6 hover-lift"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Retour aux formations rapides
+          Retour aux formations certifiées
         </Button>
 
         <div className="animate-fade-in">
@@ -683,17 +721,13 @@ const FormationRapideDetail = () => {
               <Button 
                 size="lg" 
                 className="bg-white text-supemir-orange hover:bg-white/90 animate-glow"
-                onClick={() => scrollToSection('footer')}
+                onClick={() => {
+                  // Trigger the registration form to open
+                  const event = new CustomEvent('openRegistration');
+                  window.dispatchEvent(event);
+                }}
               >
                 🚀 S'inscrire maintenant
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-white text-white bg-white/10 hover:bg-white hover:text-supemir-orange font-semibold shadow-lg backdrop-blur-sm"
-                onClick={() => window.open('mailto:infos@supemir.com?subject=Demande de brochure - ' + currentFormation.title, '_blank')}
-              >
-                📄 Télécharger la brochure
               </Button>
             </div>
           </div>
@@ -715,6 +749,22 @@ const FormationRapideDetail = () => {
                   </p>
                 </CardContent>
               </Card>
+
+              {/* Formation Image */}
+              {currentFormation.image && (
+                <Card className="animate-slide-up" style={{animationDelay: '0.05s'}}>
+                  <CardContent className="p-0">
+                    <div className="relative overflow-hidden rounded-lg">
+                      <img 
+                        src={currentFormation.image} 
+                        alt={currentFormation.title}
+                        className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
               {/* Modules */}
               <Card className="animate-slide-up" style={{animationDelay: '0.1s'}}>

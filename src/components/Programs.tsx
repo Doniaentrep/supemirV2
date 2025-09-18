@@ -1,511 +1,442 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Code, Shield, Users, TrendingUp, Zap, Database, Award, ArrowLeft } from "lucide-react";
+import { 
+  Code, 
+  Shield, 
+  Users, 
+  TrendingUp, 
+  Zap, 
+  Database, 
+  Award, 
+  ArrowLeft, 
+  ChevronDown, 
+  ChevronRight, 
+  BarChart3, 
+  Sparkles,
+  GraduationCap,
+  BookOpen,
+  Building2,
+  Heart,
+  Briefcase,
+  Lightbulb,
+  Target,
+  CheckCircle
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const Programs = () => {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedProgramType, setSelectedProgramType] = useState<'licence' | 'master' | null>(null);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [selectedDegree, setSelectedDegree] = useState<'bachelor' | 'master' | null>(null);
+  const [selectedField, setSelectedField] = useState<string | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  
+  const [programsRef, isProgramsVisible] = useScrollAnimation({ threshold: 0.2 });
 
   const handleProgramClick = (type: string, programSlug: string) => {
-    navigate(`/programme/${type}/${programSlug}`);
+    if (type === 'licence') {
+      navigate('/licence');
+    } else if (type === 'master') {
+      navigate('/master');
+    } else {
+    navigate(`/diplome/${type}/${programSlug}`);
+    }
   };
 
-  const handleCategoryClick = (category: string, type: 'licence' | 'master') => {
-    setSelectedCategory(category);
-    setSelectedProgramType(type);
+  const handleDegreeSelect = (degree: 'bachelor' | 'master') => {
+    // Navigate directly to the appropriate page
+    if (degree === 'bachelor') {
+      navigate('/licence');
+    } else if (degree === 'master') {
+      navigate('/master');
+    }
   };
 
-  const handleBackToCategories = () => {
-    setSelectedCategory(null);
-    setSelectedProgramType(null);
+  const handleFieldSelect = (field: string) => {
+    setSelectedField(field);
+    setCurrentStep(3);
   };
-  const licencesCategories = [
-    {
-      name: "Développement Informatique",
-      icon: Code,
-      description: "Maîtrisez les technologies les plus demandées du marché",
-      programs: [
-        {
-          title: "Développement Web Full Stack",
-          description: "Formation complète en développement web front-end et back-end",
-          duration: "3 ans",
-          slug: "developpement-web-fullstack"
-        },
-        {
-          title: "Développement Mobile",
-          description: "Création d'applications mobiles iOS et Android",
-          duration: "3 ans",
-          slug: "developpement-mobile"
-        },
-        {
-          title: "Intelligence Artificielle & Data Analytics",
-          description: "Maîtrisez l'IA, le machine learning et l'analyse de données",
-          duration: "3 ans",
-          slug: "ia-data-analytics"
-        }
-      ]
+
+  const handleProgramSelect = (programSlug: string) => {
+    if (selectedDegree) {
+      handleProgramClick(selectedDegree === 'bachelor' ? 'licence' : 'master', programSlug);
+    }
+  };
+
+  const getProgramSlug = (field: string): string => {
+    const slugMap: { [key: string]: string } = {
+      "Web Development": "developpement-web-fullstack",
+      "Mobile Development": "developpement-mobile",
+      "AI & Data Analytics": "ia-data-analytics",
+      "Cybersecurity": "cybersecurite-reseaux",
+      "Electrical Engineering": "electrotechnique-systemes",
+      "Industrial Automation": "automatisation-industrielle",
+      "Renewable Energy": "energies-renouvelables",
+      "Entrepreneurship & Finance": "entrepreneuriat-audit-finance",
+      "Digital Marketing": "developpement-commercial-marketing",
+      "Healthcare": "domaine-sante",
+      "Nursing": "domaine-sante-aide-soignant"
+    };
+    return slugMap[field] || field.toLowerCase().replace(/\s+/g, '-');
+  };
+
+  const handleBack = () => {
+    if (currentStep === 3) {
+      setCurrentStep(2);
+      setSelectedField(null);
+    } else if (currentStep === 2) {
+      setCurrentStep(1);
+      setSelectedDegree(null);
+    }
+  };
+
+  const handleReset = () => {
+    setCurrentStep(1);
+    setSelectedDegree(null);
+    setSelectedField(null);
+  };
+
+
+  // Degree types
+  const degrees = {
+    bachelor: {
+      title: "Licence",
+      description: "Programmes de premier cycle offrant des connaissances et compétences fondamentales",
+      icon: BookOpen,
+      color: "from-green-500 to-emerald-500",
+      duration: "3 ans"
     },
-    {
-      name: "Réseaux et Cybersécurité",
-      icon: Shield,
-      description: "Protégez les systèmes et infrastructures informatiques",
+    master: {
+      title: "Master",
+      description: "Programmes avancés pour une expertise spécialisée et le leadership",
+      icon: Award,
+      color: "from-orange-500 to-red-500",
+      duration: "2 ans"
+    }
+  };
+
+  // Fields of study
+  const fieldsOfStudy = {
+    bachelor: [
+      {
+        name: "Technologies de l'Information",
+        icon: Code,
+        description: "Maîtrisez les technologies de pointe et solutions numériques",
+        color: "from-blue-500 to-indigo-500",
       programs: [
-        {
-          title: "Administration Réseaux",
-          description: "Gestion et maintenance des infrastructures réseau",
-          duration: "3 ans",
-          slug: "administration-reseaux"
-        },
-        {
-          title: "Cybersécurité",
-          description: "Protection des systèmes contre les cyberattaques",
-          duration: "3 ans",
-          slug: "cybersecurite"
-        },
-        {
-          title: "Cloud Computing",
-          description: "Maîtrise des solutions cloud AWS, Azure, GCP",
-          duration: "3 ans",
-          slug: "cloud-computing"
-        }
-      ]
-    },
-    {
-      name: "Entrepreneuriat, Audit et Finance",
-      icon: TrendingUp,
-      description: "Développez votre esprit entrepreneurial et financier",
-      programs: [
-        {
-          title: "Gestion Financière",
-          description: "Maîtrisez la gestion financière d'entreprise",
-          duration: "3 ans",
-          slug: "gestion-financiere"
-        },
-        {
-          title: "Audit et Contrôle",
-          description: "Techniques d'audit et de contrôle interne",
-          duration: "3 ans",
-          slug: "audit-controle"
-        },
-        {
-          title: "Création d'Entreprise",
-          description: "De l'idée à la création d'entreprise",
-          duration: "3 ans",
-          slug: "creation-entreprise"
-        }
-      ]
-    },
-    {
-      name: "Développement Commercial et Marketing Digital",
-      icon: Users,
-      description: "Maîtrisez les stratégies commerciales modernes",
-      programs: [
-        {
-          title: "Marketing Digital",
-          description: "Stratégies digitales et réseaux sociaux",
-          duration: "3 ans",
-          slug: "marketing-digital"
-        },
-        {
-          title: "E-Business",
-          description: "Commerce électronique et vente en ligne",
-          duration: "3 ans",
-          slug: "e-business"
-        },
-        {
-          title: "Développement Commercial",
-          description: "Techniques de vente et relation client",
-          duration: "3 ans",
-          slug: "developpement-commercial"
-        }
-      ]
-    },
-    {
-      name: "Électrotechnique & Systèmes",
+          { title: "Développement Web", description: "Applications web full-stack et frameworks modernes" },
+          { title: "Développement Mobile", description: "Développement d'applications iOS et Android" },
+          { title: "IA & Analyse de Données", description: "Machine learning et science des données" },
+          { title: "Cybersécurité", description: "Sécurité réseau et hacking éthique" }
+        ]
+      },
+      {
+        name: "Ingénierie & Technologie",
       icon: Zap,
-      description: "Technologies électriques et systèmes industriels",
+        description: "Solutions innovantes pour les défis d'ingénierie modernes",
+        color: "from-yellow-500 to-orange-500",
       programs: [
-        {
-          title: "Automatisation Industrielle",
-          description: "Systèmes automatisés et robotique",
-          duration: "3 ans",
-          slug: "automatisation-industrielle"
-        },
-        {
-          title: "Énergies Renouvelables",
-          description: "Technologies solaires, éoliennes et hydroélectriques",
-          duration: "3 ans",
-          slug: "energies-renouvelables"
-        },
-        {
-          title: "Électrotechnique",
-          description: "Installations électriques et maintenance",
-          duration: "3 ans",
-          slug: "electrotechnique"
-        }
-      ]
-    },
-    {
-      name: "Domaine de Santé",
-      icon: Award,
-      description: "Formation professionnelle en secteur de la santé",
-      programs: [
-        {
-          title: "Soins Infirmiers",
-          description: "Formation professionnelle en soins infirmiers",
-          duration: "3 ans",
-          slug: "soins-infirmiers"
-        },
-        {
-          title: "Techniques Médicales",
-          description: "Techniques de laboratoire et imagerie médicale",
-          duration: "3 ans",
-          slug: "techniques-medicales"
-        },
-        {
-          title: "Aide-Soignant",
-          description: "Formation en aide et soins aux personnes",
-          duration: "3 ans",
-          slug: "aide-soignant"
-        }
-      ]
-    }
-  ];
-
-  const mastersCategories = [
-    {
-      name: "Génie Informatique et Innovation",
-      icon: Database,
-      description: "Devenez expert en technologies de pointe",
-      programs: [
-        {
-          title: "Intelligence Artificielle & Big Data",
-          description: "Maîtrisez l'IA avancée et l'analyse de données massives",
-          duration: "2 ans",
-          slug: "ia-big-data"
-        },
-        {
-          title: "Innovation Technologique",
-          description: "Développez des solutions technologiques innovantes",
-          duration: "2 ans",
-          slug: "innovation-technologique"
-        },
-        {
-          title: "Blockchain & Cryptomonnaies",
-          description: "Technologies blockchain et systèmes décentralisés",
-          duration: "2 ans",
-          slug: "blockchain-cryptomonnaies"
-        }
-      ]
-    },
-    {
-      name: "Cybersécurité et Transformation Digitale",
-      icon: Shield,
-      description: "Dirigez la transformation digitale sécurisée",
-      programs: [
-        {
-          title: "Leadership en Cybersécurité",
-          description: "Dirigez les stratégies de sécurité informatique",
-          duration: "2 ans",
-          slug: "leadership-cybersecurite"
-        },
-        {
-          title: "Transformation Digitale",
-          description: "Pilotez la transformation digitale des entreprises",
-          duration: "2 ans",
-          slug: "transformation-digitale"
-        },
-        {
-          title: "Gouvernance IT",
-          description: "Gouvernance et management des systèmes d'information",
-          duration: "2 ans",
-          slug: "gouvernance-it"
-        }
-      ]
-    },
-    {
-      name: "Finance et Stratégie Entrepreneuriale",
+          { title: "Génie Électrique", description: "Systèmes électriques et conception électrique" },
+          { title: "Automatisation Industrielle", description: "Systèmes automatisés et robotique" },
+          { title: "Énergies Renouvelables", description: "Technologies d'énergie durable" }
+        ]
+      },
+      {
+        name: "Gestion & Management",
       icon: TrendingUp,
-      description: "Maîtrisez la finance et l'entrepreneuriat avancé",
+        description: "Développez vos compétences en leadership et entrepreneuriat",
+        color: "from-green-500 to-teal-500",
       programs: [
-        {
-          title: "Finance d'Entreprise Avancée",
-          description: "Expertise en finance d'entreprise et investissement",
-          duration: "2 ans",
-          slug: "finance-entreprise-avancee"
-        },
-        {
-          title: "Stratégie Entrepreneuriale",
-          description: "Développement et gestion de projets entrepreneuriaux",
-          duration: "2 ans",
-          slug: "strategie-entrepreneuriale"
-        },
-        {
-          title: "Private Equity & Venture Capital",
-          description: "Investissement et financement de l'innovation",
-          duration: "2 ans",
-          slug: "private-equity-venture-capital"
-        }
-      ]
-    },
-    {
-      name: "Marketing Digital et E-Commerce",
-      icon: Users,
-      description: "Excellez dans le commerce et marketing digital",
+          { title: "Entrepreneuriat & Finance", description: "Développement d'entreprise et gestion financière" },
+          { title: "Marketing Digital", description: "Stratégies de marketing en ligne et analytics" }
+        ]
+      },
+      {
+        name: "Santé",
+        icon: Heart,
+        description: "Services professionnels de santé et médicaux",
+        color: "from-red-500 to-pink-500",
       programs: [
-        {
-          title: "Marketing Digital Avancé",
-          description: "Stratégies digitales avancées et analytics",
-          duration: "2 ans",
-          slug: "marketing-digital-avance"
-        },
-        {
-          title: "E-Commerce & Omnicanal",
-          description: "Gestion du commerce électronique et expérience client",
-          duration: "2 ans",
-          slug: "ecommerce-omnicanal"
-        },
-        {
-          title: "Growth Hacking",
-          description: "Techniques de croissance rapide et acquisition client",
-          duration: "2 ans",
-          slug: "growth-hacking"
-        }
-      ]
-    },
-    {
-      name: "Management et Leadership",
-      icon: Award,
-      description: "Développez votre leadership et management",
+          { title: "Santé", description: "Services généraux de santé et médicaux" },
+          { title: "Soins Infirmiers", description: "Soins infirmiers professionnels et soins aux patients" }
+        ]
+      }
+    ],
+    master: [
+      {
+        name: "Technologie Avancée",
+        icon: Database,
+        description: "Recherche de pointe et solutions technologiques avancées",
+        color: "from-purple-500 to-indigo-500",
       programs: [
-        {
-          title: "Management des Systèmes d'Information",
-          description: "Dirigez les systèmes d'information d'entreprise",
-          duration: "2 ans",
-          slug: "management-systemes-information"
-        },
-        {
-          title: "Leadership & Innovation",
-          description: "Développez votre leadership et capacité d'innovation",
-          duration: "2 ans",
-          slug: "leadership-innovation"
-        },
-        {
-          title: "Qualité, Sécurité & Développement Durable",
-          description: "Pilotez la qualité, sécurité et durabilité",
-          duration: "2 ans",
-          slug: "qualite-securite-developpement-durable"
-        }
-      ]
-    }
-  ];
-
-  // Function to render category cards
-  const renderCategoryCards = (categories: any[], type: 'licence' | 'master') => {
-    return categories.map((category, index) => {
-      const IconComponent = category.icon;
-      const isLicence = type === 'licence';
-      return (
-        <Card 
-          key={index} 
-          className={`group hover:shadow-xl transition-all duration-300 border-2 hover-lift animate-slide-up cursor-pointer ${
-            isLicence 
-              ? 'hover:border-accent/30' 
-              : 'hover:border-primary/30 bg-gradient-to-br from-background to-muted/20'
-          }`}
-          style={{animationDelay: `${index * 0.1}s`}} 
-          onClick={() => handleCategoryClick(category.name, type)}
-        >
-          <CardHeader>
-            <div className="flex items-center justify-between mb-3">
-              <div className={`p-3 rounded-xl ${
-                isLicence ? 'bg-accent/10' : 'bg-primary/10'
-              }`}>
-                <IconComponent className={`h-7 w-7 ${
-                  isLicence ? 'text-accent' : 'text-primary'
-                }`} />
-              </div>
-              <Badge className={`text-xs ${
-                isLicence 
-                  ? 'bg-accent text-accent-foreground' 
-                  : 'bg-primary text-primary-foreground'
-              }`}>
-                {type === 'licence' ? 'LICENCE PRO' : 'MASTER PRO'}
-              </Badge>
-            </div>
-            <CardTitle className={`text-xl group-hover transition-colors leading-tight ${
-              isLicence ? 'group-hover:text-accent' : 'group-hover:text-primary'
-            }`}>
-              {category.name}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className={`p-3 rounded-lg border ${
-                isLicence 
-                  ? 'bg-gradient-to-r from-accent/5 to-accent/10 border-accent/20'
-                  : 'bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20'
-              }`}>
-                <p className={`text-sm font-semibold mb-1 ${
-                  isLicence ? 'text-accent' : 'text-primary'
-                }`}>Programmes :</p>
-                <p className="text-sm text-foreground">{category.programs.length} formations disponibles</p>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {category.description}
-              </p>
-            </div>
-            <Button 
-              variant="outline" 
-              className={`w-full mt-6 hover-scale ${
-                isLicence 
-                  ? 'group-hover:bg-accent group-hover:text-accent-foreground'
-                  : 'group-hover:bg-primary group-hover:text-primary-foreground'
-              }`}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleCategoryClick(category.name, type);
-              }}
-            >
-              Voir les programmes
-            </Button>
-          </CardContent>
-        </Card>
-      );
-    });
+          { title: "IA & Analyse de Données", description: "Machine learning avancé et big data" },
+          { title: "Cybersécurité", description: "Architecture de sécurité avancée et gestion" }
+        ]
+      },
+      {
+        name: "Leadership en Ingénierie",
+        icon: Building2,
+        description: "Gestion d'ingénierie avancée et innovation",
+        color: "from-blue-500 to-cyan-500",
+      programs: [
+          { title: "Génie Électrique", description: "Systèmes électriques avancés et réseaux intelligents" },
+          { title: "Automatisation Industrielle", description: "Automatisation avancée et Industrie 4.0" }
+        ]
+      },
+      {
+        name: "Leadership Commercial",
+      icon: BarChart3,
+        description: "Leadership exécutif et gestion stratégique",
+        color: "from-emerald-500 to-green-500",
+      programs: [
+          { title: "Entrepreneuriat & Finance", description: "Stratégie d'entreprise avancée et finance" },
+          { title: "Marketing Digital", description: "Marketing digital avancé et analytics" }
+        ]
+      },
+      {
+        name: "Gestion de la Santé",
+        icon: Award,
+        description: "Administration avancée de la santé et politique",
+        color: "from-rose-500 to-red-500",
+        programs: [
+          { title: "Santé", description: "Administration de la santé et politique" },
+          { title: "Soins Infirmiers", description: "Pratique infirmière avancée et leadership" }
+        ]
+      }
+    ]
   };
 
-  // Function to render program cards for a selected category
-  const renderProgramCards = (category: any, type: 'licence' | 'master') => {
-    const isLicence = type === 'licence';
-    return (
-      <div className="space-y-6">
-        {/* Back button and category header */}
-        <div className="flex items-center justify-between mb-8">
-          <Button 
-            variant="outline" 
-            onClick={handleBackToCategories}
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Retour aux catégories
-          </Button>
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-foreground">{category.name}</h3>
-            <p className="text-muted-foreground">{category.description}</p>
-          </div>
-        </div>
+  const getCurrentFields = () => {
+    if (selectedDegree) {
+      return fieldsOfStudy[selectedDegree] || [];
+    }
+    return [];
+  };
 
-        {/* Program cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {category.programs.map((program: any, index: number) => (
-            <Card 
-              key={index} 
-              className={`group hover:shadow-xl transition-all duration-300 border-2 hover-lift animate-slide-up cursor-pointer ${
-                isLicence 
-                  ? 'hover:border-accent/30' 
-                  : 'hover:border-primary/30 bg-gradient-to-br from-background to-muted/20'
-              }`}
-              style={{animationDelay: `${index * 0.1}s`}} 
-              onClick={() => {
-                console.log('Program clicked:', type, program.slug);
-                handleProgramClick(type, program.slug);
-              }}
-            >
-              <CardHeader>
-                <div className="flex items-center justify-between mb-3">
-                  <div className={`p-3 rounded-xl ${
-                    isLicence ? 'bg-accent/10' : 'bg-primary/10'
-                  }`}>
-                    <Award className={`h-7 w-7 ${
-                      isLicence ? 'text-accent' : 'text-primary'
-                    }`} />
-                  </div>
-                  <Badge className={`text-xs ${
-                    isLicence 
-                      ? 'bg-accent text-accent-foreground' 
-                      : 'bg-primary text-primary-foreground'
-                  }`}>
-                    {program.duration}
-                  </Badge>
+  const renderStepIndicator = () => (
+    <div className="flex items-center justify-center mb-4">
+                  <div className="flex items-center space-x-3">
+        {[1, 2, 3].map((step) => (
+          <div key={step} className="flex items-center">
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold ${
+              step <= currentStep 
+                ? 'bg-primary text-primary-foreground' 
+                : 'bg-muted text-muted-foreground'
+            }`}>
+              {step}
+                    </div>
+            {step < 3 && (
+              <div className={`w-8 h-0.5 mx-1 ${
+                step < currentStep ? 'bg-primary' : 'bg-muted'
+                      }`} />
+            )}
+                    </div>
+                  ))}
                 </div>
-                <CardTitle className={`text-lg group-hover transition-colors leading-tight ${
-                  isLicence ? 'group-hover:text-accent' : 'group-hover:text-primary'
-                }`}>
-                  {program.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  {program.description}
-                </p>
-                <Button 
-                  className={`w-full hover-scale ${
-                    isLicence 
-                      ? 'bg-accent hover:bg-accent/90 text-accent-foreground'
-                      : 'bg-primary hover:bg-primary/90 text-primary-foreground'
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    console.log('En savoir plus clicked:', type, program.slug);
-                    handleProgramClick(type, program.slug);
-                  }}
-                >
-                  En savoir plus
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+          </div>
+      );
+
+  const renderStepTitle = () => {
+    const titles = {
+      1: "Sélectionnez Votre Niveau d'Études",
+      2: "Choisissez Votre Domaine d'Études",
+      3: "Sélectionnez Votre Programme"
+    };
+    return (
+      <div className="text-center mb-2">
+        <h2 className="text-base font-bold text-foreground mb-1">
+          {titles[currentStep as keyof typeof titles]}
+        </h2>
+        <p className="text-muted-foreground text-xs">
+          {currentStep === 1 && "Choisissez entre Licence ou Master"}
+          {currentStep === 2 && "Explorez les domaines d'études disponibles"}
+          {currentStep === 3 && "Sélectionnez le programme qui vous intéresse"}
+        </p>
       </div>
     );
   };
 
   return (
-    <section id="programmes" className="py-20 bg-background">
+    <section id="programmes" className="py-4 pt-8 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4">
-        {!selectedCategory ? (
-          <>
-            {/* Licences Pro Section */}
-            <div className="mb-16">
-              <div className="text-center mb-12 animate-fade-in">
-                <Badge variant="secondary" className="mb-4">Formations d'Excellence</Badge>
-                <h2 className="text-4xl font-bold text-foreground mb-4">LICENCE PRO</h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  Des domaines passionnants qui ouvrent la voie vers un avenir brillant. Chaque chemin mène vers l'excellence.
+        <div ref={programsRef as React.RefObject<HTMLDivElement>} className="text-center mb-2">
+          <Badge className="mb-2 bg-gradient-to-r from-primary to-accent text-white px-3 py-1 text-sm">
+            <Sparkles className="h-3 w-3 mr-1" />
+            Programmes Professionnels
+          </Badge>
+          <h1 className="text-lg md:text-xl font-bold text-foreground mb-1">
+            Choisissez Votre{" "}
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Parcours Professionnel
+            </span>
+          </h1>
+          <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+            Découvrez notre gamme complète de diplômes et domaines d'études spécialisés.
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {renderCategoryCards(licencesCategories, 'licence')}
+              <div className="max-w-6xl mx-auto">
+          {renderStepIndicator()}
+          {renderStepTitle()}
+
+          {/* Step 1: Choose Degree Level */}
+          {currentStep === 1 && (
+            <div className="grid md:grid-cols-2 gap-6">
+              {Object.entries(degrees).map(([key, degree]) => (
+                <Card 
+                  key={key}
+                  className={`group cursor-pointer transition-all duration-300 hover:shadow-xl border-2 hover:border-primary/30 hover:-translate-y-2 ${
+                    hoveredItem === key ? 'ring-2 ring-primary/20' : ''
+                  }`}
+                  onClick={() => handleDegreeSelect(key as 'bachelor' | 'master')}
+                  onMouseEnter={() => setHoveredItem(key)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  <CardHeader className="text-center pb-3">
+                    <div className={`w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-r ${degree.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300`}>
+                      <degree.icon className="h-6 w-6" />
+                    </div>
+                    <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors">
+                      {degree.title}
+                    </CardTitle>
+                    <CardDescription className="text-sm leading-relaxed">
+                      {degree.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <Badge variant="outline" className="mb-3 text-xs">
+                      Durée: {degree.duration}
+                    </Badge>
+                    <div className="flex items-center justify-center text-primary font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
+                      <span>Explorer les Programmes</span>
+                      <ChevronRight className="h-3 w-3 ml-1" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {/* Step 2: Choose Field of Study */}
+          {currentStep === 2 && selectedDegree && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-center mb-3">
+                <Button variant="outline" onClick={handleBack} className="mr-4">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Retour
+                </Button>
+                <div className="text-sm text-muted-foreground">
+                  Sélectionné: <span className="font-semibold text-foreground">
+                    {degrees[selectedDegree]?.title}
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto">
+                {fieldsOfStudy[selectedDegree]?.map((field, index) => (
+                  <Card 
+                    key={index}
+                    className={`group cursor-pointer transition-all duration-300 hover:shadow-xl border-2 hover:border-primary/30 hover:-translate-y-2 ${
+                      hoveredItem === field.name ? 'ring-2 ring-primary/20' : ''
+                    }`}
+                    onClick={() => handleFieldSelect(field.name)}
+                    onMouseEnter={() => setHoveredItem(field.name)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <CardHeader className="pb-2">
+                      <div className="flex items-center mb-2">
+                        <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${field.color} flex items-center justify-center text-white mr-3 group-hover:scale-110 transition-transform duration-300`}>
+                          <field.icon className="h-4 w-4" />
+                        </div>
+                        <CardTitle className="text-sm font-bold group-hover:text-primary transition-colors">
+                          {field.name}
+                        </CardTitle>
+                      </div>
+                      <CardDescription className="text-xs leading-relaxed">
+                        {field.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <div className="transition-all duration-300 overflow-hidden max-h-0 opacity-0 group-hover:max-h-96 group-hover:opacity-100">
+                        <div className="space-y-1 border-t pt-2">
+                          {field.programs.map((program, programIndex) => (
+                            <div key={programIndex} className="flex items-center text-xs text-muted-foreground">
+                              <CheckCircle className="h-3 w-3 mr-2 text-primary" />
+                              <div>
+                                <div className="font-medium text-foreground">{program.title}</div>
+                                <div className="text-xs">{program.description}</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
+          )}
 
-            {/* Masters Pro Section */}
-            <div>
-              <div className="text-center mb-12 animate-fade-in">
-                <Badge variant="secondary" className="mb-4">Leadership & Innovation</Badge>
-                <h2 className="text-4xl font-bold text-foreground mb-4">MASTER PRO</h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  Développez votre leadership et devenez un expert reconnu dans votre domaine
-                </p>
+          {/* Step 3: Choose Program */}
+          {currentStep === 3 && selectedDegree && selectedField && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-center mb-3">
+                <Button variant="outline" onClick={handleBack} className="mr-4">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Retour
+                </Button>
+                <div className="text-sm text-muted-foreground">
+                  Sélectionné: <span className="font-semibold text-foreground">
+                    {degrees[selectedDegree]?.title} - {selectedField}
+                  </span>
+                </div>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {renderCategoryCards(mastersCategories, 'master')}
+              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                {getCurrentFields()
+                  .find(field => field.name === selectedField)
+                  ?.programs.map((program, index) => (
+                    <Card 
+                      key={index}
+                      className="group cursor-pointer transition-all duration-300 hover:shadow-xl border-2 hover:border-primary/30 hover:-translate-y-2"
+                      onClick={() => handleProgramSelect(getProgramSlug(program.title))}
+                    >
+                      <CardHeader className="text-center pb-3">
+                        <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                          <GraduationCap className="h-6 w-6" />
+                        </div>
+                        <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors">
+                          {program.title}
+                        </CardTitle>
+                        <CardDescription className="text-sm leading-relaxed">
+                          {program.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <div className="flex items-center justify-center text-primary font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
+                          <span>En savoir plus</span>
+                          <ChevronRight className="h-3 w-3 ml-1" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
               </div>
             </div>
-          </>
-        ) : (
-          // Show programs for selected category
-          selectedProgramType === 'licence' ? 
-            renderProgramCards(licencesCategories.find(cat => cat.name === selectedCategory)!, 'licence') :
-            renderProgramCards(mastersCategories.find(cat => cat.name === selectedCategory)!, 'master')
-        )}
+          )}
+
+          {/* Reset Button */}
+          {currentStep > 1 && (
+            <div className="text-center mt-4">
+              <Button variant="ghost" onClick={handleReset} className="text-muted-foreground hover:text-foreground text-sm">
+                <Lightbulb className="h-3 w-3 mr-1" />
+                Recommencer
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
