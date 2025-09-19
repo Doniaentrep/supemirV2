@@ -510,6 +510,7 @@ const BootcampMarketingDigital = () => {
       
       <Footer />
 
+
       {/* Registration Modal */}
       {isRegistrationOpen && (
         <RegistrationForm 
