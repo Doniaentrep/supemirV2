@@ -21,102 +21,156 @@ const Master = () => {
   // Master programs data
   const masterPrograms = [
     {
-      id: "technologie-avancee",
-      title: "Technologie Avancée",
-      description: "Recherche de pointe et solutions technologiques avancées",
+      id: "informatique-data-sciences",
+      title: "Informatique, Data Sciences & Intelligence Artificielle",
+      description: "Formation avancée en technologies de l'information et intelligence artificielle",
       duration: "2 ans",
       level: "Bac+5",
       icon: Database,
       color: "from-purple-500 to-indigo-500",
       programs: [
         {
-          title: "IA & Analyse de Données Avancée",
-          description: "Machine learning avancé et big data pour l'entreprise",
-          slug: "ia-data-analytics-avancee",
-          modules: ["Deep Learning", "Big Data", "Computer Vision", "NLP", "MLOps", "Data Engineering"],
-          careers: ["Senior Data Scientist", "ML Engineer", "AI Research", "Data Architect"]
+          title: "Informatique, Data Sciences, Cloud, Cybersécurité & Intelligence Artificielle (DU IDCIA)",
+          description: "Formation complète en technologies avancées et intelligence artificielle",
+          slug: "informatique-data-sciences-cloud-cybersecurite-ia",
+          modules: ["Data Science", "Cloud Computing", "Cybersécurité", "Intelligence Artificielle", "Machine Learning", "Big Data"],
+          careers: ["Data Scientist", "Cloud Architect", "Cybersecurity Specialist", "AI Engineer", "ML Engineer"]
         },
         {
-          title: "Cybersécurité Avancée",
-          description: "Architecture de sécurité avancée et gestion des risques",
-          slug: "cybersecurite-avancee",
-          modules: ["Security Architecture", "Risk Management", "Incident Response", "Forensics", "Compliance", "Security Operations"],
-          careers: ["CISO", "Security Architect", "Penetration Tester", "Security Consultant"]
+          title: "Big Data et Intelligence Artificielle",
+          description: "Spécialisation en big data et intelligence artificielle",
+          slug: "big-data-intelligence-artificielle",
+          modules: ["Big Data Analytics", "Machine Learning", "Deep Learning", "Data Mining", "Predictive Analytics", "AI Applications"],
+          careers: ["Big Data Engineer", "AI Specialist", "Data Analyst", "Machine Learning Engineer", "Business Intelligence Analyst"]
+        },
+        {
+          title: "Génie Informatique et Innovation Technologique, Option Génie Logiciel",
+          description: "Développement logiciel avancé et innovation technologique",
+          slug: "genie-informatique-innovation-technologique-genie-logiciel",
+          modules: ["Software Engineering", "System Design", "Agile Development", "Quality Assurance", "Software Architecture", "Innovation Management"],
+          careers: ["Software Architect", "Senior Developer", "Technical Lead", "Software Engineering Manager", "Innovation Manager"]
+        },
+        {
+          title: "Génie Informatique et Innovation Technologique, Option Intelligence Artificielle et Data Science",
+          description: "Innovation technologique avec focus IA et data science",
+          slug: "genie-informatique-innovation-technologique-ia-data-science",
+          modules: ["AI Innovation", "Data Science", "Technology Transfer", "R&D", "Product Development", "Market Analysis"],
+          careers: ["AI Innovation Manager", "R&D Engineer", "Technology Consultant", "Product Manager", "Data Science Lead"]
         }
       ]
     },
     {
-      id: "leadership-ingenierie",
-      title: "Leadership en Ingénierie",
-      description: "Gestion d'ingénierie avancée et innovation",
+      id: "cybersecurite-transformation-digitale",
+      title: "Cybersécurité & Transformation Digitale",
+      description: "Sécurité informatique et transformation digitale des organisations",
       duration: "2 ans",
       level: "Bac+5",
-      icon: Building2,
-      color: "from-blue-500 to-cyan-500",
+      icon: Target,
+      color: "from-red-500 to-pink-500",
       programs: [
         {
-          title: "Génie Électrique Avancé",
-          description: "Systèmes électriques avancés et réseaux intelligents",
-          slug: "genie-electrique-avance",
-          modules: ["Smart Grid", "IoT", "Énergies Renouvelables", "Automatisation", "Réseaux Intelligents", "Innovation"],
-          careers: ["Ingénieur Senior", "Chef de Projet", "Innovation Manager", "Technical Lead"]
+          title: "Cybersécurité et Transformation Digitale, Option Systèmes de communication et Data center",
+          description: "Cybersécurité spécialisée en systèmes de communication et data centers",
+          slug: "cybersecurite-transformation-digitale-systemes-communication-data-center",
+          modules: ["Cybersécurité", "Network Security", "Data Center Security", "Communication Systems", "Risk Management", "Incident Response"],
+          careers: ["Cybersecurity Specialist", "Network Security Engineer", "Data Center Security Manager", "Security Consultant"]
         },
         {
-          title: "Automatisation Industrielle Avancée",
-          description: "Automatisation avancée et Industrie 4.0",
-          slug: "automatisation-industrielle-avancee",
-          modules: ["Industrie 4.0", "IoT Industriel", "Digital Twin", "AI Industrielle", "Cybersécurité OT", "Lean Manufacturing"],
-          careers: ["Industrial Engineer", "Digital Transformation", "Process Manager", "Innovation Leader"]
+          title: "Cybersécurité et Transformation Digitale, Option Management des Systèmes d'Information",
+          description: "Gestion de la sécurité des systèmes d'information",
+          slug: "cybersecurite-transformation-digitale-management-systemes-information",
+          modules: ["Information Security Management", "Cybersécurité", "Risk Assessment", "Compliance", "Security Governance", "Digital Transformation"],
+          careers: ["CISO", "Information Security Manager", "Security Governance Specialist", "Digital Transformation Manager"]
         }
       ]
     },
     {
-      id: "leadership-commercial",
-      title: "Leadership Commercial",
-      description: "Leadership exécutif et gestion stratégique",
+      id: "management-systemes-information",
+      title: "Management & Systèmes d'Information",
+      description: "Gestion des systèmes d'information et transformation digitale",
       duration: "2 ans",
       level: "Bac+5",
       icon: BarChart3,
-      color: "from-emerald-500 to-green-500",
+      color: "from-blue-500 to-cyan-500",
       programs: [
         {
-          title: "Entrepreneuriat & Finance Avancé",
-          description: "Stratégie d'entreprise avancée et finance",
-          slug: "entrepreneuriat-finance-avance",
-          modules: ["Strategic Management", "Corporate Finance", "Investment Analysis", "M&A", "Risk Management", "Innovation Strategy"],
-          careers: ["CEO", "CFO", "Investment Manager", "Strategic Consultant"]
-        },
-        {
-          title: "Marketing Digital Avancé",
-          description: "Marketing digital avancé et analytics",
-          slug: "marketing-digital-avance",
-          modules: ["Digital Strategy", "Advanced Analytics", "Marketing Automation", "Customer Experience", "Growth Marketing", "Data-Driven Marketing"],
-          careers: ["CMO", "Digital Marketing Director", "Growth Manager", "Marketing Analytics Lead"]
+          title: "Management des Systèmes d'Information",
+          description: "Gestion stratégique des systèmes d'information",
+          slug: "management-systemes-information",
+          modules: ["IT Management", "System Architecture", "Project Management", "Change Management", "Digital Strategy", "IT Governance"],
+          careers: ["IT Manager", "System Administrator", "IT Director", "Digital Strategy Manager", "IT Consultant"]
         }
       ]
     },
     {
-      id: "gestion-sante",
-      title: "Gestion de la Santé",
-      description: "Administration avancée de la santé et politique",
+      id: "finance-audit-entrepreneuriat",
+      title: "Finance, Audit & Entrepreneuriat",
+      description: "Gestion financière, audit et création d'entreprise",
+      duration: "2 ans",
+      level: "Bac+5",
+      icon: Award,
+      color: "from-yellow-500 to-orange-500",
+      programs: [
+        {
+          title: "Finance, Audit & Entrepreneuriat",
+          description: "Spécialisation en finance, audit et entrepreneuriat",
+          slug: "finance-audit-entrepreneuriat-master",
+          modules: ["Corporate Finance", "Audit", "Risk Management", "Entrepreneurship", "Investment Analysis", "Financial Strategy"],
+          careers: ["Financial Manager", "Auditor", "Risk Manager", "Entrepreneur", "Investment Analyst", "CFO"]
+        }
+      ]
+    },
+    {
+      id: "marketing-digital-business",
+      title: "Marketing Digital & Business",
+      description: "Stratégies digitales et développement commercial",
       duration: "2 ans",
       level: "Bac+5",
       icon: Heart,
-      color: "from-rose-500 to-red-500",
+      color: "from-green-500 to-emerald-500",
       programs: [
         {
-          title: "Administration de la Santé",
-          description: "Administration de la santé et politique",
-          slug: "administration-sante",
-          modules: ["Health Policy", "Healthcare Management", "Quality Management", "Health Economics", "Public Health", "Healthcare Innovation"],
-          careers: ["Healthcare Administrator", "Health Policy Analyst", "Quality Manager", "Healthcare Consultant"]
-        },
+          title: "Développement Commercial et Marketing Digital",
+          description: "Stratégies commerciales et marketing digital avancées",
+          slug: "developpement-commercial-marketing-digital-master",
+          modules: ["Digital Marketing", "Sales Strategy", "Customer Relationship Management", "E-commerce", "Analytics", "Business Development"],
+          careers: ["Digital Marketing Manager", "Sales Director", "Business Development Manager", "E-commerce Manager", "Marketing Director"]
+        }
+      ]
+    },
+    {
+      id: "qhse-performance-durable",
+      title: "QHSE & Performance Durable",
+      description: "Qualité, hygiène, sécurité, environnement et développement durable",
+      duration: "2 ans",
+      level: "Bac+5",
+      icon: CheckCircle,
+      color: "from-indigo-500 to-blue-500",
+      programs: [
         {
-          title: "Pratique Infirmière Avancée",
-          description: "Pratique infirmière avancée et leadership",
-          slug: "pratique-infirmiere-avancee",
-          modules: ["Advanced Practice", "Clinical Leadership", "Research Methods", "Healthcare Innovation", "Patient Safety", "Interprofessional Care"],
-          careers: ["Advanced Practice Nurse", "Clinical Nurse Specialist", "Nurse Manager", "Healthcare Educator"]
+          title: "QHSSE & Performance Durable",
+          description: "Management de la qualité, sécurité et performance durable",
+          slug: "qhsse-performance-durable",
+          modules: ["Quality Management", "Health & Safety", "Environmental Management", "Sustainable Development", "Performance Management", "Compliance"],
+          careers: ["QHSE Manager", "Sustainability Manager", "Environmental Consultant", "Quality Director", "Safety Manager"]
+        }
+      ]
+    },
+    {
+      id: "achat-logistique-supply-chain",
+      title: "Achat, Logistique & Supply Chain",
+      description: "Gestion des achats, logistique et chaîne d'approvisionnement",
+      duration: "2 ans",
+      level: "Bac+5",
+      icon: Building2,
+      color: "from-teal-500 to-cyan-500",
+      programs: [
+        {
+          title: "Achat, Logistique et Supply Chain Management",
+          description: "Gestion stratégique des achats et de la chaîne d'approvisionnement",
+          slug: "achat-logistique-supply-chain-management",
+          modules: ["Procurement", "Supply Chain Management", "Logistics", "Vendor Management", "Inventory Management", "Strategic Sourcing"],
+          careers: ["Procurement Manager", "Supply Chain Director", "Logistics Manager", "Vendor Manager", "Operations Director"]
         }
       ]
     }
@@ -157,11 +211,10 @@ const Master = () => {
             </Badge>
             
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Master Professionnel
+              Formation Continue
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Programmes avancés pour une expertise spécialisée et le leadership. 
-              Développez vos compétences de haut niveau et devenez un expert dans votre domaine.
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+              Le master professionnel de SUPEMIR en formation continue s'adresse aux étudiants et aux professionnels souhaitant renforcer leurs compétences et se spécialiser dans des domaines stratégiques. Parmi les filières proposées, on retrouve le génie informatique, la cybersécurité, le DevOps, la finance et le marketing digital. Chaque master professionnel proposé par SUPEMIR intègre des approches pédagogiques innovantes. Les participants bénéficient d'un enseignement qui allie rigueur académique, projets appliqués et immersion en entreprise. Cette combinaison permet de développer des compétences immédiatement exploitables sur le marché du travail. Grâce à des partenariats solides avec les principaux acteurs du secteur, SUPEMIR forme des experts hautement qualifiés. Les diplômés du master professionnel sont ainsi préparés à accompagner la transformation digitale et énergétique des organisations. Conçu pour s'adapter aux contraintes des professionnels en activité, le master professionnel chez SUPEMIR propose des horaires aménagés et des formats de cours flexibles, permettant de concilier formation et vie professionnelle.
             </p>
             
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">

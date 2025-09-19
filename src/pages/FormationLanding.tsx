@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Clock, Award, Users, Target, CheckCircle, Star, Calendar, MapPin, Phone, Mail, BookOpen, Play, Download, Share2 } from "lucide-react";
+import { ArrowLeft, Clock, Award, Users, Target, CheckCircle, Star, Calendar, MapPin, Phone, Mail, BookOpen, Play, Share2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useFormation } from "@/contexts/FormationContext";
@@ -586,58 +586,6 @@ const FormationLanding = () => {
 
   const currentFormation = formationSlug ? formationsData[formationSlug as keyof typeof formationsData] : null;
 
-  const handleBrochureDownload = () => {
-    if (!currentFormation) return;
-    
-    // Create a simple brochure content
-    const brochureContent = `
-FORMATION: ${currentFormation.title}
-DURÉE: ${currentFormation.duration}
-PRIX: ${currentFormation.price}
-NIVEAU: ${currentFormation.level}
-
-DESCRIPTION:
-${currentFormation.detailedDescription}
-
-MODULES:
-${currentFormation.modules.map((module, index) => `${index + 1}. ${module}`).join('\n')}
-
-COMPÉTENCES ACQUISES:
-${currentFormation.skills.map(skill => `• ${skill}`).join('\n')}
-
-DÉBOUCHÉS PROFESSIONNELS:
-${currentFormation.careers.map(career => `• ${career}`).join('\n')}
-
-PRÉREQUIS:
-${currentFormation.requirements.map(req => `• ${req}`).join('\n')}
-
-AVANTAGES:
-${currentFormation.benefits.map(benefit => `• ${benefit}`).join('\n')}
-
-FORMATEUR: ${currentFormation.instructor}
-LIEU: ${currentFormation.location}
-DÉBUT: ${currentFormation.startDate}
-
-CONTACT:
-SUPEMIR - Marrakech
-Email: info@supemir.ma
-Téléphone: +212 5XX XXX XXX
-
----
-Cette brochure a été générée automatiquement depuis notre site web.
-    `;
-
-    // Create and download the brochure
-    const blob = new Blob([brochureContent], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `brochure-${formationSlug || 'formation'}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-  };
 
   // Set the selected formation when component mounts
   useEffect(() => {
@@ -738,14 +686,6 @@ Cette brochure a été générée automatiquement depuis notre site web.
               <div className="flex gap-3">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 flex-1">
                   S'inscrire maintenant
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  onClick={() => handleBrochureDownload()}
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                  Brochure
                 </Button>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Play, Users, Calendar, BookOpen, Trophy, Globe, Heart, GraduationCap, Briefcase, Users2, Award, Clock, Sparkles, Target, Lightbulb, Zap, Star, Shield, Rocket, Building2, UserCheck, Globe2, BadgeCheck, Timer, PartyPopper } from "lucide-react";
+import { Play, Users, Calendar, BookOpen, Trophy, Globe, Heart, GraduationCap, Briefcase, Users2, Award, Clock, Sparkles, Target, Lightbulb, Zap, Star, Shield, Rocket } from "lucide-react";
 import { useState } from "react";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
 import StudentTestimonials from "./StudentTestimonials";
@@ -10,19 +10,6 @@ const CampusLife = () => {
   const [activeEvent, setActiveEvent] = useState(0);
   
   const [eventsRef, isEventsVisible] = useScrollAnimation({ threshold: 0.2 });
-  const [activitiesRef, isActivitiesVisible] = useScrollAnimation({ threshold: 0.2 });
-
-  const getIconGradient = (id: number) => {
-    switch (id) {
-      case 1: return "from-orange-400 via-red-500 to-pink-500";
-      case 2: return "from-blue-400 via-cyan-500 to-teal-500";
-      case 3: return "from-green-400 via-emerald-500 to-teal-500";
-      case 4: return "from-purple-400 via-indigo-500 to-blue-500";
-      case 5: return "from-emerald-400 via-green-500 to-lime-500";
-      case 6: return "from-pink-400 via-violet-500 to-purple-500";
-      default: return "from-gray-400 to-gray-500";
-    }
-  };
 
 
   const campusEvents = [
@@ -64,50 +51,6 @@ const CampusLife = () => {
     }
   ];
 
-  const campusActivities = [
-    {
-      id: 1,
-      title: "🚀 SUP'Factory - Incubateur",
-      description: "Un incubateur de startups directement sur le campus pour accompagner les projets entrepreneuriaux",
-      icon: Building2,
-      color: "text-orange-500"
-    },
-    {
-      id: 2,
-      title: "💼 Centre de Carrière",
-      description: "Accompagnement personnalisé pour l'insertion professionnelle et le développement des soft skills",
-      icon: UserCheck,
-      color: "text-cyan-500"
-    },
-    {
-      id: 3,
-      title: "🌍 Intégration Étudiants Internationaux",
-      description: "Accueil et assistance personnalisée pour réussir son intégration au Maroc",
-      icon: Globe2,
-      color: "text-green-500"
-    },
-    {
-      id: 4,
-      title: "🛡️ Certifications Professionnelles",
-      description: "Validation des compétences avec des certificats reconnus mondialement",
-      icon: BadgeCheck,
-      color: "text-indigo-500"
-    },
-    {
-      id: 5,
-      title: "⏰ Formation en Alternance",
-      description: "Formation en alternance dès la 3ème année pour une étape décisive vers l'emploi",
-      icon: Timer,
-      color: "text-emerald-500"
-    },
-    {
-      id: 6,
-      title: "✨ Vie Associative",
-      description: "Clubs étudiants, associations et activités extra-scolaires pour un épanouissement complet",
-      icon: PartyPopper,
-      color: "text-violet-500"
-    }
-  ];
 
 
   const nextEvent = () => {
@@ -122,16 +65,6 @@ const CampusLife = () => {
     <section id="campus-life" className="py-20 pt-24 bg-gradient-to-br from-muted/30 to-background">
       <div className="container mx-auto px-4">
         
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <Badge variant="secondary" className="mb-4">Vie au Campus</Badge>
-          <h2 className="text-4xl font-bold text-foreground mb-4">
-            Découvrez la Vie Étudiante à SUPEMIR
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Une expérience enrichissante qui va bien au-delà des cours. Découvrez les témoignages de nos étudiants et la vie dynamique de notre campus.
-          </p>
-        </div>
 
         {/* Student Testimonials */}
         <StudentTestimonials />
@@ -179,44 +112,6 @@ const CampusLife = () => {
           </div>
         </div>
 
-        {/* Campus Activities */}
-        <div ref={activitiesRef} className="mb-16">
-          <div className={`text-center mb-12 transition-all duration-1000 ${
-            isActivitiesVisible ? 'animate-fade-in' : 'opacity-0 translate-y-[30px]'
-          }`}>
-            <h3 className="text-3xl font-bold text-foreground mb-4">
-              Vie de Campus
-            </h3>
-            <p className="text-lg text-muted-foreground">
-              Des activités enrichissantes qui complètent votre formation
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {campusActivities.map((activity, index) => {
-                const IconComponent = activity.icon;
-                return (
-                  <Card key={activity.id} className="group hover-lift transition-all duration-500 border-0 bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-sm hover:shadow-2xl hover:scale-105 hover:border-accent/20 animate-slide-up" style={{animationDelay: `${index * 0.1}s`}}>
-                    <CardHeader className="text-center">
-                      <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${getIconGradient(activity.id)} flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl group-hover:shadow-3xl group-hover:rotate-3`}>
-                        <IconComponent className={`h-10 w-10 text-white group-hover:scale-110 transition-transform duration-300 drop-shadow-lg`} />
-                      </div>
-                      <CardTitle className="text-lg font-bold group-hover:text-accent transition-colors bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                        {activity.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-center leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                        {activity.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </div>
 
         {/* Call to Action */}
         <div className="text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 border border-primary/20 hover-lift">

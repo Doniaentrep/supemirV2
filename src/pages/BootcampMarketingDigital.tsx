@@ -134,55 +134,57 @@ const BootcampMarketingDigital = () => {
               Choisir le Bootcamp Marketing Digital de Supemir Marrakech Academy, c'est investir dans une formation d'excellence
             </p>
           </div>
-          
+
+          {/* Cards styled like the Campus Life screenshot */}
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Brain className="h-8 w-8 text-primary" />
+            {/* IA Integration */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex flex-col items-center text-center">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 text-white flex items-center justify-center mb-6 shadow-sm">
+                  <Brain className="h-10 w-10" />
                 </div>
-                <CardTitle className="text-xl">Intégration de l'Intelligence Artificielle</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 text-center">
-                  Bénéficiez d'un module exclusif sur l'intégration de l'IA dans le Digital Marketing, 
-                  conçu et animé par SkillsUp AI. Apprenez à exploiter les dernières innovations technologiques 
-                  pour optimiser vos campagnes et analyses.
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                  🚀 Intégration de l'Intelligence Artificielle
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Bénéficiez d'un module exclusif sur l'intégration de l'IA dans le Digital Marketing,
+                  conçu et animé par SkillsUp AI. Exploitez les dernières innovations pour optimiser
+                  vos campagnes et vos analyses.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8 text-accent" />
+            {/* Certification */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex flex-col items-center text-center">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white flex items-center justify-center mb-6 shadow-sm">
+                  <Award className="h-10 w-10" />
                 </div>
-                <CardTitle className="text-xl">Certification Supemir Marrakech Academy</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 text-center">
-                  Validez vos compétences avec une certification délivrée par Supemir Marrakech Academy, 
-                  une école supérieure réputée pour son excellence académique et son engagement envers 
-                  la réussite de ses étudiants.
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                  🎖️ Certification Supemir Marrakech Academy
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Validez vos compétences avec une certification reconnue, délivrée par une école supérieure
+                  réputée pour son excellence académique et son engagement envers la réussite de ses étudiants.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookOpen className="h-8 w-8 text-primary" />
+            {/* Resources */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex flex-col items-center text-center">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-400 to-violet-500 text-white flex items-center justify-center mb-6 shadow-sm">
+                  <BookOpen className="h-10 w-10" />
                 </div>
-                <CardTitle className="text-xl">Ressources Exclusives</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 text-center">
-                  Accédez à des ressources pédagogiques uniques et à jour, élaborées par l'équipe d'enseignants 
-                  experts de SMA, vous garantissant un apprentissage de pointe et une veille constante sur 
-                  les tendances du marché.
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                  🎯 Ressources Exclusives et à Jour
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Accédez à des supports pédagogiques exclusifs, conçus par des experts SMA, pour un
+                  apprentissage de pointe et une veille constante sur les tendances du marché.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>

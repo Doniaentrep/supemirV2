@@ -132,7 +132,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
   const programTypes = [
     { value: "licence", label: "Licence Professionnelle (Bac+3)" },
     { value: "master", label: "Master Professionnel (Bac+5)" },
-    { value: "formation-certifiee", label: "Formation Certifiée (3 jours à 4 mois)" }
+    { value: "formation-certifiee", label: "Certificat exécutif (3 jours à 4 mois)" }
   ];
 
   const handleInputChange = (field: string, value: string) => {

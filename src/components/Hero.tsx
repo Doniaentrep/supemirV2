@@ -69,7 +69,7 @@ const Hero = () => {
   };
 
   const scrollToFormationCertifiee = () => {
-    console.log('Scroll to formation certifiée clicked');
+    console.log('Scroll to Certificat exécutif clicked');
     // Try multiple approaches to find the section
     let element = document.getElementById('formation-certifiee');
     
@@ -83,7 +83,7 @@ const Hero = () => {
       // Try finding by text content
       const sections = document.querySelectorAll('section');
       for (let section of sections) {
-        if (section.textContent?.includes('FORMATION CERTIFIÉE') || section.textContent?.includes('Formation Certifiée')) {
+        if (section.textContent?.includes('Certificat exécutif') || section.textContent?.includes('Certificat exécutif')) {
           element = section;
           break;
         }
@@ -210,7 +210,7 @@ const Hero = () => {
                   if (element) {
                     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   } else {
-                    console.log('Formation certifiée section not found');
+                    console.log('Certificat exécutif section not found');
                   }
                 }}
                 style={{
@@ -239,7 +239,7 @@ const Hero = () => {
                   e.currentTarget.style.boxShadow = '0 4px 15px rgba(34, 197, 94, 0.4)';
                 }}
               >
-                ⚡ Formation Certifiée
+                ⚡ Certificat exécutif
               </div>
             </div>
 

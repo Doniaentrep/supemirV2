@@ -104,10 +104,10 @@ const Programs = () => {
   const degrees = {
     bachelor: {
       title: "Licence",
-      description: "Programmes de premier cycle offrant des connaissances et compétences fondamentales",
+      description: "Formations professionnelles spécialisées pour une insertion rapide sur le marché du travail",
       icon: BookOpen,
       color: "from-green-500 to-emerald-500",
-      duration: "3 ans"
+      duration: "1 an"
     },
     master: {
       title: "Master",

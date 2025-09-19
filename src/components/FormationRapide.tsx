@@ -18,7 +18,6 @@ const FormationRapide = () => {
   const [lastHoverTime, setLastHoverTime] = useState(0);
   
   const [formationRef, isFormationVisible] = useScrollAnimation({ threshold: 0.2 });
-  const [statsRef, isStatsVisible] = useScrollAnimation({ threshold: 0.3 });
 
   const handleFormationClick = (formationSlug: string) => {
     if (formationSlug === 'bootcamp-marketing-digital') {
@@ -33,41 +32,6 @@ const FormationRapide = () => {
     setIsRegistrationOpen(true);
   };
 
-  const handleBrochureDownload = (formation: any) => {
-    // Create a simple brochure content
-    const brochureContent = `
-FORMATION: ${formation.title}
-DURÉE: ${formation.duration}
-PRIX: ${formation.price}
-NIVEAU: ${formation.level}
-CERTIFICATION: ${formation.certification}
-
-DESCRIPTION:
-${formation.description}
-
-MODULES:
-${formation.modules.map((module: string, index: number) => `${index + 1}. ${module}`).join('\n')}
-
-CONTACT:
-SUPEMIR - Marrakech
-Email: info@supemir.ma
-Téléphone: +212 5XX XXX XXX
-
----
-Cette brochure a été générée automatiquement depuis notre site web.
-    `;
-
-    // Create and download the brochure
-    const blob = new Blob([brochureContent], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `brochure-${formation.slug}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-  };
 
   const handleCloseRegistration = () => {
     setIsRegistrationOpen(false);
@@ -570,13 +534,6 @@ Cette brochure a été générée automatiquement depuis notre site web.
                     >
                       ✍️ S'inscrire
                     </Button>
-                    <Button 
-                      variant="outline"
-                      className="w-full border-2 border-supemir-green text-supemir-green hover:bg-supemir-green hover:text-white font-semibold hover-scale py-1 text-xs"
-                      onClick={() => handleBrochureDownload(currentFormation)}
-                    >
-                      📄 Brochure
-                    </Button>
                   </div>
                 </div>
               </div>
@@ -617,29 +574,6 @@ Cette brochure a été générée automatiquement depuis notre site web.
           </div>
         )}
         
-        <div ref={statsRef} className={`text-center mt-12 transition-all duration-1000 ${
-          isStatsVisible ? 'animate-fade-in' : 'opacity-0 translate-y-[30px]'
-        }`}>
-          <div className="bg-gradient-to-r from-supemir-orange/10 to-supemir-red/10 rounded-2xl p-8 border border-supemir-orange/20 hover-lift">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              Pourquoi choisir nos formations certifiées ?
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6 text-center">
-              <div className="space-y-2">
-                <div className="text-3xl font-bold text-supemir-orange">100%</div>
-                <div className="text-sm text-muted-foreground">Pratique et projet réel</div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-3xl font-bold text-supemir-blue">90%</div>
-                <div className="text-sm text-muted-foreground">Taux de réussite</div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-3xl font-bold text-supemir-red">85%</div>
-                <div className="text-sm text-muted-foreground">Insertion professionnelle</div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       
       {/* Registration Form Modal */}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Clock, Users, Award, BookOpen, Target, CheckCircle, Star, GraduationCap, Code, Zap, TrendingUp, Heart } from "lucide-react";
+import { ArrowLeft, Clock, Users, Award, BookOpen, Target, CheckCircle, Star, GraduationCap, Code, Zap, TrendingUp, Heart, Building2, BarChart3, Settings, DollarSign, Globe } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -18,126 +18,169 @@ const Licence = () => {
     }
   };
 
-  // Licence programs data
+  // Licence programs data - Real SUPEMIR programs
   const licencePrograms = [
     {
-      id: "technologies-information",
-      title: "Technologies de l'Information",
-      description: "Maîtrisez les technologies de pointe et solutions numériques",
-      duration: "3 ans",
+      id: "developpement-informatique",
+      title: "Développement Informatique",
+      description: "Formation complète en développement informatique avec spécialisations avancées",
+      duration: "1 an",
       level: "Bac+3",
       icon: Code,
-      color: "from-blue-500 to-indigo-500",
+      color: "from-blue-500 to-cyan-500",
       programs: [
         {
-          title: "Développement Web Full Stack",
-          description: "Applications web complètes avec technologies modernes",
-          slug: "developpement-web-fullstack",
-          modules: ["HTML5/CSS3", "JavaScript ES6+", "React.js", "Node.js", "Bases de données", "API REST"],
-          careers: ["Développeur Web", "Full Stack Developer", "Frontend Developer", "Backend Developer"]
+          title: "Développement Informatique Full Stack, Option Développement Mobile",
+          description: "Développement d'applications mobiles et web complètes",
+          slug: "developpement-fullstack-mobile",
+          modules: ["Développement mobile (iOS/Android)", "Frontend (React, Vue)", "Backend (Node.js, Python)", "Bases de données", "API REST", "Déploiement"],
+          careers: ["Développeur Mobile", "Développeur Full Stack", "Mobile App Developer", "Frontend Developer"]
         },
         {
-          title: "Développement Mobile",
-          description: "Applications mobiles iOS et Android",
-          slug: "developpement-mobile",
-          modules: ["React Native", "Flutter", "Swift", "Kotlin", "UI/UX Mobile", "APIs mobiles"],
-          careers: ["Développeur Mobile", "Mobile App Developer", "iOS Developer", "Android Developer"]
+          title: "Développement Informatique Full Stack, Option Intelligence Artificielle et Data Analytics",
+          description: "Développement avec IA et analyse de données",
+          slug: "developpement-fullstack-ia-data",
+          modules: ["Machine Learning", "Data Science", "Python/R", "Deep Learning", "Big Data", "Analytics"],
+          careers: ["Data Scientist", "Machine Learning Engineer", "Data Analyst", "AI Developer"]
         },
         {
-          title: "IA & Analyse de Données",
-          description: "Intelligence artificielle et science des données",
-          slug: "ia-data-analytics",
-          modules: ["Python", "Machine Learning", "Deep Learning", "Data Visualization", "Big Data", "Statistiques"],
-          careers: ["Data Scientist", "Data Analyst", "ML Engineer", "AI Specialist"]
+          title: "Développement Informatique Full Stack, Option Développement JAVA JEE",
+          description: "Développement d'entreprises avec Java et JEE",
+          slug: "developpement-java-jee",
+          modules: ["Java", "JEE", "Spring Framework", "Hibernate", "Web Services", "Architecture JEE"],
+          careers: ["Développeur Java", "Développeur JEE", "Java Developer", "Enterprise Developer"]
         },
         {
-          title: "Cybersécurité",
-          description: "Sécurité réseau et hacking éthique",
-          slug: "cybersecurite-reseaux",
-          modules: ["Sécurité réseau", "Ethical Hacking", "Forensique", "Cryptographie", "Audit sécurité", "Incident Response"],
-          careers: ["Cybersécurité", "Penetration Tester", "Security Analyst", "Incident Responder"]
+          title: "Développement Informatique Full Stack, Option Développement Gaming et VR",
+          description: "Développement de jeux vidéo et réalité virtuelle",
+          slug: "developpement-gaming-vr",
+          modules: ["Unity 3D", "Unreal Engine", "C#/C++", "VR/AR", "Game Design", "3D Modeling"],
+          careers: ["Game Developer", "VR Developer", "Game Designer", "3D Artist"]
         }
       ]
     },
     {
-      id: "ingenierie-technologie",
-      title: "Ingénierie & Technologie",
-      description: "Solutions innovantes pour les défis d'ingénierie modernes",
-      duration: "3 ans",
+      id: "administration-systemes-cybersecurite",
+      title: "Administration Systèmes & Cybersécurité",
+      description: "Gestion des systèmes informatiques et sécurité des données",
+      duration: "1 an",
       level: "Bac+3",
-      icon: Zap,
-      color: "from-yellow-500 to-orange-500",
-      programs: [
-        {
-          title: "Génie Électrique",
-          description: "Systèmes électriques et conception électrique",
-          slug: "electrotechnique-systemes",
-          modules: ["Circuits électriques", "Électronique", "Automatique", "Énergies renouvelables", "Réseaux électriques", "Contrôle"],
-          careers: ["Ingénieur Électrique", "Électrotechnicien", "Concepteur Électrique", "Maintenance Électrique"]
-        },
-        {
-          title: "Automatisation Industrielle",
-          description: "Systèmes automatisés et robotique",
-          slug: "automatisation-industrielle",
-          modules: ["PLC", "Robotique", "Capteurs", "Actionneurs", "Réseaux industriels", "Supervision"],
-          careers: ["Automaticien", "Roboticien", "Ingénieur Process", "Technicien Maintenance"]
-        },
-        {
-          title: "Énergies Renouvelables",
-          description: "Technologies d'énergie durable",
-          slug: "energies-renouvelables",
-          modules: ["Solaire", "Éolien", "Hydraulique", "Biomasse", "Stockage énergie", "Smart Grid"],
-          careers: ["Ingénieur Énergies", "Technicien Solaire", "Éolien", "Énergéticien"]
-        }
-      ]
-    },
-    {
-      id: "gestion-management",
-      title: "Gestion & Management",
-      description: "Développez vos compétences en leadership et entrepreneuriat",
-      duration: "3 ans",
-      level: "Bac+3",
-      icon: TrendingUp,
-      color: "from-green-500 to-teal-500",
-      programs: [
-        {
-          title: "Entrepreneuriat & Finance",
-          description: "Développement d'entreprise et gestion financière",
-          slug: "entrepreneuriat-finance",
-          modules: ["Business Plan", "Finance d'entreprise", "Marketing", "Gestion RH", "Stratégie", "Innovation"],
-          careers: ["Entrepreneur", "Chef de Projet", "Analyste Financier", "Business Developer"]
-        },
-        {
-          title: "Marketing Digital",
-          description: "Stratégies de marketing en ligne et analytics",
-          slug: "marketing-digital",
-          modules: ["SEO/SEA", "Social Media", "Content Marketing", "Analytics", "E-commerce", "Growth Hacking"],
-          careers: ["Digital Marketer", "Social Media Manager", "SEO Specialist", "Growth Hacker"]
-        }
-      ]
-    },
-    {
-      id: "sante",
-      title: "Santé",
-      description: "Services professionnels de santé et médicaux",
-      duration: "3 ans",
-      level: "Bac+3",
-      icon: Heart,
+      icon: Settings,
       color: "from-red-500 to-pink-500",
       programs: [
         {
-          title: "Santé Générale",
-          description: "Services généraux de santé et médicaux",
-          slug: "sante-generale",
-          modules: ["Anatomie", "Physiologie", "Pathologie", "Pharmacologie", "Soins", "Éthique médicale"],
-          careers: ["Aide-Soignant", "Technicien Santé", "Assistant Médical", "Coordinateur Santé"]
+          title: "Administration des Systèmes, Bases de Données, Cybersécurité et Cloud Computing",
+          description: "Administration complète des systèmes et sécurité informatique",
+          slug: "administration-systemes-cybersecurite-cloud",
+          modules: ["Administration système", "Bases de données", "Cybersécurité", "Cloud Computing", "Réseaux", "Monitoring"],
+          careers: ["Administrateur système", "Cloud Engineer", "Cybersécurité", "DBA"]
         },
         {
-          title: "Soins Infirmiers",
-          description: "Soins infirmiers professionnels et soins aux patients",
-          slug: "soins-infirmiers",
-          modules: ["Soins de base", "Médicaments", "Urgences", "Chirurgie", "Pédiatrie", "Gériatrie"],
-          careers: ["Infirmier", "Infirmier Spécialisé", "Coordinateur Soins", "Formateur Santé"]
+          title: "Réseaux et Cybersécurité, Option Administration des Systèmes et Cloud Computing",
+          description: "Spécialisation en réseaux et sécurité cloud",
+          slug: "reseaux-cybersecurite-cloud",
+          modules: ["Réseaux", "Cybersécurité", "Cloud Security", "Firewall", "VPN", "Monitoring"],
+          careers: ["Network Administrator", "Cybersecurity Specialist", "Cloud Security Engineer", "Network Engineer"]
+        }
+      ]
+    },
+    {
+      id: "marketing-digital-business",
+      title: "Marketing Digital & Business",
+      description: "Stratégies digitales et développement commercial",
+      duration: "1 an",
+      level: "Bac+3",
+      icon: BarChart3,
+      color: "from-green-500 to-emerald-500",
+      programs: [
+        {
+          title: "Marketing Digital et E-Business",
+          description: "Stratégies marketing digital et commerce électronique",
+          slug: "marketing-digital-ebusiness",
+          modules: ["Marketing digital", "E-commerce", "SEO/SEA", "Social Media", "Analytics", "Conversion"],
+          careers: ["Digital Marketing Manager", "E-commerce Manager", "Growth Hacker", "Social Media Manager"]
+        },
+        {
+          title: "Développement Commercial et Marketing Digital",
+          description: "Développement commercial avec outils digitaux",
+          slug: "developpement-commercial-marketing-digital",
+          modules: ["Techniques de vente", "Marketing digital", "CRM", "Prospection", "Négociation", "Analytics"],
+          careers: ["Commercial", "Business Developer", "Account Manager", "Sales Manager"]
+        }
+      ]
+    },
+    {
+      id: "finance-qualite-gestion",
+      title: "Finance, Qualité & Gestion",
+      description: "Gestion financière, qualité et entrepreneuriat",
+      duration: "1 an",
+      level: "Bac+3",
+      icon: DollarSign,
+      color: "from-yellow-500 to-orange-500",
+      programs: [
+        {
+          title: "Finance, Audit & Entrepreneuriat",
+          description: "Gestion financière, audit et création d'entreprise",
+          slug: "finance-audit-entrepreneuriat",
+          modules: ["Finance d'entreprise", "Audit", "Comptabilité", "Création d'entreprise", "Gestion de projet", "Fiscalité"],
+          careers: ["Analyste financier", "Auditeur", "Contrôleur de gestion", "Entrepreneur"]
+        },
+        {
+          title: "Gestion de la Qualité",
+          description: "Management de la qualité et amélioration continue",
+          slug: "gestion-qualite",
+          modules: ["ISO 9001", "Qualité", "Amélioration continue", "Audit qualité", "Processus", "Certification"],
+          careers: ["Responsable qualité", "Auditeur qualité", "Consultant qualité", "Coordinateur qualité"]
+        }
+      ]
+    },
+    {
+      id: "tests-logiciels",
+      title: "Tests Logiciels",
+      description: "Spécialisation en tests et assurance qualité logicielle",
+      duration: "1 an",
+      level: "Bac+3",
+      icon: Target,
+      color: "from-purple-500 to-indigo-500",
+      programs: [
+        {
+          title: "Tests Logiciels avec Tests Automatisés",
+          description: "Tests automatisés et assurance qualité logicielle",
+          slug: "tests-logiciels-automatises",
+          modules: ["Tests manuels", "Tests automatisés", "Selenium", "Jest", "Cypress", "CI/CD"],
+          careers: ["Testeur logiciel", "QA Engineer", "Test Automation Engineer", "Quality Assurance"]
+        }
+      ]
+    },
+    {
+      id: "cnam-programmes",
+      title: "Programmes CNAM",
+      description: "Formations en partenariat avec le Conservatoire National des Arts et Métiers",
+      duration: "1 an",
+      level: "Bac+3",
+      icon: GraduationCap,
+      color: "from-indigo-500 to-blue-500",
+      programs: [
+        {
+          title: "Management et Conduite de Travaux – Cnam",
+          description: "Gestion et pilotage de projets de construction",
+          slug: "management-conduite-travaux-cnam",
+          modules: ["Management de projet", "Conduite de travaux", "Gestion de chantier", "Planification", "Contrôle qualité", "Sécurité"],
+          careers: ["Chef de projet", "Conducteur de travaux", "Gestionnaire de chantier", "Coordinateur"]
+        },
+        {
+          title: "Electrotechnique et systèmes – Cnam",
+          description: "Électrotechnique et systèmes électriques",
+          slug: "electrotechnique-systemes-cnam",
+          modules: ["Électrotechnique", "Systèmes électriques", "Automatisme", "Électronique", "Réseaux", "Maintenance"],
+          careers: ["Électrotechnicien", "Technicien électricien", "Maintenancier", "Automaticien"]
+        },
+        {
+          title: "Informatique – Cnam",
+          description: "Formation informatique généraliste",
+          slug: "informatique-cnam",
+          modules: ["Programmation", "Bases de données", "Réseaux", "Systèmes", "Développement", "Maintenance"],
+          careers: ["Développeur", "Technicien informatique", "Administrateur", "Support technique"]
         }
       ]
     }
@@ -178,17 +221,16 @@ const Licence = () => {
             </Badge>
             
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Licence Professionnelle
+              Formation Continue
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Formations de premier cycle offrant des connaissances et compétences fondamentales 
-              pour votre réussite professionnelle. Développez votre expertise dans votre domaine de prédilection.
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+              Chaque <strong>licence professionnelle</strong> en formation continue proposée par SUPEMIR est conçue pour former des spécialistes opérationnels dans des secteurs porteurs tels que le développement informatique, la cybersécurité, la finance ou encore le marketing digital. Grâce à une approche pédagogique innovante, alliant théorie et pratique, chaque <strong>licence professionnelle</strong> permet aux étudiants de développer des compétences techniques solides. En partenariat avec des entreprises reconnues, nos <strong>licences professionnelles</strong> favorisent l'insertion rapide sur le marché du travail et l'évolution de carrière.
             </p>
             
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
               <div className="flex items-center">
                 <Clock className="h-4 w-4 mr-2 text-blue-500" />
-                <span>3 ans de formation</span>
+                <span>1 an de formation</span>
               </div>
               <div className="flex items-center">
                 <Award className="h-4 w-4 mr-2 text-green-500" />

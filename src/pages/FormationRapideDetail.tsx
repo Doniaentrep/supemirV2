@@ -30,7 +30,7 @@ const FormationRapideDetail = () => {
       duration: "3 mois",
       certification: "Certification Professionnelle",
       description: "Formation intensive en développement web front-end et back-end avec les technologies les plus demandées du marché",
-      detailedDescription: "Cette formation certifiée vous permet de maîtriser les technologies web essentielles. Vous apprendrez à créer des sites web modernes, des applications web dynamiques et à gérer des bases de données. La formation combine théorie et pratique avec de nombreux projets concrets.",
+      detailedDescription: "Cette Certificat exécutif vous permet de maîtriser les technologies web essentielles. Vous apprendrez à créer des sites web modernes, des applications web dynamiques et à gérer des bases de données. La formation combine théorie et pratique avec de nombreux projets concrets.",
       modules: [
         "HTML5 et CSS3 avancés",
         "JavaScript ES6+ et frameworks modernes",
