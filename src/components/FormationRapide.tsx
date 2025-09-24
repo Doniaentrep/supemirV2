@@ -165,7 +165,7 @@ const FormationRapide = () => {
     },
     {
       title: "Bootcamp Marketing Digital",
-      duration: "5 jours",
+      duration: "16h (4x4h)",
       certification: "Double Certification",
       description: "Formation intensive avec intégration IA par SkillsUp AI",
       modules: ["Marketing Digital", "IA & Analytics", "Stratégies", "Certification"],

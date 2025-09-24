@@ -74,6 +74,8 @@ const Programs = () => {
       "Cybersecurity": "cybersecurite-reseaux",
       "Electrical Engineering": "electrotechnique-systemes",
       "Industrial Automation": "automatisation-industrielle",
+      "Civil Engineering": "genie-civil-conduite-travaux",
+      "Industrial Engineering": "genie-industriel-maintenance",
       "Renewable Energy": "energies-renouvelables",
       "Entrepreneurship & Finance": "entrepreneuriat-audit-finance",
       "Digital Marketing": "developpement-commercial-marketing",
@@ -141,7 +143,9 @@ const Programs = () => {
       programs: [
           { title: "Génie Électrique", description: "Systèmes électriques et conception électrique" },
           { title: "Automatisation Industrielle", description: "Systèmes automatisés et robotique" },
-          { title: "Énergies Renouvelables", description: "Technologies d'énergie durable" }
+          { title: "Énergies Renouvelables", description: "Technologies d'énergie durable" },
+          { title: "Génie Civil", description: "Conduite de travaux, structures et chantier" },
+          { title: "Génie Industriel", description: "Process, maintenance et qualité" }
         ]
       },
       {
@@ -276,7 +280,14 @@ const Programs = () => {
           <p className="text-sm text-muted-foreground max-w-xl mx-auto">
             Découvrez notre gamme complète de diplômes et domaines d'études spécialisés.
                 </p>
-              </div>
+        </div>
+
+        {/* Quick links to Licence / Master / MBA */}
+        <div className="flex items-center justify-center gap-2 mb-3">
+          <Button size="sm" variant="outline" onClick={() => navigate('/licence')}>Licence</Button>
+          <Button size="sm" variant="outline" onClick={() => navigate('/master')}>Master</Button>
+          <Button size="sm" variant="outline" onClick={() => navigate('/mba')}>MBA</Button>
+        </div>
 
               <div className="max-w-6xl mx-auto">
           {renderStepIndicator()}

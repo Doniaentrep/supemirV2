@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Clock, Users, Award, BookOpen, Target, CheckCircle, Star, GraduationCap, Database, Building2, BarChart3, Heart } from "lucide-react";
+import { ArrowLeft, Clock, Users, Award, BookOpen, Target, CheckCircle, Star, GraduationCap, Database, Building2, BarChart3, Heart, Share2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const Master = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [query, setQuery] = useState<string>("");
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -60,6 +62,42 @@ const Master = () => {
       ]
     },
     {
+      id: "genie-civil-batiment",
+      title: "Génie Civil & Bâtiment",
+      description: "Management de projets, structures avancées et BIM",
+      duration: "2 ans",
+      level: "Bac+5",
+      icon: Building2,
+      color: "from-teal-500 to-cyan-500",
+      programs: [
+        {
+          title: "Génie Civil - Management de Projets & BIM",
+          description: "Pilotage multi-projets, BIM, qualité et sécurité",
+          slug: "genie-civil-management-bim",
+          modules: ["Gestion de projets (PMI)", "BIM coordination", "Structures avancées", "Planification & coûts", "Qualité & sécurité", "Contractualisation"],
+          careers: ["Chef de projet GC", "BIM Coordinator", "Responsable QSE", "PMO"]
+        }
+      ]
+    },
+    {
+      id: "genie-industriel",
+      title: "Génie Industriel",
+      description: "Excellence opérationnelle, supply chain et industrie 4.0",
+      duration: "2 ans",
+      level: "Bac+5",
+      icon: CheckCircle,
+      color: "from-emerald-500 to-green-500",
+      programs: [
+        {
+          title: "Génie Industriel & Excellence Opérationnelle",
+          description: "Lean, Six Sigma, supply chain et transformation digitale",
+          slug: "genie-industriel-excellence",
+          modules: ["Lean Six Sigma", "Supply Chain", "ERP & MES", "Maintenance 4.0", "Qualité avancée", "Transformation digitale"],
+          careers: ["Lean Manager", "Supply Chain Manager", "Responsable production", "Consultant amélioration continue"]
+        }
+      ]
+    },
+    {
       id: "cybersecurite-transformation-digitale",
       title: "Cybersécurité & Transformation Digitale",
       description: "Sécurité informatique et transformation digitale des organisations",
@@ -99,6 +137,42 @@ const Master = () => {
           slug: "management-systemes-information",
           modules: ["IT Management", "System Architecture", "Project Management", "Change Management", "Digital Strategy", "IT Governance"],
           careers: ["IT Manager", "System Administrator", "IT Director", "Digital Strategy Manager", "IT Consultant"]
+        }
+      ]
+    },
+    {
+      id: "business-management-transfo",
+      title: "Business Management & Transformation Digitale",
+      description: "Management, stratégie digitale et conduite du changement",
+      duration: "2 ans",
+      level: "Bac+5",
+      icon: Building2,
+      color: "from-orange-500 to-red-500",
+      programs: [
+        {
+          title: "Business Management et Transformation Digitale",
+          description: "Architecture SI, stratégie digitale et management du changement",
+          slug: "business-management-transformation-digitale",
+          modules: ["Architecture des SI", "Transformation digitale", "Diagnostic stratégique", "Change Management", "Data & BI", "Gouvernance IT"],
+          careers: ["Chief Digital Officer", "Consultant transformation", "DSI", "Product/Program Manager"]
+        }
+      ]
+    },
+    {
+      id: "finance-banques-assurances",
+      title: "Finance, Banques & Assurances",
+      description: "Finance d'entreprise, fintech et gestion de patrimoine",
+      duration: "2 ans",
+      level: "Bac+5",
+      icon: Award,
+      color: "from-yellow-500 to-orange-500",
+      programs: [
+        {
+          title: "Finance, Banques et Assurances",
+          description: "Finance internationale, fintech et risk management",
+          slug: "finance-banques-assurances",
+          modules: ["Finance internationale", "Fintech", "Gestion de patrimoine", "Réglementation", "Analyse financière", "Gestion des risques"],
+          careers: ["CFO", "Directeur de banque", "Gestionnaire de patrimoine", "Analyste financier", "Consultant finance"]
         }
       ]
     },
@@ -235,8 +309,34 @@ const Master = () => {
         </div>
       </section>
 
+      {/* Sub Navigation (consistent with bootcamp) */}
+      <nav aria-label="Sous navigation" className="sticky top-16 z-30 bg-white/70 backdrop-blur border-y border-gray-100">
+        <div className="container mx-auto px-4">
+          <ul className="flex flex-wrap items-center gap-3 py-3 text-sm">
+            {[
+              {id:'programme', label:'Programme'},
+              {id:'diplome', label:'Diplôme & Certifs'},
+              {id:'carriere', label:'Carrière'},
+            ].map(link => (
+              <li key={link.id}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById(link.id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+
       {/* Programs Section */}
-      <section className="py-20">
+      <section id="programme" className="py-20">
         <div className="container mx-auto px-4">
           {!selectedCategory ? (
             // Category Selection View
@@ -250,11 +350,49 @@ const Master = () => {
                 </p>
               </div>
 
+              {/* Search + Filter Bar */}
+              <div className="max-w-3xl mx-auto mb-6">
+                <div className="relative">
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Rechercher une catégorie ou un programme..."
+                    className="w-full border rounded-lg px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                    🔎
+                  </div>
+                </div>
+              </div>
+
+              {/* Filter Bar */}
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
+                <Button variant={activeFilter === null ? 'default' : 'outline'} size="sm" className="rounded-full shadow-sm" onClick={() => setActiveFilter(null)}>Tous</Button>
+                <Button variant={activeFilter === 'digital' ? 'default' : 'outline'} size="sm" className="rounded-full shadow-sm" onClick={() => setActiveFilter('digital')}>Digital</Button>
+                <Button variant={activeFilter === 'management' ? 'default' : 'outline'} size="sm" className="rounded-full shadow-sm" onClick={() => setActiveFilter('management')}>Management</Button>
+                <Button variant={activeFilter === 'ingenirrr' ? 'default' : 'outline'} size="sm" className="rounded-full shadow-sm" onClick={() => setActiveFilter('ingenirrr')}>Ingénierie</Button>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-8">
-                {masterPrograms.map((category) => (
+                {masterPrograms
+                  .filter((category) => {
+                    if (!activeFilter) return true;
+                    if (activeFilter === 'digital') return ['informatique-data-sciences','cybersecurite-transformation-digitale','management-systemes-information','marketing-digital-business'].includes(category.id);
+                    if (activeFilter === 'management') return ['business-management-transfo','finance-audit-entrepreneuriat','finance-banques-assurances','marketing-digital-business'].includes(category.id);
+                    if (activeFilter === 'ingenirrr') return ['genie-civil-batiment','genie-industriel'].includes(category.id);
+                    return true;
+                  })
+                  .filter((category) => {
+                    if (!query.trim()) return true;
+                    const q = query.toLowerCase();
+                    const inCategory = `${category.title} ${category.description}`.toLowerCase().includes(q);
+                    const inPrograms = category.programs.some(p => `${p.title} ${p.description}`.toLowerCase().includes(q));
+                    return inCategory || inPrograms;
+                  })
+                  .map((category) => (
                   <Card 
                     key={category.id}
-                    className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 cursor-pointer"
+                    className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 cursor-pointer rounded-2xl bg-white/80 backdrop-blur-sm supports-[backdrop-filter]:bg-white/60 shadow-md hover:-translate-y-1"
                     onClick={() => handleCategoryClick(category.id)}
                   >
                     <CardHeader className="pb-4">
@@ -314,6 +452,17 @@ const Master = () => {
                   </Card>
                 ))}
               </div>
+              {/* Partner ribbon */}
+              <div className="mt-10">
+                <div className="text-center text-sm text-gray-500 mb-3">Partenaires académiques et industriels</div>
+                <div className="flex flex-wrap justify-center gap-3 opacity-80">
+                  <Badge variant="outline">SUPEMIR</Badge>
+                  <Badge variant="outline">CNAM</Badge>
+                  <Badge variant="outline">ESAM</Badge>
+                  <Badge variant="outline">IDRAC</Badge>
+                  <Badge variant="outline">IPI</Badge>
+                </div>
+              </div>
             </>
           ) : (
             // Detailed Program View
@@ -352,7 +501,7 @@ const Master = () => {
                     {category.programs.map((program, index) => (
                       <Card 
                         key={index}
-                        className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 cursor-pointer"
+                        className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 cursor-pointer rounded-2xl bg-white/80 backdrop-blur-sm supports-[backdrop-filter]:bg-white/60 shadow-md hover:-translate-y-1"
                         onClick={() => handleProgramClick(program.slug)}
                       >
                         <CardHeader className="pb-4">
@@ -414,6 +563,91 @@ const Master = () => {
               );
             })()
           )}
+        </div>
+      </section>
+
+      {/* Diplôme & Certifications (consistent with bootcamp) */}
+      <section id="diplome" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Diplôme et Certifications</h2>
+            <p className="text-xl text-gray-600">Diplôme Master reconnu + valorisation des compétences</p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-gradient-to-br from-primary/10 via-white to-accent/10 p-8 shadow-sm transition-all hover:shadow-xl">
+              <div className="pointer-events-none absolute -top-16 -right-16 h-56 w-56 rounded-full bg-primary/10 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-accent/10 blur-3xl" />
+              <div className="flex items-start gap-6">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-blue-500 text-white flex items-center justify-center shadow-md shrink-0">
+                  <Award className="h-9 w-9" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary">Officiel</span>
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent">Diplôme Master</span>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">Diplôme Master Supemir</h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Validation académique reconnue, orientée expertise avancée, leadership et transformation.
+                  </p>
+                  <div className="grid sm:grid-cols-3 gap-3">
+                    {[{label:'Format', value:'Compatible activité'}, {label:'Durée', value:'2 ans'}, {label:'Langue', value:'Français'}].map((s) => (
+                      <div key={s.label} className="rounded-xl bg-white/80 backdrop-blur border border-gray-100 p-3 text-center">
+                        <div className="text-base font-bold text-gray-900">{s.value}</div>
+                        <div className="text-xs text-gray-600">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="h-full rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Ce que vous obtenez</h4>
+                <ul className="space-y-3 text-gray-700">
+                  {['Diplôme Master', 'Projets réels', 'Accès ressources & réseau', 'Validation compétences clés'].map(item => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50">
+                        <CheckCircle className="h-4 w-4 text-emerald-600" />
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="h-full rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Reconnaissance</h4>
+                <p className="text-gray-700 mb-4">Certificat partageable et valorisable sur LinkedIn et votre CV.</p>
+                <div className="flex items-center gap-3 text-sm text-gray-600">
+                  <Share2 className="h-4 w-4 text-primary" />
+                  Ajoutez votre diplôme à votre profil en un clic.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Career Outcomes quick section */}
+      <section id="carriere" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Débouchés & Carrières</h2>
+            <p className="text-xl text-gray-600">Des postes à forte valeur</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[
+              {title:'Data Scientist', stat:'+25% salaire'},
+              {title:'IT Manager', stat:'SLA 99.9%'},
+              {title:'Consultant Transformation', stat:'ROI +15%'}
+            ].map((item) => (
+              <div key={item.title} className="group rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center mb-4 font-bold">{item.stat.split(' ')[0]}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600">Objectif type: {item.stat} sous 6 à 12 mois.</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

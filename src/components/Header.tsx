@@ -50,11 +50,12 @@ const Header = () => {
     programmes: {
       title: "Programmes",
       items: [
-        { label: "ENTREPRISE", action: () => navigate('/entreprise') },
-        // Diplôme → section with Licence/Master cards
+        { label: "LICENCE", action: () => navigate('/licence') },
+        { label: "MASTER", action: () => navigate('/master') },
+        { label: "MBA", action: () => navigate('/mba') },
         { label: "DIPLÔME", action: () => navigateAndScrollTo('programs') },
-        // Certificat → section des formations rapides
-        { label: "CERTIFICAT", action: () => navigateAndScrollTo('formation-rapide') }
+        { label: "CERTIFICAT", action: () => navigateAndScrollTo('formation-rapide') },
+        { label: "ENTREPRISE", action: () => navigate('/entreprise') }
       ]
     }
   };

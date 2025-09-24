@@ -80,7 +80,7 @@ const CertificatDetail = () => {
       title: "Certificat Marketing Digital",
       description: "Formation complète en marketing digital et réseaux sociaux",
       detailedDescription: "Maîtrisez les stratégies de marketing digital les plus efficaces. Apprenez à créer des campagnes performantes, gérer les réseaux sociaux et analyser les données pour optimiser vos résultats.",
-      duration: "4 mois",
+      duration: "16h (4h x 4 séances)",
       level: "Professionnel",
       certification: "Certification Professionnelle",
       modules: [

@@ -16,6 +16,7 @@ import FormationLanding from "./pages/FormationLanding";
 import BootcampMarketingDigital from "./pages/BootcampMarketingDigital";
 import Licence from "./pages/Licence";
 import Master from "./pages/Master";
+import MBA from "./pages/MBA";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/bootcamp-marketing-digital" element={<BootcampMarketingDigital />} />
             <Route path="/licence" element={<Licence />} />
             <Route path="/master" element={<Master />} />
+            <Route path="/mba" element={<MBA />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

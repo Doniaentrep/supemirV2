@@ -478,7 +478,7 @@ const FormationLanding = () => {
       title: "Bootcamp Marketing Digital",
       description: "Formation intensive avec intégration IA par SkillsUp AI",
       detailedDescription: "Dans un monde où le digital évolue à une vitesse fulgurante, maîtriser les stratégies de marketing numérique n'est plus une option, mais une nécessité. Le Bootcamp Marketing Digital de Supemir Marrakech Academy est une formation intensive et immersive, spécialement conçue pour les professionnels désireux de propulser leur carrière et de devenir des leaders dans l'économie numérique.",
-      duration: "5 jours",
+      duration: "16h (4 séances de 4h)",
       level: "Professionnel",
       certification: "Double Certification",
       modules: [
@@ -519,7 +519,7 @@ const FormationLanding = () => {
         "Formation intensive et immersive",
         "Accompagnement personnalisé"
       ],
-      schedule: "Cours du soir, 5 jours par semaine",
+      schedule: "Cours du soir, 4 séances de 4h chacune",
       location: "Campus SUPEMIR, Marrakech",
       startDate: "Prochaine session: Octobre 2025",
       instructor: "SkillsUp AI + Experts SUPEMIR",
@@ -804,6 +804,110 @@ const FormationLanding = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Guarantee Section */}
+        <div className="mb-8">
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-primary/5 to-accent/5">
+            <CardHeader className="text-center pb-4">
+              <CardTitle className="text-3xl font-bold text-gray-900 flex items-center justify-center">
+                <Award className="h-8 w-8 mr-3 text-primary" />
+                Notre Garantie de Qualité
+              </CardTitle>
+              <CardDescription className="text-lg">
+                Votre réussite est notre priorité absolue
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Left column */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">Certification Garantie</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Certificat professionnel reconnu par l'industrie</span>
+                    </div>
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Portfolio de projets réels inclus</span>
+                    </div>
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Suivi personnalisé tout au long de la formation</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Right column */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">Support Premium</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Accès à vie aux ressources de formation</span>
+                    </div>
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Aide à l'insertion professionnelle</span>
+                    </div>
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Communauté d'anciens étudiants actifs</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Satisfaction guarantee */}
+              <div className="mt-8 p-6 bg-gradient-to-r from-primary to-accent rounded-xl text-center text-white">
+                <h5 className="text-xl font-bold mb-2">Garantie Satisfaction 100%</h5>
+                <p className="opacity-90">
+                  Remboursement intégral si vous n'êtes pas satisfait dans les 7 premiers jours
+                </p>
+              </div>
+              
+              {/* Certificate Partners Section */}
+              <div className="mt-8">
+                <div className="text-center mb-6">
+                  <h5 className="text-xl font-bold text-gray-900 mb-2">Certificat Validé Par</h5>
+                  <p className="text-gray-600 text-sm">
+                    Organismes officiels qui reconnaissent nos certifications
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {/* Partner logos - replace with actual logo files */}
+                  <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <div className="aspect-[3/2] flex items-center justify-center">
+                      <img src="/logos/supemir-logo.png" alt="SUPEMIR Marrakech Academy" className="w-full h-full object-contain" />
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <div className="aspect-[3/2] flex items-center justify-center">
+                      <img src="/logos/proximity-management.png" alt="Proximity Management" className="w-full h-full object-contain" />
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <div className="aspect-[3/2] flex items-center justify-center">
+                      <img src="/logos/iso-9001-certified.png" alt="ISO 9001:2015 Certified" className="w-full h-full object-contain" />
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <div className="aspect-[3/2] flex items-center justify-center">
+                      <img src="/logos/iso-21001-education.png" alt="ISO 21001 Education" className="w-full h-full object-contain" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-gray-500">
+                    Certification conforme aux standards professionnels
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Call to Action */}
         <div className="text-center bg-primary/5 rounded-2xl p-8">

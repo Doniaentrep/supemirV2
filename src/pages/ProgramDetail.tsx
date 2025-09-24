@@ -454,6 +454,91 @@ const ProgramDetail = () => {
         admission: "Baccalauréat technique + Entretien",
         certification: "Diplôme d'État reconnu par le Ministère de l'Enseignement Supérieur"
       }
+      ,
+      "genie-civil-conduite-travaux": {
+        title: "Licence Pro - Génie Civil, Conduite de Travaux",
+        description: "Gestion de chantier, planification, contrôle qualité et sécurité",
+        duration: "1 an",
+        level: "Bac+3",
+        modules: [
+          "Conduite de travaux",
+          "Planification (MS Project)",
+          "Structures (béton/acier)",
+          "Topographie",
+          "Qualité & Sécurité chantier",
+          "Métré et études de prix"
+        ],
+        careers: [
+          "Conducteur de travaux",
+          "Chef de chantier",
+          "Technicien études",
+          "Coordinateur qualité"
+        ],
+        skills: [
+          "Gestion de chantier",
+          "Planification et coûts",
+          "Contrôle qualité",
+          "Sécurité au travail"
+        ],
+        admission: "Baccalauréat technique + Entretien",
+        certification: "Diplôme Professionnel reconnu"
+      },
+      "genie-civil-structures-projets": {
+        title: "Licence Pro - Génie Civil, Structures & Projets",
+        description: "Dimensionnement, DAO/CAO et coordination technique",
+        duration: "1 an",
+        level: "Bac+3",
+        modules: [
+          "Structures béton & métal",
+          "DAO/CAO (AutoCAD)",
+          "CVC & fluides",
+          "Géotechnique",
+          "Métré & devis",
+          "Notions BIM"
+        ],
+        careers: [
+          "Projeteur DAO",
+          "Technicien études",
+          "Contrôleur travaux",
+          "Assistant maître d'œuvre"
+        ],
+        skills: [
+          "DAO/CAO",
+          "Dimensionnement",
+          "Coordination technique",
+          "Lecture de plans"
+        ],
+        admission: "Baccalauréat technique + Entretien",
+        certification: "Diplôme Professionnel reconnu"
+      },
+      "genie-industriel-maintenance": {
+        title: "Licence Pro - Génie Industriel & Maintenance",
+        description: "Lean, maintenance, process et performance industrielle",
+        duration: "1 an",
+        level: "Bac+3",
+        modules: [
+          "Lean Manufacturing",
+          "Maintenance TPM",
+          "AMDEC & 5S",
+          "Logistique & Supply",
+          "Qualité (ISO 9001)",
+          "HSE"
+        ],
+        careers: [
+          "Technicien méthodes",
+          "Responsable maintenance",
+          "Technicien qualité",
+          "Superviseur production"
+        ],
+        skills: [
+          "Méthodes & process",
+          "Maintenance",
+          "Qualité",
+          "Amélioration continue"
+        ],
+        admission: "Baccalauréat technique + Entretien",
+        certification: "Diplôme Professionnel reconnu"
+      }
     },
     master: {
       "informatique-data-ia": {
@@ -696,6 +781,62 @@ const ProgramDetail = () => {
           "Gestion des ressources humaines"
         ],
         admission: "Licence en santé/gestion + Entretien",
+        certification: "Master Professionnel reconnu"
+      },
+      "genie-civil-management-bim": {
+        title: "Master Pro - Génie Civil, Management de Projets & BIM",
+        description: "Pilotage multi-projets, BIM, qualité et sécurité",
+        duration: "2 ans",
+        level: "Bac+5",
+        modules: [
+          "Gestion de projets (PMI)",
+          "BIM coordination",
+          "Structures avancées",
+          "Planification & coûts",
+          "Qualité & sécurité",
+          "Contractualisation"
+        ],
+        careers: [
+          "Chef de projet GC",
+          "BIM Coordinator",
+          "Responsable QSE",
+          "PMO"
+        ],
+        skills: [
+          "Gestion multi-projets",
+          "Coordination BIM",
+          "Qualité & sécurité",
+          "Pilotage des coûts"
+        ],
+        admission: "Licence en GC ou équivalent + Entretien",
+        certification: "Master Professionnel reconnu"
+      },
+      "genie-industriel-excellence": {
+        title: "Master Pro - Génie Industriel & Excellence Opérationnelle",
+        description: "Lean, Six Sigma, supply chain et transformation digitale",
+        duration: "2 ans",
+        level: "Bac+5",
+        modules: [
+          "Lean Six Sigma",
+          "Supply Chain",
+          "ERP & MES",
+          "Maintenance 4.0",
+          "Qualité avancée",
+          "Transformation digitale"
+        ],
+        careers: [
+          "Lean Manager",
+          "Supply Chain Manager",
+          "Responsable production",
+          "Consultant amélioration continue"
+        ],
+        skills: [
+          "Excellence opérationnelle",
+          "Pilotage supply chain",
+          "Qualité avancée",
+          "Digitalisation industrielle"
+        ],
+        admission: "Licence technique/industrielle + Entretien",
         certification: "Master Professionnel reconnu"
       }
     },

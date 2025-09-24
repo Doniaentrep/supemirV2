@@ -55,7 +55,7 @@ const Certificat = () => {
       id: "certificat-marketing-digital",
       title: "Certificat Marketing Digital",
       description: "Formation complète en marketing digital et réseaux sociaux",
-      duration: "4 mois",
+      duration: "16h (4h x 4 séances)",
       level: "Professionnel",
       modules: [
         "Stratégie marketing digital",
