@@ -30,7 +30,7 @@ import useScrollAnimation from "@/hooks/useScrollAnimation";
 const Programs = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedDegree, setSelectedDegree] = useState<'bachelor' | 'master' | null>(null);
+  const [selectedDegree, setSelectedDegree] = useState<'bachelor' | 'master' | 'mba' | null>(null);
   const [selectedField, setSelectedField] = useState<string | null>(null);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   
@@ -46,12 +46,14 @@ const Programs = () => {
     }
   };
 
-  const handleDegreeSelect = (degree: 'bachelor' | 'master') => {
+  const handleDegreeSelect = (degree: 'bachelor' | 'master' | 'mba') => {
     // Navigate directly to the appropriate page
     if (degree === 'bachelor') {
       navigate('/licence');
     } else if (degree === 'master') {
       navigate('/master');
+    } else if (degree === 'mba') {
+      navigate('/mba');
     }
   };
 
@@ -116,6 +118,13 @@ const Programs = () => {
       description: "Programmes avancés pour une expertise spécialisée et le leadership",
       icon: Award,
       color: "from-orange-500 to-red-500",
+      duration: "1 an"
+    },
+    mba: {
+      title: "MBA",
+      description: "Programme exécutif pour cadres visant leadership et stratégie",
+      icon: Briefcase,
+      color: "from-pink-500 to-fuchsia-500",
       duration: "1 an"
     }
   };
@@ -282,27 +291,18 @@ const Programs = () => {
                 </p>
         </div>
 
-        {/* Quick links to Licence / Master / MBA */}
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <Button size="sm" variant="outline" onClick={() => navigate('/licence')}>Licence Pro</Button>
-          <Button size="sm" variant="outline" onClick={() => navigate('/master')}>Master Pro</Button>
-          <Button size="sm" variant="outline" onClick={() => navigate('/mba')}>MBA</Button>
-        </div>
-
               <div className="max-w-6xl mx-auto">
-          {renderStepIndicator()}
-          {renderStepTitle()}
 
           {/* Step 1: Choose Degree Level */}
           {currentStep === 1 && (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {Object.entries(degrees).map(([key, degree]) => (
                 <Card 
                   key={key}
                   className={`group cursor-pointer transition-all duration-300 hover:shadow-xl border-2 hover:border-primary/30 hover:-translate-y-2 ${
                     hoveredItem === key ? 'ring-2 ring-primary/20' : ''
                   }`}
-                  onClick={() => handleDegreeSelect(key as 'bachelor' | 'master')}
+                  onClick={() => handleDegreeSelect(key as 'bachelor' | 'master' | 'mba')}
                   onMouseEnter={() => setHoveredItem(key)}
                   onMouseLeave={() => setHoveredItem(null)}
                 >
@@ -332,7 +332,7 @@ const Programs = () => {
           )}
 
           {/* Step 2: Choose Field of Study */}
-          {currentStep === 2 && selectedDegree && (
+          {false && currentStep === 2 && selectedDegree && (
             <div className="space-y-2">
               <div className="flex items-center justify-center mb-3">
                 <Button variant="outline" onClick={handleBack} className="mr-4">
@@ -392,7 +392,7 @@ const Programs = () => {
           )}
 
           {/* Step 3: Choose Program */}
-          {currentStep === 3 && selectedDegree && selectedField && (
+          {false && currentStep === 3 && selectedDegree && selectedField && (
             <div className="space-y-2">
               <div className="flex items-center justify-center mb-3">
                 <Button variant="outline" onClick={handleBack} className="mr-4">
@@ -439,7 +439,7 @@ const Programs = () => {
           )}
 
           {/* Reset Button */}
-          {currentStep > 1 && (
+          {false && currentStep > 1 && (
             <div className="text-center mt-4">
               <Button variant="ghost" onClick={handleReset} className="text-muted-foreground hover:text-foreground text-sm">
                 <Lightbulb className="h-3 w-3 mr-1" />

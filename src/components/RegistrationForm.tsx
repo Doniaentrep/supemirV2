@@ -197,13 +197,28 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
     }
   };
 
-  const handleSubmit = () => {
-    // Here you would typically send the data to your backend
-    console.log("Registration data:", formData);
-    
-    // For now, we'll just show a success message
-    alert("Votre inscription a été envoyée avec succès! Nous vous contacterons bientôt.");
-    onClose();
+  const handleSubmit = async () => {
+    try {
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL as string | undefined;
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...formData,
+            submittedAt: new Date().toISOString(),
+            site: 'supemirV2'
+          })
+        });
+      } else {
+        console.warn('VITE_N8N_WEBHOOK_URL is not set. Skipping webhook.');
+      }
+      alert("Votre inscription a été envoyée avec succès! Nous vous contacterons bientôt.");
+      onClose();
+    } catch (err) {
+      console.error('Failed to submit registration to n8n', err);
+      alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+    }
   };
 
   const isStepValid = () => {
