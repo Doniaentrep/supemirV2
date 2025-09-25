@@ -13,7 +13,6 @@ const ProgramDetail = lazy(() => import("./pages/ProgramDetail"));
 const FormationRapideDetail = lazy(() => import("./pages/FormationRapideDetail"));
 const Certificat = lazy(() => import("./pages/Certificat"));
 const CertificatDetail = lazy(() => import("./pages/CertificatDetail"));
-const Diplome = lazy(() => import("./pages/Diplome"));
 const Entreprise = lazy(() => import("./pages/Entreprise"));
 const BootcampMarketingDigital = lazy(() => import("./pages/BootcampMarketingDigital"));
 const Bootcamp3D = lazy(() => import("./pages/Bootcamp3D"));
@@ -52,7 +51,7 @@ const App = () => (
               <Route path="/formation/:formation" element={<FormationRapideDetail />} />
               <Route path="/certificat" element={<Certificat />} />
               <Route path="/certificat/:certificat" element={<CertificatDetail />} />
-              <Route path="/diplome" element={<Diplome />} />
+              {/* /diplome route removed */}
               <Route path="/entreprise" element={<Entreprise />} />
               <Route path="/bootcamp-marketing-digital" element={<BootcampMarketingDigital />} />
               <Route path="/bootcamp-3d" element={<Bootcamp3D />} />

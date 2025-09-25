@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Programs from "@/components/Programs";
+import Partners from "@/components/Partners";
 import FormationRapide from "@/components/FormationRapide";
 import CampusLife from "@/components/CampusLife";
 import Entreprises from "@/components/Entreprises";
@@ -254,6 +255,9 @@ const Index = () => {
       </section>
       <section id="programs" className="scroll-snap-section">
         <Programs />
+      </section>
+      <section id="partners" className="scroll-snap-section">
+        <Partners />
       </section>
       <section id="formation-rapide" className="scroll-snap-section">
         <FormationRapide />

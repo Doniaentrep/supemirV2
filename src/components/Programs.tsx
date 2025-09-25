@@ -105,18 +105,18 @@ const Programs = () => {
   // Degree types
   const degrees = {
     bachelor: {
-      title: "Licence",
+      title: "Licence Pro",
       description: "Formations professionnelles spécialisées pour une insertion rapide sur le marché du travail",
       icon: BookOpen,
       color: "from-green-500 to-emerald-500",
       duration: "1 an"
     },
     master: {
-      title: "Master",
+      title: "Master Pro",
       description: "Programmes avancés pour une expertise spécialisée et le leadership",
       icon: Award,
       color: "from-orange-500 to-red-500",
-      duration: "2 ans"
+      duration: "1 an"
     }
   };
 
@@ -255,7 +255,7 @@ const Programs = () => {
           {titles[currentStep as keyof typeof titles]}
         </h2>
         <p className="text-muted-foreground text-xs">
-          {currentStep === 1 && "Choisissez entre Licence ou Master"}
+          {currentStep === 1 && "Choisissez entre Licence Pro, Master Pro ou MBA"}
           {currentStep === 2 && "Explorez les domaines d'études disponibles"}
           {currentStep === 3 && "Sélectionnez le programme qui vous intéresse"}
         </p>
@@ -284,8 +284,8 @@ const Programs = () => {
 
         {/* Quick links to Licence / Master / MBA */}
         <div className="flex items-center justify-center gap-2 mb-3">
-          <Button size="sm" variant="outline" onClick={() => navigate('/licence')}>Licence</Button>
-          <Button size="sm" variant="outline" onClick={() => navigate('/master')}>Master</Button>
+          <Button size="sm" variant="outline" onClick={() => navigate('/licence')}>Licence Pro</Button>
+          <Button size="sm" variant="outline" onClick={() => navigate('/master')}>Master Pro</Button>
           <Button size="sm" variant="outline" onClick={() => navigate('/mba')}>MBA</Button>
         </div>
 

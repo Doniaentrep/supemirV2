@@ -179,7 +179,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <button onClick={() => scrollToSection('hero')} className="header-text hover:text-supemir-magenta transition-colors duration-300">Accueil</button>
+            <button onClick={() => navigateAndScrollTo('hero')} className="header-text hover:text-supemir-magenta transition-colors duration-300">Accueil</button>
             
             {/* Programmes Dropdown */}
             <div className="relative dropdown-container">
@@ -228,7 +228,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="lg:hidden mt-4 pb-4 space-y-4 animate-slide-up">
-            <button onClick={() => scrollToSection('hero')} className="block text-foreground hover:text-supemir-magenta transition-colors duration-300 text-left">Accueil</button>
+            <button onClick={() => navigateAndScrollTo('hero')} className="block text-foreground hover:text-supemir-magenta transition-colors duration-300 text-left">Accueil</button>
             
             {/* Mobile Programmes Section */}
             <div className="space-y-2">
