@@ -11,10 +11,7 @@ import { useFormation } from "@/contexts/FormationContext";
 const FormationRapideDetail = () => {
   const { formation } = useParams();
   const navigate = useNavigate();
-  const { setSelectedFormation } = useFormation();
-
-  // Debug: Log the formation parameter
-  console.log('Formation parameter:', formation);
+  const { setSelectedFormation, setSelectedProgramType, setSelectedProgram } = useFormation();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -31,6 +28,7 @@ const FormationRapideDetail = () => {
       certification: "Certification Professionnelle",
       description: "Formation intensive en développement web front-end et back-end avec les technologies les plus demandées du marché",
       detailedDescription: "Cette Certificat exécutif vous permet de maîtriser les technologies web essentielles. Vous apprendrez à créer des sites web modernes, des applications web dynamiques et à gérer des bases de données. La formation combine théorie et pratique avec de nombreux projets concrets.",
+      image: "/dev.jpg",
       modules: [
         "HTML5 et CSS3 avancés",
         "JavaScript ES6+ et frameworks modernes",
@@ -78,6 +76,7 @@ const FormationRapideDetail = () => {
       certification: "Certification Professionnelle",
       description: "Maîtrisez les outils et stratégies du marketing digital moderne pour booster votre carrière",
       detailedDescription: "Cette formation intensive vous donne toutes les clés pour réussir dans le marketing digital. Vous apprendrez à créer des campagnes efficaces, analyser les performances et optimiser votre présence en ligne. Formation pratique avec des cas réels d'entreprises.",
+      image: "/Marketing.jpg",
       modules: [
         "Stratégie marketing digital",
         "SEO et référencement naturel",
@@ -173,6 +172,7 @@ const FormationRapideDetail = () => {
       certification: "Certification Professionnelle",
       description: "Analyse de données et business intelligence pour les entreprises modernes",
       detailedDescription: "Cette formation vous transforme en expert de l'analyse de données. Vous apprendrez à collecter, traiter et analyser des données pour prendre des décisions éclairées. Formation pratique avec des datasets réels d'entreprises.",
+      image: "/data.jpg",
       modules: [
         "Python pour l'analyse de données",
         "SQL et bases de données",
@@ -220,6 +220,7 @@ const FormationRapideDetail = () => {
       certification: "Certification Professionnelle",
       description: "Méthodes agiles et gestion de projet moderne pour les professionnels",
       detailedDescription: "Cette formation vous donne toutes les compétences pour gérer des projets avec les méthodes agiles. Vous apprendrez Scrum, Kanban, et les outils modernes de gestion de projet. Formation très pratique avec des simulations de projets réels.",
+      image: "/agile.jpg",
       modules: [
         "Fondamentaux du management de projet",
         "Méthodologie Scrum",
@@ -267,6 +268,7 @@ const FormationRapideDetail = () => {
       certification: "Certification Professionnelle",
       description: "Conception d'interfaces utilisateur modernes et ergonomiques",
       detailedDescription: "Cette formation vous transforme en designer UX/UI professionnel. Vous apprendrez à créer des interfaces intuitives, à mener des recherches utilisateur et à prototyper vos idées. Formation pratique avec des projets réels.",
+      image: "/UI UX.jpg",
       modules: [
         "Fondamentaux du design UX/UI",
         "Recherche utilisateur",
@@ -314,6 +316,7 @@ const FormationRapideDetail = () => {
       certification: "Certification Professionnelle",
       description: "Formation complète en soins infirmiers et techniques médicales",
       detailedDescription: "Cette formation vous prépare à exercer le métier d'infirmier avec toutes les compétences nécessaires. Vous apprendrez les soins de base, la pharmacologie, l'anatomie et la physiologie. Formation pratique avec des stages en milieu hospitalier.",
+      image: "/sante-soins-infirmiers.jpg",
       modules: [
         "Anatomie et physiologie humaine",
         "Soins infirmiers fondamentaux",
@@ -361,6 +364,7 @@ const FormationRapideDetail = () => {
       certification: "Certificat de Secourisme",
       description: "Formation intensive en secourisme et gestes de premiers secours",
       detailedDescription: "Cette formation vous donne les compétences essentielles pour sauver des vies. Vous apprendrez les gestes de premiers secours, la réanimation cardio-pulmonaire et la gestion des urgences. Formation pratique avec des mannequins et simulations.",
+      image: "/secourisme.jpg",
       modules: [
         "Protection et alerte",
         "Réanimation cardio-pulmonaire (RCP)",
@@ -408,6 +412,7 @@ const FormationRapideDetail = () => {
       certification: "Certificat de Compétences",
       description: "Maîtrise complète des outils bureautiques essentiels",
       detailedDescription: "Cette formation vous donne une maîtrise complète des outils bureautiques indispensables en entreprise. Vous apprendrez à utiliser efficacement Word, Excel, PowerPoint et Outlook pour optimiser votre productivité professionnelle.",
+      image: "/bureautique.jpg",
       modules: [
         "Microsoft Word - Rédaction professionnelle",
         "Microsoft Excel - Tableaux et calculs",
@@ -551,6 +556,7 @@ const FormationRapideDetail = () => {
       certification: "Certificat de Compétences",
       description: "Formation intensive en comptabilité générale et gestion financière",
       detailedDescription: "Cette formation express vous donne les bases essentielles de la comptabilité générale. Vous apprendrez à tenir une comptabilité, gérer la fiscalité et utiliser les logiciels comptables. Formation pratique avec des cas concrets d'entreprises.",
+      image: "/compta.jpg",
       modules: [
         "Fondamentaux de la comptabilité",
         "Comptabilité générale",

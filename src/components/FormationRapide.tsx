@@ -22,8 +22,10 @@ const FormationRapide = () => {
   const handleFormationClick = (formationSlug: string) => {
     if (formationSlug === 'bootcamp-marketing-digital') {
       navigate('/bootcamp-marketing-digital');
+    } else if (formationSlug === 'bootcamp-3d') {
+      navigate('/bootcamp-3d');
     } else {
-      navigate(`/formation/${formationSlug}`);
+      navigate(`/formation-certifiee/${formationSlug}`);
     }
   };
 
@@ -174,6 +176,19 @@ const FormationRapide = () => {
       slug: "bootcamp-marketing-digital",
       image: "/Marketing.jpg",
       category: "business",
+      isSpecial: true
+    },
+    {
+      title: "Bootcamp 3D Généraliste",
+      duration: "5 jours (soir)",
+      certification: "Certification Supemir",
+      description: "Création de scènes complètes: modélisation, texturing, éclairage, rendu Cycles.",
+      modules: ["Modélisation", "UV & Texturing PBR", "Éclairage & Composition", "Shading avancé"],
+      price: "Sur demande",
+      level: "Débutant",
+      slug: "bootcamp-3d",
+      image: "/modelisation-3d-animation.jpg",
+      category: "design",
       isSpecial: true
     },
     {

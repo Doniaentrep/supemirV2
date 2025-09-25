@@ -13,9 +13,6 @@ const CertificatDetail = () => {
   const navigate = useNavigate();
   const { setSelectedFormation } = useFormation();
 
-  // Debug: Log the certificat parameter
-  console.log('Certificat parameter:', certificat);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -72,7 +69,7 @@ const CertificatDetail = () => {
         "Accès à la communauté des anciens",
         "Support emploi et stage"
       ],
-      schedule: "Cours du soir et weekends",
+      schedule: "Formation flexible",
       location: "Campus SUPEMIR, Marrakech",
       startDate: "Prochaine session: Mars 2024"
     },
@@ -123,7 +120,7 @@ const CertificatDetail = () => {
         "Outils et licences inclus",
         "Suivi post-formation"
       ],
-      schedule: "Cours du soir",
+      schedule: "Formation flexible",
       location: "Campus SUPEMIR, Marrakech",
       startDate: "Prochaine session: Avril 2024"
     },

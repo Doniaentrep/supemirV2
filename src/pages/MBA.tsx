@@ -336,7 +336,7 @@ const MBA = () => {
                     <div className="flex flex-wrap gap-3 justify-center mb-6">
                       <Badge variant="outline" className="text-sm">Bac+5 recommandé</Badge>
                       <Badge variant="outline" className="text-sm">Expérience professionnelle</Badge>
-                      <Badge variant="outline" className="text-sm">Disponibilité soirs/weekends</Badge>
+                      <Badge variant="outline" className="text-sm">Formation flexible</Badge>
                     </div>
                     <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => scrollToSection('contact')}>
                       S'inscrire maintenant
@@ -404,6 +404,20 @@ const MBA = () => {
                 <div className="flex items-center gap-3 text-sm text-gray-600">
                   <Share2 className="h-4 w-4 text-primary" />
                   Ajoutez votre diplôme à votre profil en un clic.
+                </div>
+                <div className="mt-6 grid grid-cols-4 gap-3">
+                  <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
+                    <img src="/logos/LOGO-PM.png" alt="Supemir Marrakech Academy" className="max-w-full max-h-full object-contain" />
+                  </div>
+                  <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
+                    <img src="/logos/ISO21001-2018.png" alt="ISO 21001:2018" className="max-w-full max-h-full object-contain" />
+                  </div>
+                  <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
+                    <img src="/logos/iso2015-1024x395-1.webp" alt="ISO 9001:2015" className="max-w-full max-h-full object-contain" />
+                  </div>
+                  <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
+                    <img src="/logos/PL-Seal-final.webp" alt="Professional Learning" className="max-w-full max-h-full object-contain" />
+                  </div>
                 </div>
               </div>
             </div>

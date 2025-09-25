@@ -126,7 +126,7 @@ const Entreprise = () => {
       sector: "Marketing Digital",
       service: "Conseil Digital",
       result: "Transformation digitale complète",
-      testimonial: "Un accompagnement professionnel qui a révolutionné notre approche digitale."
+      testimonial: "Un accompagnement professionnel qui a réussi notre approche digitale."
     },
     {
       company: "E-commerce Plus",

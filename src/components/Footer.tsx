@@ -111,8 +111,8 @@ const Footer = () => {
             <div className="text-white mb-3 md:mb-0 text-center md:text-left">
               <p className="text-white">© 2025 SUPEMIR. Tous droits réservés.</p>
               <p className="mt-1 italic text-xs text-white">Nous ne transmettons pas seulement le savoir, nous façonnons l'avenir.</p>
-              <p className="text-xs mt-1 text-supemir-magenta font-semibold">SUPEMIR = SUPER Motivation, Innovation & Révolution</p>
-              <p className="text-xs italic text-white font-medium">Là où la motivation nourrit l'innovation et inspire la révolution</p>
+              <p className="text-xs mt-1 text-supemir-magenta font-semibold">SUPEMIR = SUPER Motivation, Innovation & Réussit</p>
+              <p className="text-xs italic text-white font-medium">Là où la motivation nourrit l'innovation et inspire la réussit</p>
             </div>
             <div className="flex space-x-6 text-white">
               <a href="#" className="text-white hover:text-accent transition-colors">Politique de confidentialité</a>

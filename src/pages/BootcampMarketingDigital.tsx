@@ -60,61 +60,53 @@ const BootcampMarketingDigital = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 py-12 overflow-hidden">
         <div className="pointer-events-none absolute -top-20 -left-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 -right-16 h-80 w-80 rounded-full bg-accent/10 blur-3xl" />
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Button 
-                variant="outline" 
-                onClick={() => navigate('/')} 
-                className="mb-6"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Retour à l'accueil
-              </Button>
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            <div className="text-center px-4 lg:px-8">
+              <div className="mb-4 text-left">
+                
+              </div>
               
-              <Badge variant="secondary" className="bg-primary/10 text-primary mb-4">
-                BOOTCAMP INTENSIF
-              </Badge>
-              
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Transformez Votre Carrière : 
-                <span className="text-primary"> Bootcamp Intensif en Marketing Digital</span> à Marrakech
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight text-left px-4">
+                Transformez Votre Carrière : <br />
+                <span className="text-primary">Bootcamp Intensif en Marketing Digital à Marrakech</span>
               </h1>
               
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed mr-2 md:mr-4 lg:mr-6 ml-2 md:ml-4 lg:ml-6">
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl text-left px-4">
                 Acquérez une expertise de pointe et un double certification pour dominer le paysage numérique, 
                 avec une intégration exclusive de l'IA par SkillsUp AI. Conçu pour les professionnels ambitieux.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 justify-start mb-8 px-4">
                 <Button 
-                  size="lg" 
-                  className="bg-primary hover:bg-primary/90 text-lg px-8 py-4"
+                  size="default" 
+                  className="bg-primary hover:bg-primary/90 text-sm sm:text-base px-4 sm:px-6 py-3 w-full sm:w-auto"
                   onClick={handleRegistrationClick}
                 >
-                  Découvrez notre Bootcamp et Inscrivez-vous Maintenant !
+                  S'inscrire au Bootcamp
                 </Button>
                 <Button 
-                  size="lg" 
+                  size="default" 
                   variant="outline"
-                  className="text-lg px-8 py-4"
+                  className="text-sm sm:text-base px-4 sm:px-6 py-3 w-full sm:w-auto"
                   onClick={() => scrollToSection('programme')}
                 >
                   Voir le programme
                 </Button>
                 <Button 
-                  size="lg"
+                  size="default"
                   variant="secondary"
-                  className="text-lg px-8 py-4 bg-white text-primary border border-primary/30 hover:bg-primary/5"
+                  className="text-sm sm:text-base px-4 sm:px-6 py-3 bg-white text-primary border border-primary/30 hover:bg-primary/5 w-full sm:w-auto"
                   onClick={() => scrollToSection('diplome')}
                 >
                   Diplôme & Certifs
                 </Button>
               </div>
-              <div className="mt-8 grid grid-cols-3 gap-3">
+              
+              <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
                 {[{label:'Heures', value:'16h'}, {label:'Modules', value:'5'}, {label:'Certification', value:'Double'}].map((s) => (
                   <div key={s.label} className="rounded-xl bg-white/70 backdrop-blur border border-gray-100 p-3 text-center">
                     <div className="text-2xl font-extrabold text-primary">{s.value}</div>
@@ -124,16 +116,10 @@ const BootcampMarketingDigital = () => {
               </div>
             </div>
             
-            <div className="relative">
+            <div className="relative flex justify-center lg:justify-end px-4 lg:px-8">
               
               {/* Floating badges */}
-              <div className="absolute -top-3 -right-2 hidden md:flex flex-col items-end gap-3">
-                <div className="rounded-full bg-white shadow-md border border-gray-100 px-4 py-2 text-sm font-semibold text-gray-800 flex items-center gap-2">
-                  <Award className="h-4 w-4 text-amber-500" /> Certifié Supemir
-                </div>
-                <div className="rounded-full bg-white shadow-md border border-gray-100 px-4 py-2 text-sm font-semibold text-gray-800 flex items-center gap-2">
-                  <Brain className="h-4 w-4 text-primary" /> Module IA by SkillsUp
-                </div>
+              <div className="flex flex-col gap-3 items-center lg:items-end">
               </div>
             </div>
           </div>
@@ -218,7 +204,7 @@ const BootcampMarketingDigital = () => {
         <div className="mx-auto max-w-3xl rounded-full px-4 py-3 flex items-center justify-between bg-white/25 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/20 border border-white/30 ring-1 ring-white/20 shadow-lg">
           <div className="hidden sm:flex items-center gap-3 text-sm text-gray-700">
             <Clock className="h-4 w-4 text-primary" />
-            16h (4 séances de 4h) • Soirs • Marrakech
+            16h (4 séances de 4h) • Marrakech
           </div>
           <Button size="sm" className="rounded-full px-5" onClick={handleRegistrationClick}>S’inscrire maintenant</Button>
         </div>
@@ -238,7 +224,7 @@ const BootcampMarketingDigital = () => {
                 et de devenir des leaders dans l'économie numérique.
               </p>
               <p>
-                Notre programme, dispensé en présentiel sur 16 heures réparties en 4 séances de 4h en cours du soir, est parfaitement adapté à votre emploi du temps 
+                Notre programme, dispensé en présentiel sur 16 heures réparties en 4 séances de 4h, est parfaitement adapté à votre emploi du temps 
                 chargé. Il vous offre l'opportunité unique d'acquérir des compétences pratiques et directement applicables, vous 
                 permettant de transformer les défis numériques en opportunités de croissance pour votre entreprise ou votre carrière.
               </p>
@@ -384,12 +370,19 @@ const BootcampMarketingDigital = () => {
                   <Share2 className="h-4 w-4 text-primary" />
                   Ajoutez votre certification à votre profil en un clic.
                 </div>
-                <div className="mt-6 grid grid-cols-3 gap-3">
-                  {['Supemir', 'SkillsUp', 'Alumni'].map((logo) => (
-                    <div key={logo} className="aspect-[3/2] rounded-xl bg-gray-50 border border-dashed border-gray-200 flex items-center justify-center text-xs text-gray-500">
-                      {logo}
-                    </div>
-                  ))}
+                <div className="mt-6 grid grid-cols-4 gap-3">
+                  <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
+                    <img src="/logos/LOGO-PM.png" alt="Supemir Marrakech Academy" className="max-w-full max-h-full object-contain" />
+                  </div>
+                  <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
+                    <img src="/logos/ISO21001-2018.png" alt="ISO 21001:2018" className="max-w-full max-h-full object-contain" />
+                  </div>
+                  <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
+                    <img src="/logos/iso2015-1024x395-1.webp" alt="ISO 9001:2015" className="max-w-full max-h-full object-contain" />
+                  </div>
+                  <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
+                    <img src="/logos/PL-Seal-final.webp" alt="Professional Learning" className="max-w-full max-h-full object-contain" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -406,150 +399,7 @@ const BootcampMarketingDigital = () => {
         </div>
       </section>
 
-      {/* Partners Strip */}
-      <section id="partenaires" className="py-12 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <p className="text-sm font-semibold tracking-wider text-gray-600 uppercase">Ils nous font confiance</p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 items-center max-w-6xl mx-auto">
-            {['Supemir','ESMC','ENSI','CNAM','Startinnov','INSA'].map((name) => (
-              <div key={name} className="h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-xs text-gray-500 shadow-sm">
-                {name}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Guarantee Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Notre Garantie de Qualité
-              </h2>
-              <p className="text-xl text-gray-600">
-                Nous nous engageons à vous offrir une formation d'excellence avec des certificats reconnus
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Left card */}
-              <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-3xl p-8 border border-primary/10">
-                <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
-                  <Award className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Certification Garantie</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Certificat officiel délivré par SUPEMIR Marrakech Academy</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Validation du module IA par SkillsUp AI</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Reconnaissance internationale du diplôme</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Portfolio professionnel inclus</span>
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Right card */}
-              <div className="bg-gradient-to-br from-accent/5 to-accent/10 rounded-3xl p-8 border border-accent/10">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Accompagnement Premium</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Suivi personnalisé tout au long de la formation</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Accès à la communauté d'anciens étudiants</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Support carrière et aide à l'insertion professionnelle</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span>Mise à jour gratuite des contenus pendant 1 an</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            {/* Bottom guarantee banner */}
-            <div className="mt-12 bg-gradient-to-r from-primary to-accent rounded-2xl p-8 text-center text-white">
-              <h4 className="text-2xl font-bold mb-4">Garantie Satisfaction 100%</h4>
-              <p className="text-lg opacity-90 mb-6">
-                Si vous n'êtes pas entièrement satisfait de votre formation dans les 7 premiers jours, 
-                nous vous remboursons intégralement sans aucune condition.
-              </p>
-              <div className="flex items-center justify-center gap-2">
-                <Award className="h-6 w-6" />
-                <span className="font-semibold">Engagement qualité SUPEMIR</span>
-              </div>
-            </div>
-            
-            {/* Certificate Partners Section */}
-            <div className="mt-12">
-              <div className="text-center mb-8">
-                <h4 className="text-2xl font-bold text-gray-900 mb-4">Certificats Validés Par</h4>
-                <p className="text-gray-600">
-                  Nos certificats sont reconnus et validés par des organismes de référence
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-6 items-center">
-                {/* Partner logos - replace with actual logo files */}
-                <div className="bg-white rounded-xl p-4 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="aspect-[3/2] flex items-center justify-center">
-                    <img src="/logos/supemir-logo.png" alt="SUPEMIR Marrakech Academy" className="w-full h-full object-contain" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="aspect-[3/2] flex items-center justify-center">
-                    <img src="/logos/proximity-management.png" alt="Proximity Management" className="w-full h-full object-contain" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="aspect-[3/2] flex items-center justify-center">
-                    <img src="/logos/ifc-glc-signatory.png" alt="IFC GLC Signatory" className="w-full h-full object-contain" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="aspect-[3/2] flex items-center justify-center">
-                    <img src="/logos/iso-9001-certified.png" alt="ISO 9001:2015 Certified" className="w-full h-full object-contain" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="aspect-[3/2] flex items-center justify-center">
-                    <img src="/logos/iso-21001-education.png" alt="ISO 21001 Education" className="w-full h-full object-contain" />
-                  </div>
-                </div>
-              </div>
-              
-              {/* Additional certification info */}
-              <div className="mt-8 text-center">
-                <p className="text-sm text-gray-500">
-                  Certificats conformes aux standards internationaux • Reconnus par l'industrie • Validité permanente
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Objectives Section */}
       <section className="py-20 bg-white">
@@ -646,7 +496,7 @@ const BootcampMarketingDigital = () => {
           {/* Note: kept inside component scope, defined above render using useState */}
           <div className="max-w-5xl mx-auto mb-10">
             <div className="relative flex items-center justify-between">
-              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full" />
+              <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full" />
               {[1,2,3,4,5].map((step) => (
                 <button
                   key={step}
@@ -816,7 +666,7 @@ const BootcampMarketingDigital = () => {
                     <Calendar className="h-6 w-6 text-primary mr-3" />
                     <div>
                       <h3 className="font-bold text-gray-900">Rythme</h3>
-                      <p className="text-gray-600">Cours du soir, 4 séances de 4h chacune, pour concilier formation et activité professionnelle</p>
+                      <p className="text-gray-600">4 séances de 4h chacune, pour concilier formation et activité professionnelle</p>
                     </div>
                   </div>
                   

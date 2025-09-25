@@ -14,7 +14,7 @@ const Hero = () => {
     },
     {
       title: "Notre Philosophie",
-      content: "SUPEMIR = SUPER Motivation, Innovation & Révolution. Nous croyons que l'éducation doit éveiller le potentiel, nourrir l'innovation et inspirer la révolution dans chaque domaine.",
+      content: "SUPEMIR = SUPER Motivation, Innovation & Réussit. Nous croyons que l'éducation doit éveiller le potentiel, nourrir l'innovation et inspirer la réussit dans chaque domaine.",
       image: "💭"
     },
     {
@@ -145,8 +145,8 @@ const Hero = () => {
             </h1>
             
             <div className="mb-4">
-              <p className="text-lg font-medium text-accent mb-2 flowy-text" style={{ animationDelay: '0.4s' }}>SUPEMIR = SUPER Motivation, Innovation & Révolution</p>
-              <p className="text-base text-white font-medium italic flowy-text" style={{ animationDelay: '0.6s' }}>Là où la motivation nourrit l'innovation et inspire la révolution</p>
+              <p className="text-lg font-medium text-accent mb-2 flowy-text" style={{ animationDelay: '0.4s' }}>SUPEMIR = SUPER Motivation, Innovation & Réussit</p>
+              <p className="text-base text-white font-medium italic flowy-text" style={{ animationDelay: '0.6s' }}>Là où la motivation nourrit l'innovation et inspire la réussit</p>
             </div>
             
             <div className="space-y-2 mb-6 text-base">
@@ -156,7 +156,7 @@ const Hero = () => {
               </p>
               <p className="flex items-center text-white">
                 <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
-                Une expérience d'apprentissage révolutionnaire
+                Une expérience d'apprentissage qui réussit
               </p>
               <p className="flex items-center text-white">
                 <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>

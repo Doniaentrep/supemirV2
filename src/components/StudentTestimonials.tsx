@@ -222,20 +222,7 @@ const StudentTestimonials = () => {
                 </CardContent>
               </Card>
 
-              {/* Video Button */}
-              <div className="text-center">
-                <Button 
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground hover-scale"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const watchUrl = testimonials[activeTestimonial].videoUrl.replace('/embed/', '/watch?v=');
-                    window.open(watchUrl, '_blank');
-                  }}
-                >
-                  <Play className="h-5 w-5 mr-2" />
-                  {testimonials[activeTestimonial].video}
-                </Button>
-              </div>
+
             </div>
 
             {/* Testimonial Grid */}
