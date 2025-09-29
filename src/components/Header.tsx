@@ -145,11 +145,11 @@ const Header = () => {
           <div className="flex items-center gap-4 text-white">
             <div className="flex items-center text-white hover:text-accent transition-colors">
               <Phone className="h-4 w-4 mr-2" />
-              <span className="text-white">+212 522 249 175</span>
+              <span className="text-white">+212 661497647</span>
             </div>
             <div className="flex items-center text-white hover:text-accent transition-colors">
               <Mail className="h-4 w-4 mr-2" />
-              <span className="text-white">infos@supemir.com</span>
+              <span className="text-white">marrakech-academy@supemir.com</span>
             </div>
           </div>
           <div className="text-xs min-w-[200px] text-right text-white">

@@ -1,98 +1,103 @@
-# Deployment Guide for Hostinger
+# 🚀 Deployment Guide
 
-## Pre-deployment Optimization Checklist
+## ✅ Production Build Ready
 
-✅ **Completed Optimizations:**
-- Vite build configuration optimized
-- Code splitting with lazy loading implemented
-- Browser caching enabled via .htaccess
-- Gzip compression configured
-- Bundle size optimization
-- Production build scripts added
+Your application has been successfully built for production in the `dist` folder.
 
-## Build for Production
+## 📁 Deployment Files
 
-1. **Install dependencies:**
-   ```bash
-   npm install
+The `dist` folder contains all the files needed for hosting:
+- `index.html` - Main HTML file
+- `assets/` - CSS, JS, and other assets
+- All files are optimized and minified for production
+
+## 🌐 Hosting Options
+
+### Option 1: Static Hosting (Recommended)
+- **Netlify**: Drag & drop the `dist` folder
+- **Vercel**: Connect your GitHub repo or upload `dist` folder
+- **GitHub Pages**: Upload `dist` contents to your repository
+- **Firebase Hosting**: Use Firebase CLI to deploy
+
+### Option 2: Traditional Web Hosting
+- Upload all files from `dist` folder to your web server's public directory
+- Ensure your server supports SPA routing (redirect all routes to `index.html`)
+
+## 🔧 Environment Configuration
+
+### For Production Deployment:
+
+1. **Set the webhook URL** in your hosting environment:
+   ```
+   VITE_N8N_WEBHOOK_URL=https://n8n.srv952805.hstgr.cloud/webhook/academy-lead-registration
    ```
 
-2. **Build for production:**
+2. **Build with production environment**:
    ```bash
    npm run build:prod
    ```
 
-3. **The `dist` folder will contain all optimized files for deployment**
+## 🧪 Testing Before Deployment
 
-## Hostinger Deployment Steps
+1. **Test locally**:
+   ```bash
+   npm run preview
+   ```
 
-### Method 1: File Manager Upload
-1. Login to your Hostinger control panel
-2. Go to **File Manager**
-3. Navigate to `public_html` folder
-4. Delete any existing files (if this is a new site)
-5. Upload all contents from the `dist` folder to `public_html`
-6. Make sure `.htaccess` file is uploaded and visible
+2. **Test webhook integration**:
+   ```bash
+   $env:VITE_N8N_WEBHOOK_URL="https://n8n.srv952805.hstgr.cloud/webhook/academy-lead-registration"
+   node -e "import('./test-n8n-webhook.js').then(m => m.testWebhook()).catch(console.error)"
+   ```
 
-### Method 2: GitHub Integration (Recommended)
-1. Push your code to GitHub repository
-2. In Hostinger panel, go to **Git**
-3. Connect your repository
-4. Set up auto-deployment from your main branch
-5. Build command: `npm run build:prod`
-6. Publish directory: `dist`
+## 📋 Pre-Deployment Checklist
 
-## Post-Deployment Checklist
+- [ ] n8n workflow is activated and working
+- [ ] Webhook URL is correctly configured
+- [ ] Registration form is tested
+- [ ] Production build completed successfully
+- [ ] All assets are optimized
+- [ ] Environment variables are set
 
-- [ ] Check if all pages load correctly
-- [ ] Verify logo images are displaying
-- [ ] Test navigation between pages
-- [ ] Confirm mobile responsiveness
-- [ ] Test form submissions
-- [ ] Verify SSL certificate is working
-- [ ] Check page load speeds
+## 🚀 Quick Deploy Commands
 
-## Performance Optimizations Applied
-
-1. **Code Splitting**: Pages are lazy-loaded to reduce initial bundle size
-2. **Image Optimization**: Logos are properly compressed and cached
-3. **Browser Caching**: 1-year cache for static assets, 1-day for HTML
-4. **Gzip Compression**: All text-based files are compressed
-5. **Bundle Analysis**: Vendor chunks separated for better caching
-6. **React Router Support**: SPA routing configured for Apache servers
-
-## Troubleshooting
-
-**If pages don't load:**
-- Check if `.htaccess` file is in the root directory
-- Verify mod_rewrite is enabled on your hosting
-
-**If images don't show:**
-- Check file paths in browser developer tools
-- Verify images are uploaded to `logos` folder
-
-**If builds fail:**
-- Run `npm run clean` then `npm run build:prod`
-- Check for any TypeScript errors
-
-## File Structure After Build
-```
-public_html/
-├── index.html
-├── .htaccess
-├── assets/
-│   ├── index-[hash].js
-│   ├── index-[hash].css
-│   └── vendor-[hash].js
-└── logos/
-    ├── LOGO-PM.png
-    ├── ISO21001-2018.png
-    ├── PL-Seal-final.webp
-    └── iso2015-1024x395-1.webp
+### Build for production:
+```bash
+npm run build:prod
 ```
 
-## Performance Metrics Target
-- First Contentful Paint: < 2s
-- Largest Contentful Paint: < 4s
-- Cumulative Layout Shift: < 0.1
-- First Input Delay: < 100ms
+### Preview locally:
+```bash
+npm run preview
+```
+
+### Clean build (if needed):
+```bash
+npm run clean
+npm run build:prod
+```
+
+## 🔗 Webhook Integration Status
+
+- ✅ RegistrationForm.tsx configured
+- ✅ Webhook URL: `https://n8n.srv952805.hstgr.cloud/webhook/academy-lead-registration`
+- ✅ Test mode working (waiting for activation)
+- ✅ Production build ready
+- ✅ Ready for hosting
+
+## 📊 Data Flow
+
+1. User fills registration form
+2. Form submits to n8n webhook
+3. n8n processes the data
+4. Data is sent to Google Sheets (when configured)
+5. User receives confirmation
+
+## 🎯 Next Steps
+
+1. **Activate your n8n workflow**
+2. **Deploy the `dist` folder to your hosting service**
+3. **Test the live registration form**
+4. **Configure Google Sheets integration in n8n**
+
+Your landing pages are now ready for hosting! 🎉

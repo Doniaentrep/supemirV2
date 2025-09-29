@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Webhook</title>
+</head>
+<body>
+    <h1>Debug Webhook Connection</h1>
+    <button onclick="testWebhook()">Test Webhook</button>
+    <div id="result"></div>
+    
+    <script>
+        async function testWebhook() {
+            const webhookUrl = 'https://n8n.srv952805.hstgr.cloud/webhook-test/academy-lead-registration';
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = '<p>Testing webhook...</p>';
+            
+            try {
+                console.log('Testing webhook:', webhookUrl);
+                
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ test: 'data' })
+                });
+                
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                resultDiv.innerHTML = `
+                    <p><strong>Status:</strong> ${response.status}</p>
+                    <p><strong>Response:</strong> ${JSON.stringify(data, null, 2)}</p>
+                `;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `
+                    <p><strong>Error Type:</strong> ${error.name}</p>
+                    <p><strong>Error Message:</strong> ${error.message}</p>
+                    <p><strong>Error Stack:</strong> ${error.stack}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

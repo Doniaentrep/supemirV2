@@ -36,7 +36,7 @@ const Partners = () => {
 
     let animationId: number;
     let position = 0;
-    const speed = 3.5; // pixels per frame - much faster
+    const speed = 1.0; // pixels per frame - slowed down from 3.5
 
     const animate = () => {
       position -= speed;

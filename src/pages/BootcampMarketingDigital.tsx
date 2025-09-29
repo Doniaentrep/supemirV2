@@ -205,6 +205,9 @@ const BootcampMarketingDigital = () => {
           <div className="hidden sm:flex items-center gap-3 text-sm text-gray-700">
             <Clock className="h-4 w-4 text-primary" />
             16h (4 séances de 4h) • Marrakech
+            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+              Places limitées
+            </span>
           </div>
           <Button size="sm" className="rounded-full px-5" onClick={handleRegistrationClick}>S’inscrire maintenant</Button>
         </div>
@@ -307,7 +310,7 @@ const BootcampMarketingDigital = () => {
               Diplôme et Certifications
             </h2>
             <p className="text-xl text-gray-600">
-              Un parcours certifiant, reconnu par Supemir Marrakech Academy avec un module IA by SkillsUp AI
+              Un parcours certifiant, sanctionné par un certificat délivré par Supemir Marrakech Academy et incluant un module IA by SkillsUp AI.
             </p>
           </div>
 
@@ -327,7 +330,7 @@ const BootcampMarketingDigital = () => {
                   </div>
                   <h3 className="text-2xl font-semibold text-gray-900 mb-2">Double Certification Supemir + SkillsUp AI</h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    À l'issue du bootcamp, vous recevez une attestation officielle de Supemir Marrakech Academy
+                    À l'issue du bootcamp, vous recevez un certificat exécutif de Supemir Marrakech Academy
                     et une validation du module IA conçu par SkillsUp AI, attestant de vos compétences pratiques
                     en marketing digital et en intégration de l'intelligence artificielle.
                   </p>
@@ -344,12 +347,12 @@ const BootcampMarketingDigital = () => {
             </div>
 
             {/* What you get + Recognition */}
-            <div className="grid sm:grid-cols-2 gap-8">
+            <div className="grid sm:grid-cols-2 gap-8 items-stretch">
               <div className="h-full rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">Ce que vous obtenez</h4>
-                <ul className="space-y-3 text-gray-700">
+                <ul className="text-gray-700 grid grid-cols-1 xs:grid-cols-2 gap-x-6 gap-y-3">
                   {[ 
-                    'Attestation officielle Supemir',
+                    'Certificat Exécutif',
                     'Validation du module IA (SkillsUp AI)',
                     'Portfolio de livrables (projets, dashboards, contenus)',
                     'Accès aux ressources et mises à jour'
@@ -710,11 +713,11 @@ const BootcampMarketingDigital = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <div className="flex items-center">
                   <Mail className="h-5 w-5 text-primary mr-2" />
-                  <span className="text-gray-700">info@supemir.ma</span>
+                  <span className="text-gray-700">marrakech-academy@supemir.com</span>
                 </div>
                 <div className="flex items-center">
                   <Phone className="h-5 w-5 text-primary mr-2" />
-                  <span className="text-gray-700">+212 5XX XXX XXX</span>
+                  <span className="text-gray-700">+212 661497647</span>
                 </div>
               </div>
             </div>

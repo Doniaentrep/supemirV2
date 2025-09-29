@@ -27,7 +27,7 @@ const FormationRapideDetail = () => {
       duration: "3 mois",
       certification: "Certification Professionnelle",
       description: "Formation intensive en développement web front-end et back-end avec les technologies les plus demandées du marché",
-      detailedDescription: "Cette Certificat exécutif vous permet de maîtriser les technologies web essentielles. Vous apprendrez à créer des sites web modernes, des applications web dynamiques et à gérer des bases de données. La formation combine théorie et pratique avec de nombreux projets concrets.",
+      detailedDescription: "Ce Certificat exécutif vous permet de maîtriser les technologies web essentielles. Vous apprendrez à créer des sites web modernes, des applications web dynamiques et à gérer des bases de données. La formation combine théorie et pratique avec de nombreux projets concrets.",
       image: "/dev.jpg",
       modules: [
         "HTML5 et CSS3 avancés",
@@ -896,18 +896,18 @@ const FormationRapideDetail = () => {
                   <Button 
                     variant="outline" 
                     className="w-full"
-                    onClick={() => window.open('mailto:infos@supemir.com?subject=Rendez-vous - ' + currentFormation.title, '_blank')}
+                    onClick={() => window.open('mailto:marrakech-academy@supemir.com?subject=Rendez-vous - ' + currentFormation.title, '_blank')}
                   >
                     Prendre rendez-vous
                   </Button>
                   <div className="text-center text-sm text-muted-foreground">
                     <div className="flex items-center justify-center mb-1">
                       <Phone className="h-4 w-4 mr-1" />
-                      +212 522 249 175
+                      +212 661497647
                     </div>
                     <div className="flex items-center justify-center">
                       <Mail className="h-4 w-4 mr-1" />
-                      infos@supemir.com
+                      marrakech-academy@supemir.com
                     </div>
                   </div>
                 </CardContent>

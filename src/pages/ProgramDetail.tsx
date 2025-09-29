@@ -1228,18 +1228,18 @@ const ProgramDetail = () => {
                   <Button 
                     variant="outline" 
                     className="w-full"
-                    onClick={() => window.open('mailto:infos@supemir.com?subject=Rendez-vous - ' + currentProgram.title, '_blank')}
+                    onClick={() => window.open('mailto:marrakech-academy@supemir.com?subject=Rendez-vous - ' + currentProgram.title, '_blank')}
                   >
                     Prendre rendez-vous
                   </Button>
                   <div className="text-center text-sm text-muted-foreground">
                     <div className="flex items-center justify-center mb-1">
                       <Phone className="h-4 w-4 mr-1" />
-                      +212 522 249 175
+                      +212 661497647
                     </div>
                     <div className="flex items-center justify-center">
                       <Mail className="h-4 w-4 mr-1" />
-                      infos@supemir.com
+                      marrakech-academy@supemir.com
                     </div>
                   </div>
                 </CardContent>

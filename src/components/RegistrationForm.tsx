@@ -8,7 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { X, User, Mail, Phone, MapPin, GraduationCap, BookOpen, CheckCircle } from "lucide-react";
+import { X, User, Mail, Phone, MapPin, GraduationCap, BookOpen, CheckCircle, Lock } from "lucide-react";
+import { useFormation } from "@/contexts/FormationContext";
 
 interface RegistrationFormProps {
   isOpen?: boolean;
@@ -17,12 +18,62 @@ interface RegistrationFormProps {
   preselectedProgramType?: string;
   preselectedProgram?: string;
   selectedFormation?: string;
+  selectedFormations?: string[];
 }
 
-const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, preselectedProgramType, preselectedProgram, selectedFormation }: RegistrationFormProps) => {
+const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, preselectedProgramType, preselectedProgram, selectedFormation, selectedFormations }: RegistrationFormProps) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [formSelectedFormations, setFormSelectedFormations] = useState<string[]>([]);
+  const { getFormationType, getAvailableFormations, selectedFormation: contextFormation, selectedFormations: contextFormations } = useFormation();
   
   console.log('RegistrationForm rendered, isOpen:', isOpen);
+  
+  // Get the smart formation type
+  const smartFormationType = getFormationType();
+  const isFormationTypeLocked = smartFormationType !== null;
+  
+  // Get available formations based on context
+  const availableFormations = getAvailableFormations();
+  
+  // Formation mapping for display
+  const formationMapping: { [key: string]: string } = {
+    'developpement-web-express': 'Développement Web Express',
+    'marketing-digital-intensif': 'Marketing Digital Intensif',
+    'bootcamp-marketing-digital': 'Bootcamp Marketing Digital',
+    'bootcamp-3d-generaliste': '3D Généraliste - Création de Scènes Complètes',
+    'bootcamp-3d-architecture': '3D Architecture - Archviz',
+    'bootcamp-3d-produits': '3D Produits - Rendu E-commerce & Publicité',
+    'cybersecurite-pratique': 'Cybersécurité Pratique',
+    'data-analytics-express': 'Data Analytics Express',
+    'management-projet-agile': 'Management de Projet Agile',
+    'design-ux-ui-intensif': 'Design UX/UI Intensif',
+    'domaine-sante-soins-infirmiers': 'Domaine de Santé - Soins Infirmiers',
+    'secourisme-premiers-secours': 'Secourisme & Premiers Secours',
+    'bureautique-express': 'Bureautique Express',
+    'gestion-stress-bien-etre': 'Gestion de Stress & Bien-être',
+    'domaine-sante-aide-soignant': 'Domaine de Santé - Aide-Soignant',
+    'formation-express-comptabilite': 'Formation Express - Comptabilité',
+    'modelisation-3d-animation': 'Modélisation 3D & Animation'
+  };
+
+  // Handle formation selection within the form
+  const handleFormationToggle = (formationId: string) => {
+    setFormSelectedFormations(prev => {
+      if (prev.includes(formationId)) {
+        // Remove formation if already selected
+        const newSelection = prev.filter(id => id !== formationId);
+        // If no formations selected, keep at least one if we have available formations
+        if (newSelection.length === 0 && availableFormations.length > 0) {
+          return [availableFormations[0]];
+        }
+        return newSelection;
+      } else {
+        // Add formation if not selected
+        return [...prev, formationId];
+      }
+    });
+  };
+  
   const [formData, setFormData] = useState({
     // Personal Information
     firstName: "",
@@ -37,9 +88,10 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
     // Interests
     interests: [] as string[],
     
-    // Program Selection
-    programType: preselectedFormation ? "formation-certifiee" : "",
-    specificProgram: preselectedFormation || "",
+    // Program Selection - use smart detection
+    programType: smartFormationType || preselectedProgramType || "",
+    specificProgram: contextFormation || preselectedFormation || selectedFormation || "",
+    selectedFormations: contextFormations || selectedFormations || [],
     
     // Additional Information
     motivation: "",
@@ -48,15 +100,64 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
     source: ""
   });
 
-  // Update form data when preselectedFormation, selectedFormation or preselectedProgramType changes
+  // Update form data when context changes
   useEffect(() => {
-    const formationToUse = selectedFormation || preselectedFormation;
-    if (formationToUse) {
-      // Map formation names to their corresponding interests
+    const formationsToUse = contextFormations || selectedFormations || [];
+    const formationToUse = contextFormation || selectedFormation || preselectedFormation;
+    const programTypeToUse = smartFormationType || preselectedProgramType;
+    
+    // Initialize form selections
+    if (formationsToUse.length > 0) {
+      setFormSelectedFormations(formationsToUse);
+    } else if (formationToUse) {
+      setFormSelectedFormations([formationToUse]);
+    } else if (availableFormations.length > 0) {
+      // If no pre-selections, default to first available formation
+      setFormSelectedFormations([availableFormations[0]]);
+    }
+    
+    if (formationsToUse.length > 0) {
+      // Handle multiple formations
       const formationToInterestMap: { [key: string]: string } = {
         "developpement-web-express": "Développement Informatique",
         "marketing-digital-intensif": "Marketing Digital",
         "bootcamp-marketing-digital": "Marketing Digital",
+        "bootcamp-3d-generaliste": "3D & Animation",
+        "bootcamp-3d-architecture": "3D & Animation",
+        "bootcamp-3d-produits": "3D & Animation",
+        "cybersecurite-pratique": "Cybersécurité",
+        "data-analytics-express": "Data Analytics",
+        "management-projet-agile": "Management",
+        "design-ux-ui-intensif": "Design UX/UI",
+        "domaine-sante-soins-infirmiers": "Santé",
+        "secourisme-premiers-secours": "Santé",
+        "bureautique-express": "Formation Continue",
+        "gestion-stress-bien-etre": "Formation Continue",
+        "domaine-sante-aide-soignant": "Santé",
+        "formation-express-comptabilite": "Finance & Audit",
+        "modelisation-3d-animation": "3D & Animation"
+      };
+
+      // Get interests for all selected formations
+      const interests = formationsToUse.map(formation => formationToInterestMap[formation]).filter(Boolean);
+      const uniqueInterests = [...new Set(interests)];
+
+      setFormData(prev => ({
+        ...prev,
+        programType: programTypeToUse || "formation-certifiee",
+        specificProgram: formationsToUse[0], // Use first formation as primary
+        selectedFormations: formationsToUse,
+        interests: uniqueInterests
+      }));
+    } else if (formationToUse) {
+      // Handle single formation
+      const formationToInterestMap: { [key: string]: string } = {
+        "developpement-web-express": "Développement Informatique",
+        "marketing-digital-intensif": "Marketing Digital",
+        "bootcamp-marketing-digital": "Marketing Digital",
+        "bootcamp-3d-generaliste": "3D & Animation",
+        "bootcamp-3d-architecture": "3D & Animation",
+        "bootcamp-3d-produits": "3D & Animation",
         "cybersecurite-pratique": "Cybersécurité",
         "data-analytics-express": "Data Analytics",
         "management-projet-agile": "Management",
@@ -74,8 +175,9 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
 
       setFormData(prev => ({
         ...prev,
-        programType: "formation-certifiee",
+        programType: programTypeToUse || "formation-certifiee",
         specificProgram: formationToUse,
+        selectedFormations: [formationToUse],
         interests: correspondingInterest ? [correspondingInterest] : []
       }));
     } else if (preselectedProgramType && preselectedProgram) {
@@ -97,12 +199,49 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
 
       setFormData(prev => ({
         ...prev,
-        programType: preselectedProgramType,
+        programType: programTypeToUse || preselectedProgramType,
         specificProgram: preselectedProgram,
+        selectedFormations: [preselectedProgram],
         interests: correspondingInterest ? [correspondingInterest] : []
       }));
     }
-  }, [selectedFormation, preselectedFormation, preselectedProgramType, preselectedProgram]);
+  }, [contextFormation, contextFormations, selectedFormation, selectedFormations, preselectedFormation, smartFormationType, preselectedProgramType, preselectedProgram, availableFormations]);
+
+  // Update form data when form selections change
+  useEffect(() => {
+    if (formSelectedFormations.length > 0) {
+      const formationToInterestMap: { [key: string]: string } = {
+        "developpement-web-express": "Développement Informatique",
+        "marketing-digital-intensif": "Marketing Digital",
+        "bootcamp-marketing-digital": "Marketing Digital",
+        "bootcamp-3d-generaliste": "3D & Animation",
+        "bootcamp-3d-architecture": "3D & Animation",
+        "bootcamp-3d-produits": "3D & Animation",
+        "cybersecurite-pratique": "Cybersécurité",
+        "data-analytics-express": "Data Analytics",
+        "management-projet-agile": "Management",
+        "design-ux-ui-intensif": "Design UX/UI",
+        "domaine-sante-soins-infirmiers": "Santé",
+        "secourisme-premiers-secours": "Santé",
+        "bureautique-express": "Formation Continue",
+        "gestion-stress-bien-etre": "Formation Continue",
+        "domaine-sante-aide-soignant": "Santé",
+        "formation-express-comptabilite": "Finance & Audit",
+        "modelisation-3d-animation": "3D & Animation"
+      };
+
+      // Get interests for all selected formations
+      const interests = formSelectedFormations.map(formation => formationToInterestMap[formation]).filter(Boolean);
+      const uniqueInterests = [...new Set(interests)];
+
+      setFormData(prev => ({
+        ...prev,
+        specificProgram: formSelectedFormations[0], // Use first formation as primary
+        selectedFormations: formSelectedFormations,
+        interests: uniqueInterests
+      }));
+    }
+  }, [formSelectedFormations]);
 
   const educationalLevels = [
     "Baccalauréat",
@@ -132,7 +271,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
   const programTypes = [
     { value: "licence", label: "Licence Professionnelle (Bac+3)" },
     { value: "master", label: "Master Professionnel (Bac+5)" },
-    { value: "formation-certifiee", label: "Certificat exécutif (3 jours à 4 mois)" }
+    { value: "formation-certifiee", label: "Certificat exécutif" }
   ];
 
   const handleInputChange = (field: string, value: string) => {
@@ -200,24 +339,101 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
   const handleSubmit = async () => {
     try {
       const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL as string | undefined;
+      
+      // Log submission data for debugging
+      console.log('Submitting registration data to n8n:', {
+        ...formData,
+        submittedAt: new Date().toISOString(),
+        site: 'supemirV2'
+      });
+      
       if (webhookUrl) {
-        await fetch(webhookUrl, {
+        console.log('Attempting to submit to webhook:', webhookUrl);
+        
+        const response = await fetch(webhookUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             ...formData,
+            interests: formData.interests.join(', '), // Convert array to string for better spreadsheet compatibility
             submittedAt: new Date().toISOString(),
             site: 'supemirV2'
           })
         });
+        
+        console.log('Webhook response status:', response.status);
+        console.log('Webhook response headers:', response.headers);
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.log('Webhook error response:', errorText);
+          throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+        }
+        
+        // Be tolerant to webhook responses (JSON, text, or empty)
+        let responseData: unknown = null;
+        try {
+          const contentType = response.headers.get('content-type') || '';
+          const hasBody = response.status !== 204;
+          if (hasBody && contentType.includes('application/json')) {
+            responseData = await response.json();
+          } else if (hasBody) {
+            responseData = { text: await response.text() };
+          }
+        } catch (parseErr) {
+          console.warn('Non-JSON webhook response (ignored):', parseErr);
+        }
+        console.log('Webhook success response:', responseData);
+        console.log('Registration submitted successfully to n8n');
+        alert("Votre inscription a été envoyée avec succès! Nous vous contacterons bientôt.");
+        onClose();
       } else {
-        console.warn('VITE_N8N_WEBHOOK_URL is not set. Skipping webhook.');
+        console.warn('VITE_N8N_WEBHOOK_URL is not set. Saving to localStorage as fallback.');
+        // Fallback: save to localStorage if webhook URL is not configured
+        const submissions = JSON.parse(localStorage.getItem('registrations') || '[]');
+        const newSubmission = {
+          ...formData,
+          interests: formData.interests.join(', '),
+          submittedAt: new Date().toISOString(),
+          site: 'supemirV2',
+          id: Date.now()
+        };
+        submissions.push(newSubmission);
+        localStorage.setItem('registrations', JSON.stringify(submissions));
+        alert("Votre inscription a été sauvegardée localement! Configurez l'intégration n8n pour l'envoi automatique.");
+        onClose();
       }
-      alert("Votre inscription a été envoyée avec succès! Nous vous contacterons bientôt.");
-      onClose();
     } catch (err) {
       console.error('Failed to submit registration to n8n', err);
-      alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+      
+      // Check if it's a webhook activation issue
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      const isWebhookNotActivated = errorMessage.includes('404') || errorMessage.includes('not registered');
+      
+      if (isWebhookNotActivated) {
+        alert("⚠️ Le webhook n8n n'est pas encore activé. Vos données ont été sauvegardées localement. Veuillez activer le workflow n8n pour l'envoi automatique.");
+      } else {
+        alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer. Les données ont été sauvegardées localement.");
+      }
+      
+      // Fallback: save to localStorage on error
+      try {
+        const submissions = JSON.parse(localStorage.getItem('registrations') || '[]');
+        const newSubmission = {
+          ...formData,
+          interests: formData.interests.join(', '),
+          submittedAt: new Date().toISOString(),
+          site: 'supemirV2',
+          id: Date.now(),
+          error: errorMessage,
+          webhookStatus: isWebhookNotActivated ? 'not_activated' : 'error'
+        };
+        submissions.push(newSubmission);
+        localStorage.setItem('registrations', JSON.stringify(submissions));
+        console.log('Registration saved to localStorage:', newSubmission);
+      } catch (storageErr) {
+        console.error('Failed to save registration to localStorage', storageErr);
+      }
     }
   };
 
@@ -453,10 +669,19 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
               </div>
               
               <div>
+                <div className="flex items-center gap-2 mb-2">
                 <Label>Type de formation souhaitée *</Label>
+                  {isFormationTypeLocked && (
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Lock className="h-3 w-3" />
+                      <span>Détecté automatiquement</span>
+                    </div>
+                  )}
+                </div>
                 <select 
                   value={formData.programType} 
                   onChange={(e) => handleInputChange('programType', e.target.value)}
+                  disabled={isFormationTypeLocked}
                   className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="">Sélectionnez le type de formation</option>
@@ -466,7 +691,11 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
                     </option>
                   ))}
                 </select>
-                {(selectedFormation || preselectedFormation || preselectedProgramType) && (
+                {isFormationTypeLocked ? (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Le type de formation a été automatiquement détecté selon la page que vous visitez.
+                  </p>
+                ) : (selectedFormation || preselectedFormation || preselectedProgramType) && (
                   <p className="text-xs text-blue-600 mt-1">
                     💡 Pré-sélectionné selon votre choix - vous pouvez modifier si nécessaire
                   </p>
@@ -475,33 +704,71 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
 
               {formData.programType === "formation-certifiee" && (
                 <div>
-                  <Label>Formation spécifique *</Label>
-                  <select 
-                    value={formData.specificProgram} 
-                    onChange={(e) => handleInputChange('specificProgram', e.target.value)}
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <option value="">Sélectionnez votre formation</option>
-                    <option value="developpement-web-express">Développement Web Express</option>
-                    <option value="marketing-digital-intensif">Marketing Digital Intensif</option>
-                    <option value="bootcamp-marketing-digital">Bootcamp Marketing Digital</option>
-                    <option value="cybersecurite-pratique">Cybersécurité Pratique</option>
-                    <option value="data-analytics-express">Data Analytics Express</option>
-                    <option value="management-projet-agile">Management de Projet Agile</option>
-                    <option value="design-ux-ui-intensif">Design UX/UI Intensif</option>
-                    <option value="domaine-sante-soins-infirmiers">Domaine de Santé - Soins Infirmiers</option>
-                    <option value="secourisme-premiers-secours">Secourisme & Premiers Secours</option>
-                    <option value="bureautique-express">Bureautique Express</option>
-                    <option value="gestion-stress-bien-etre">Gestion de Stress & Bien-être</option>
-                    <option value="domaine-sante-aide-soignant">Domaine de Santé - Aide-Soignant</option>
-                    <option value="formation-express-comptabilite">Formation Express - Comptabilité</option>
-                    <option value="modelisation-3d-animation">Modélisation 3D & Animation</option>
-                  </select>
-                  {(selectedFormation || preselectedFormation) && (
-                    <p className="text-xs text-blue-600 mt-1">
-                      💡 Pré-sélectionné selon votre choix - vous pouvez modifier si nécessaire
+                  <Label>Formation(s) souhaitée(s) *</Label>
+                  <div className="space-y-3">
+                    {/* Formation Selection Cards */}
+                    <div className="grid gap-2">
+                      {availableFormations.map((formationId) => (
+                        <div
+                          key={formationId}
+                          className={`cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
+                            formSelectedFormations.includes(formationId)
+                              ? 'border-primary bg-primary/5 shadow-md'
+                              : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                          }`}
+                          onClick={() => handleFormationToggle(formationId)}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
+                                formSelectedFormations.includes(formationId)
+                                  ? 'border-primary bg-primary'
+                                  : 'border-gray-300'
+                              }`}>
+                                {formSelectedFormations.includes(formationId) && (
+                                  <CheckCircle className="w-3 h-3 text-white" />
+                                )}
+                              </div>
+                              <span className={`text-sm font-medium ${
+                                formSelectedFormations.includes(formationId)
+                                  ? 'text-primary'
+                                  : 'text-gray-700'
+                              }`}>
+                                {formationMapping[formationId] || formationId}
+                              </span>
+                            </div>
+                            {formSelectedFormations.includes(formationId) && (
+                              <Badge className="bg-primary text-primary-foreground text-xs">
+                                Sélectionnée
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Selection Summary */}
+                    <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700">
+                          Formations sélectionnées:
+                        </span>
+                        <span className="text-sm font-bold text-primary">
+                          {formSelectedFormations.length}
+                        </span>
+                      </div>
+                      {formSelectedFormations.length > 1 && (
+                        <p className="text-xs text-green-600 mt-2">
+                          ✅ Vous serez contacté pour organiser les formations multiples
+                        </p>
+                      )}
+                      {formSelectedFormations.length === 1 && (
+                        <p className="text-xs text-blue-600 mt-2">
+                          💡 Formation unique sélectionnée
                     </p>
                   )}
+                    </div>
+                  </div>
                 </div>
               )}
 

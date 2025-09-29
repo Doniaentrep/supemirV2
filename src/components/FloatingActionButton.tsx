@@ -53,7 +53,7 @@ const FloatingActionButton = () => {
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = "212522249175"; // Remove the + for WhatsApp
+    const phoneNumber = "212661497647"; // Remove the + for WhatsApp
     const message = "Bonjour, je souhaite obtenir des informations sur SUPEMIR Marrakech Academy.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
@@ -67,7 +67,7 @@ const FloatingActionButton = () => {
           <Button
             size="sm"
             className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg hover-scale"
-            onClick={() => window.open('tel:+212522249175', '_self')}
+            onClick={() => window.open('tel:+212661497647', '_self')}
           >
             <Phone className="h-5 w-5" />
           </Button>
@@ -75,7 +75,7 @@ const FloatingActionButton = () => {
             size="sm"
             className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-lg hover-scale"
             style={{animationDelay: '0.1s'}}
-            onClick={() => window.open('mailto:infos@supemir.com', '_self')}
+            onClick={() => window.open('mailto:marrakech-academy@supemir.com', '_self')}
           >
             <Mail className="h-5 w-5" />
           </Button>

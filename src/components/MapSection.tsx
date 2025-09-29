@@ -13,9 +13,7 @@ const MapSection = () => {
   };
 
   const handleOpenInMaps = () => {
-    const address = "Km 9 au sud de la route n°1 de Casablanca à Rabat, Ain Sebaa, Casablanca, Maroc";
-    const encodedAddress = encodeURIComponent(address);
-    window.open(`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`, '_blank');
+    window.open('https://maps.app.goo.gl/bkifSmSXEw1aLgMt7', '_blank');
   };
 
   const handleWhatsApp = () => {
@@ -48,7 +46,7 @@ const MapSection = () => {
             <CardContent className="p-0">
               <div className="relative h-64 lg:h-80 min-h-[300px]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.1234567890123!2d-7.6128!3d33.5731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM0JzIzLjIiTiA3wrAzNicyNi4xIlc!5e0!3m2!1sen!2sma!4v1234567890123!5m2!1sen!2sma"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1661.7384412457197!2d-7.614086941709438!3d33.57311097335495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd7c2f9e15db%3A0x40c0a9cf0e77b00!2sSUPeMIR%20Marrakech%20Academy!5e0!3m2!1sen!2sma!4v1727453584425!5m2!1sen!2sma"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -121,11 +119,11 @@ const MapSection = () => {
                 <div className="space-y-2">
                   <Phone className="h-8 w-8 text-supemir-magenta mx-auto" />
                   <h4 className="font-semibold text-foreground">Téléphone</h4>
-                  <p className="text-sm text-muted-foreground">+212 522 249 175</p>
+                  <p className="text-sm text-muted-foreground">+212 661497647</p>
                   <Button 
                     variant="outline"
                     size="sm"
-                    onClick={() => window.open('tel:+212522249175', '_self')}
+                    onClick={() => window.open('tel:+212661497647', '_self')}
                     className="border-2 border-supemir-magenta text-supemir-magenta hover:bg-supemir-magenta hover:text-white"
                   >
                     Appeler
@@ -136,11 +134,11 @@ const MapSection = () => {
                 <div className="space-y-2">
                   <Mail className="h-8 w-8 text-supemir-magenta mx-auto" />
                   <h4 className="font-semibold text-foreground">Email</h4>
-                  <p className="text-sm text-muted-foreground">infos@supemir.com</p>
+                  <p className="text-sm text-muted-foreground">marrakech-academy@supemir.com</p>
                   <Button 
                     variant="outline"
                     size="sm"
-                    onClick={() => window.open('mailto:infos@supemir.com', '_blank')}
+                    onClick={() => window.open('mailto:marrakech-academy@supemir.com', '_blank')}
                     className="border-2 border-supemir-magenta text-supemir-magenta hover:bg-supemir-magenta hover:text-white"
                   >
                     Écrire

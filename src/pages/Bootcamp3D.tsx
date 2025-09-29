@@ -11,10 +11,11 @@ import { useFormation } from "@/contexts/FormationContext";
 
 const Bootcamp3D = () => {
   const navigate = useNavigate();
-  const { setSelectedFormation } = useFormation();
+  const { setSelectedFormation, setSelectedFormations } = useFormation();
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [activeProgramStep, setActiveProgramStep] = useState<number>(1);
   const [activeBootcamp, setActiveBootcamp] = useState<number>(1);
+  const [localSelectedFormations, setLocalSelectedFormations] = useState<number[]>([1]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -23,14 +24,43 @@ const Bootcamp3D = () => {
     }
   };
 
+  const handleFormationToggle = (formationId: number) => {
+    setLocalSelectedFormations(prev => {
+      if (prev.includes(formationId)) {
+        // Remove formation if already selected
+        const newSelection = prev.filter(id => id !== formationId);
+        // If no formations selected, keep at least one (the first one)
+        if (newSelection.length === 0) {
+          return [1];
+        }
+        return newSelection;
+      } else {
+        // Add formation if not selected
+        return [...prev, formationId];
+      }
+    });
+  };
+
   const handleRegistrationClick = () => {
-    setSelectedFormation(bootcamps[activeBootcamp - 1].formationId);
+    // Pass all selected formations to the context
+    const selectedFormationIds = localSelectedFormations.map(id => 
+      bootcamps.find(b => b.id === id)?.formationId
+    ).filter(Boolean) as string[];
+    
+    
+    if (selectedFormationIds.length > 0) {
+      // Set multiple formations in context
+      setSelectedFormations(selectedFormationIds);
+      // Also set the first one for backward compatibility
+      setSelectedFormation(selectedFormationIds[0]);
     setIsRegistrationOpen(true);
+    }
   };
 
   const handleCloseRegistration = () => {
     setIsRegistrationOpen(false);
     setSelectedFormation(null);
+    setSelectedFormations([]);
   };
 
   // Set the selected formation when component mounts
@@ -61,78 +91,78 @@ const Bootcamp3D = () => {
       title: "3D Généraliste",
       subtitle: "Création de Scènes Complètes",
       heroTitle: "Lancez Votre Carrière : Bootcamp Intensif en Création 3D à Marrakech",
-      heroSubtitle: "Acquérez une expertise complète en modélisation, texturing et rendu pour créer des mondes 3D saisissants, avec une intégration exclusive du moteur de rendu photoréaliste Cycles. Conçu pour les créatifs et futurs professionnels.",
-      introduction: "Dans un monde où la 3D est omniprésente, du jeu vidéo à la publicité, maîtriser les outils de création numérique est devenu une compétence essentielle. Le Bootcamp 3D Généraliste de Supemir Marrakech Academy est une formation intensive et immersive, spécialement conçue pour les passionnés et les professionnels souhaitant construire une base solide pour une carrière dans l'industrie créative. Notre programme, dispensé en présentiel sur 5 jours en cours du soir, est parfaitement adapté à votre emploi du temps. Il vous offre l'opportunité unique d'acquérir des compétences pratiques sur Blender, le logiciel 3D open-source de référence, vous permettant de transformer vos idées en images spectaculaires.",
+      heroSubtitle: "Devenez un artiste 3D complet. Apprenez à sculpter, habiller et photographier virtuellement vos créations pour donner vie à des mondes saisissants. Nous vous initierons à Cycles, le puissant moteur de rendu qui transforme vos scènes en images ultra-réalistes. Conçu pour les créatifs et futurs professionnels.",
+      introduction: "Dans un monde où la 3D est omniprésente, du jeu vidéo à la publicité, maîtriser les outils de création numérique est devenu une compétence essentielle. Le Bootcamp 3D Généraliste de Supemir Marrakech Academy est une formation intensive et immersive, spécialement conçue pour vous donner des bases solides et lancer votre carrière dans l'industrie créative. Notre programme, dispensé en présentiel sur 5 jours en cours du soir, est parfaitement adapté à votre emploi du temps. Il vous offre l'opportunité unique de maîtriser Blender, le logiciel 3D open-source de référence, pour transformer vos idées en images spectaculaires.",
       cta: "Découvrez notre Bootcamp et Inscrivez-vous Maintenant !",
       benefits: [
         {
-          title: "Intégration du Rendu Photoréaliste",
-          description: "Focus exclusif sur Cycles. Maîtrisez l'éclairage et les matériaux pour des images d'un réalisme époustouflant.",
+          title: "Le Secret du Photoréalisme Dévoilé",
+          description: "Nous mettons l'accent sur Cycles, le \"cerveau\" de Blender qui calcule la lumière comme dans le monde réel. Vous apprendrez à maîtriser l'éclairage et les matériaux pour obtenir des images d'un réalisme époustouflant, une compétence clé recherchée par les studios.",
           icon: <Zap className="h-5 w-5" />
         },
         {
           title: "Certification Supemir Marrakech Academy",
-          description: "Validez vos compétences avec une certification reconnue pour son excellence académique.",
+          description: "Validez vos compétences avec une certification délivrée par Supemir Marrakech Academy, une école supérieure réputée pour son excellence académique.",
           icon: <Award className="h-5 w-5" />
         },
         {
           title: "Ressources Exclusives",
-          description: "Bibliothèque de modèles 3D, textures et ressources pédagogiques pour accélérer votre apprentissage.",
+          description: "Accédez à une bibliothèque de modèles 3D, de textures prêtes à l'emploi et de ressources pédagogiques pour accélérer votre apprentissage et enrichir vos projets personnels.",
           icon: <BookOpen className="h-5 w-5" />
         }
       ],
       objectives: [
-        "Maîtriser Blender (modélisation, texturing, éclairage)",
-        "Créer des scènes 3D complètes de A à Z",
-        "Développer un portfolio solide",
-        "Comprendre le pipeline de production"
+        "Maîtriser Blender : Comprendre l'interface et les fondamentaux pour modéliser (sculpter vos objets), texturer (les habiller) et éclairer (créer une ambiance)",
+        "Créer des Scènes 3D Complètes : Concevoir et réaliser une scène de A à Z, de l'objet brut à l'image finale",
+        "Développer un Portfolio Solide : Produire une ou plusieurs images de qualité professionnelle pour démarrer ou enrichir votre portfolio",
+        "Comprendre le Processus Professionnel : Avoir une vision claire des étapes de création d'une image 3D (le \"pipeline\" de production), une base essentielle pour travailler en équipe ou en freelance"
       ],
       program: [
-        "Fondamentaux de la Modélisation",
-        "UV & Texturing PBR",
-        "Éclairage & Composition",
-        "Shading & Matériaux avancés",
-        "Rendu Cycles & Post‑prod"
+        "Modélisation Polygonale",
+        "UV Unwrapping et Texturing PBR",
+        "Éclairage et Composition",
+        "Shading et Matériaux Avancés",
+        "Rendu avec Cycles et Post-Production"
       ],
       programDetails: [
         {
-          title: "Fondamentaux de la Modélisation",
+          title: "Modélisation Polygonale",
           bullets: [
-            "Modélisation polygonale: outils essentiels, modifiers",
-            "Props et environnements: bonnes pratiques",
-            "Organisation de scène et nommage"
+            "Apprenez à sculpter numériquement vos propres objets 3D",
+            "Nous vous montrerons comment construire, point par point, n'importe quelle forme",
+            "D'un objet simple à un décor complexe"
           ]
         },
         {
-          title: "UV & Texturing PBR",
+          title: "UV Unwrapping et Texturing PBR",
           bullets: [
-            "Dépliage UV propre et non‑distordu",
-            "Textures PBR (bois, métal, tissu)",
-            "Gestion des maps (albedo, roughness, normal)"
+            "Découvrez comment \"habiller\" vos créations",
+            "L'UV Unwrapping, c'est l'art de déplier votre modèle 3D à plat (comme un patron de couture)",
+            "Pour y appliquer des textures PBR — des matériaux intelligents qui réagissent à la lumière comme dans la réalité (bois, métal, tissu)"
           ]
         },
         {
-          title: "Éclairage & Composition",
+          title: "Éclairage et Composition",
           bullets: [
-            "Éclairage 3 points et HDRI",
-            "Règles de composition et focus",
-            "Caméras, profondeur de champ"
+            "Tel un photographe en studio, apprenez à placer des lumières virtuelles pour créer des ambiances",
+            "Révéler les détails avec les techniques professionnelles",
+            "L'éclairage à 3 points pour sublimer vos sujets"
           ]
         },
         {
-          title: "Shading & Matériaux avancés",
+          title: "Shading et Matériaux Avancés",
           bullets: [
-            "Node editor: matériaux complexes",
-            "Mix shaders, textures procédurales",
-            "Optimisations pour le réalisme"
+            "Allez plus loin que la simple couleur",
+            "Le Shading consiste à définir la nature d'une surface : est-elle brillante, mate, transparente ou rugueuse ?",
+            "C'est ce qui donnera à votre verre son éclat et à votre pierre son aspect brut"
           ]
         },
         {
-          title: "Rendu Cycles & Post‑production",
+          title: "Rendu avec Cycles et Post-Production",
           bullets: [
-            "Paramètres Cycles (samples, denoise)",
-            "AOVs, passes et Compositor",
-            "Export et finitions"
+            "L'étape finale ! Le rendu, c'est \"prendre la photo\" de votre scène",
+            "Vous apprendrez à utiliser Cycles pour un réalisme incroyable",
+            "Avec le Compositor, notre \"Photoshop intégré\", vous ajouterez la touche finale (ajustement des couleurs, effets) directement dans le logiciel"
           ]
         }
       ],
@@ -150,78 +180,78 @@ const Bootcamp3D = () => {
       title: "3D Architecture",
       subtitle: "Archviz Photoréaliste",
       heroTitle: "Rendez Vos Projets Immobiliers Irrésistibles : Le Bootcamp d'Architecture 3D",
-      heroSubtitle: "Maîtrisez l'art de la visualisation architecturale photoréaliste pour séduire vos clients et vendre vos projets avant même leur construction, avec un focus sur les techniques de rendu avancées sur Blender.",
-      introduction: "Dans le secteur de l'immobilier et de l'architecture, une image vaut mille plans. La capacité à présenter un projet avec un rendu 3D photoréaliste est aujourd'hui un avantage concurrentiel décisif. Le Bootcamp d'Architecture 3D de Supemir Marrakech Academy est une formation intensive conçue pour les architectes, designers d'intérieur et promoteurs immobiliers souhaitant maîtriser cet outil puissant. Dispensé sur 5 jours en cours du soir, notre programme vous apprendra à transformer un plan 2D en une expérience visuelle immersive et convaincante, vous permettant de valider vos choix de design et d'accélérer vos ventes.",
+      heroSubtitle: "Transformez vos plans en visites virtuelles saisissantes. Maîtrisez l'art de la visualisation architecturale pour séduire vos clients et vendre vos projets avant même leur construction, grâce aux techniques de rendu photoréaliste sur Blender.",
+      introduction: "Dans le secteur de l'immobilier, une image vaut mille plans. Le Bootcamp d'Architecture 3D de Supemir Marrakech Academy est une formation intensive conçue pour les architectes, designers et promoteurs souhaitant transformer leurs projets en visuels percutants. Dispensé sur 5 jours en cours du soir, notre programme vous apprendra à passer d'un plan 2D à une expérience visuelle immersive et convaincante, vous permettant de valider vos choix de design et d'accélérer vos ventes.",
       cta: "Explorez le Programme et Réservez Votre Place !",
       benefits: [
         {
-          title: "Photoréalisme Architectural",
-          description: "Matériaux (verre, béton, bois) et éclairage (HDRI, Sun-light) dans Cycles.",
+          title: "Focus sur le Photoréalisme Architectural",
+          description: "Apprenez les techniques spécifiques pour simuler des matériaux (verre, béton, bois) et maîtriser la lumière (lumière du soleil, éclairage d'ambiance) pour créer des scènes d'un réalisme à couper le souffle.",
           icon: <Palette className="h-5 w-5" />
         },
         {
           title: "Certification Supemir Marrakech Academy",
-          description: "Renforcez votre crédibilité professionnelle en Archviz.",
+          description: "Obtenez une certification qui atteste de votre compétence en visualisation architecturale 3D, renforçant votre crédibilité professionnelle.",
           icon: <Award className="h-5 w-5" />
         },
         {
           title: "Ressources Pro",
-          description: "Modèles de mobilier design et matériaux PBR de haute qualité.",
+          description: "Accédez à une collection de modèles de mobilier design et de matériaux réalistes de haute qualité, prêts à être utilisés dans vos projets.",
           icon: <Box className="h-5 w-5" />
         }
       ],
       objectives: [
-        "Modéliser un espace à partir d'un plan 2D",
-        "Créer des matériaux réalistes",
-        "Mettre en place un éclairage cinématographique",
-        "Produire un rendu de qualité professionnelle"
+        "Modéliser un Espace à partir d'un Plan : Transformer un plan technique 2D (DWG/PDF) en une maquette 3D précise et détaillée",
+        "Créer des Matériaux Réalistes : Concevoir et appliquer des textures et matériaux qui semblent réels au toucher (parquets, marbres, textiles)",
+        "Mettre en Place un Éclairage d'Ambiance : Maîtriser les techniques d'éclairage pour créer des atmosphères uniques, de la lumière chaude d'un salon à la clarté d'un bureau",
+        "Produire une Image Professionnelle : Générer des images de haute qualité et les peaufiner directement dans Blender pour un résultat impeccable"
       ],
       program: [
-        "Modéliser depuis plans 2D",
-        "Matériaux PBR d’architecture",
-        "Éclairage avancé (HDRI, IES)",
-        "Composition & cadrage",
-        "Rendu & Post‑production"
+        "Modélisation d'après Plans 2D",
+        "Matériaux PBR pour l'Architecture",
+        "Éclairage Avancé",
+        "Composition et Cadrage",
+        "Rendu et Post-Production"
       ],
       programDetails: [
         {
-          title: "Modéliser depuis plans 2D",
+          title: "Modélisation d'après Plans 2D",
           bullets: [
-            "Import DWG/PDF et mise à l’échelle",
-            "Murs, sols, ouvertures: précision",
-            "Détails architecturaux"
+            "Donnez vie à vos plans",
+            "Apprenez les techniques pour transformer un plan 2D en une maquette 3D précise",
+            "En construisant les murs, les sols et les ouvertures"
           ]
         },
         {
-          title: "Matériaux PBR d’architecture",
+          title: "Matériaux PBR pour l'Architecture",
           bullets: [
-            "Verre, béton, bois, métal brossé",
-            "UVs propres pour surfaces larges",
-            "Bibliothèques de matériaux"
+            "Habillez votre structure avec un réalisme parfait",
+            "Nous utiliserons la technologie PBR pour créer les textures essentielles",
+            "La transparence du verre, le grain du parquet ou la texture brute du béton"
           ]
         },
         {
-          title: "Éclairage avancé",
+          title: "Éclairage Avancé",
           bullets: [
-            "HDRI pour lumière naturelle",
-            "IES profiles pour lumières artificielles",
-            "Ambiances et storytelling"
+            "Créez des ambiances qui vendent",
+            "Maîtrisez la lumière naturelle avec des HDRI (des photos du ciel à 360° qui baignent votre scène d'une lumière authentique)",
+            "Et l'éclairage artificiel avec des profils IES (qui imitent le faisceau exact de véritables luminaires)"
           ]
         },
         {
-          title: "Composition & cadrage",
+          title: "Composition et Cadrage",
           bullets: [
-            "Règles photo d’architecture",
-            "Angles, lens, verticales droites",
-            "Postures de caméra"
+            "Pensez comme un photographe d'architecture",
+            "Apprenez à choisir le meilleur angle de caméra pour mettre en valeur les volumes",
+            "Les perspectives et les points forts de votre projet"
           ]
         },
         {
-          title: "Rendu & Post‑production",
+          title: "Rendu et Post-Production",
           bullets: [
-            "Optimiser Cycles pour Archviz",
-            "Compositor: color grading",
-            "Export haute qualité"
+            "Générez l'image finale",
+            "Lancez le rendu avec Cycles pour une qualité saisissante",
+            "Puis, utilisez le Compositor, l'outil de retouche intégré, pour ajuster la luminosité et donner à votre image une finition professionnelle"
           ]
         }
       ],
@@ -239,78 +269,78 @@ const Bootcamp3D = () => {
       title: "3D Produits",
       subtitle: "E-commerce & Publicité",
       heroTitle: "Sublimez Vos Produits : Le Bootcamp de Rendu 3D pour le Marketing",
-      heroSubtitle: "Apprenez à créer des visuels produits dignes des plus grandes marques pour vos campagnes publicitaires et fiches e-commerce. Maîtrisez l'art du studio lighting et du shading complexe sur Blender.",
-      introduction: "À l'ère du commerce en ligne, la qualité des visuels produits est le premier facteur de conversion. La 3D offre une flexibilité et une perfection impossibles à atteindre avec la photographie traditionnelle. Le Bootcamp de Rendu 3D pour Produits de Supemir Marrakech Academy est une formation intensive pour les marketeurs, entrepreneurs et designers souhaitant créer des images produits exceptionnelles. Sur 5 jours en cours du soir, ce programme vous donnera les clés pour monter un studio photo virtuel, éclairer et texturer n'importe quel produit pour le rendre irrésistible aux yeux de vos clients.",
+      heroSubtitle: "Créez des visuels produits dignes des plus grandes marques. Apprenez à monter un studio photo virtuel et à maîtriser l'éclairage professionnel pour des images parfaites, destinées à vos campagnes publicitaires et fiches e-commerce.",
+      introduction: "À l'ère du e-commerce, la qualité des visuels est le premier facteur de conversion. La 3D offre une flexibilité et une perfection impossibles à atteindre avec la photographie traditionnelle. Le Bootcamp de Rendu 3D pour Produits de Supemir Marrakech Academy est une formation intensive pour les marketeurs, entrepreneurs et designers souhaitant créer des images produits exceptionnelles. Sur 5 jours en cours du soir, ce programme vous donnera les clés pour monter un studio photo virtuel, éclairer et texturer n'importe quel produit pour le rendre irrésistible.",
       cta: "Transformez Vos Produits, Inscrivez-vous !",
       benefits: [
         {
-          title: "Studio Lighting Pro",
-          description: "Éclairage de studio à 3 points et configurations avancées pour magnifier les détails.",
+          title: "Focus sur l'Éclairage de Studio Pro",
+          description: "Maîtrisez les techniques d'éclairage utilisées par les photographes professionnels pour magnifier chaque détail de vos produits et leur donner un aspect luxueux.",
           icon: <Lightbulb className="h-5 w-5" />
         },
         {
           title: "Certification Supemir Marrakech Academy",
-          description: "Démontrez votre expertise en visuels produits 3D.",
+          description: "Une certification prouvant votre expertise en création de visuels 3D, un atout majeur pour les métiers du marketing et de l'e-commerce.",
           icon: <Award className="h-5 w-5" />
         },
         {
-          title: "Ressources prêtes à l'emploi",
-          description: "Configurations de studio et groupes de nœuds matériaux pour accélérer le workflow.",
+          title: "Ressources Prêtes à l'Emploi",
+          description: "Obtenez des configurations de studio et des matériaux prêts à l'emploi pour accélérer considérablement la création de vos visuels.",
           icon: <Settings className="h-5 w-5" />
         }
       ],
       objectives: [
-        "Mettre en place un studio photo virtuel",
-        "Créer des matériaux photoréalistes (verre, liquides, métaux, plastiques)",
-        "Appliquer logos et étiquettes via UV Mapping",
-        "Produire des visuels de qualité publicitaire"
+        "Mettre en Place un Studio Photo Virtuel : Construire une scène avec un fond et un éclairage professionnels pour isoler et sublimer votre produit",
+        "Créer des Matériaux Photoréalistes : Apprendre à simuler des matières complexes comme le verre, les liquides, les métaux (brossé, chromé) et les plastiques",
+        "Appliquer des Logos et Étiquettes : Utiliser des techniques précises pour appliquer parfaitement des éléments de branding sur vos produits, sans aucune déformation",
+        "Produire des Visuels Publicitaires : Composer, \"photographier\" virtuellement et retoucher des images prêtes pour une campagne marketing ou une boutique en ligne"
       ],
       program: [
-        "Studio virtuel & 3‑points",
-        "Shading avancé produits",
-        "UVs & branding",
-        "Composition marketing",
-        "Rendu web & publicité"
+        "Studio Virtuel et Éclairage",
+        "Shading Avancé (La Science des Matières)",
+        "UV Mapping pour le Branding",
+        "Composition pour le Marketing",
+        "Rendu et Publicité"
       ],
       programDetails: [
         {
-          title: "Studio virtuel & 3‑points",
+          title: "Studio Virtuel et Éclairage",
           bullets: [
-            "Cyclorama et fonds",
-            "Éclairage de studio 3‑points",
-            "Contrôle des reflets"
+            "Montez votre propre studio photo numérique",
+            "Vous apprendrez à créer un environnement parfait, comme un fond infini (cyclorama)",
+            "Et à maîtriser l'éclairage professionnel pour mettre en valeur chaque courbe de votre produit"
           ]
         },
         {
-          title: "Shading avancé produits",
+          title: "Shading Avancé (La Science des Matières)",
           bullets: [
-            "Verre, liquides, métaux (brossé, chromé)",
-            "Plastiques (mat, brillant)",
-            "Noeuds de shading réutilisables"
+            "Le Shading est l'art de recréer numériquement l'aspect exact d'un matériau",
+            "Nous verrons comment simuler à la perfection la transparence du verre, la viscosité d'un liquide",
+            "L'éclat du métal ou la douceur d'un plastique mat"
           ]
         },
         {
-          title: "UVs & branding",
+          title: "UV Mapping pour le Branding",
           bullets: [
-            "Placement précis des logos/étiquettes",
-            "Déformations minimales",
-            "Textures haute résolution"
+            "Apposez votre marque avec une précision absolue",
+            "L'UV Mapping est la technique qui permet de \"coller\" une étiquette ou un logo sur la surface de votre produit 3D",
+            "Sans aucun pli ni déformation"
           ]
         },
         {
-          title: "Composition marketing",
+          title: "Composition pour le Marketing",
           bullets: [
-            "Cadrage pour impact",
-            "Mise en scène et props",
-            "Couleurs et mood"
+            "Racontez une histoire avec votre image",
+            "Apprenez à cadrer et à mettre en scène votre produit pour créer un visuel qui attire l'œil",
+            "Communique la qualité et suscite le désir d'achat"
           ]
         },
         {
-          title: "Rendu web & publicité",
+          title: "Rendu et Publicité",
           bullets: [
-            "Formats et compression",
-            "Post‑production et retouches",
-            "Variantes pour campagnes"
+            "De la 3D à la campagne pub",
+            "Le rendu transforme votre scène en une image finale haute définition",
+            "Nous vous montrerons comment optimiser cette \"photo virtuelle\" pour qu'elle soit parfaite pour votre site e-commerce et vos réseaux sociaux"
           ]
         }
       ],
@@ -325,7 +355,7 @@ const Bootcamp3D = () => {
     }
   ];
 
-  const currentBootcamp = bootcamps[activeBootcamp - 1];
+  const currentBootcamp = bootcamps[localSelectedFormations[0] - 1];
 
   return (
     <div className="min-h-screen bg-background">
@@ -344,8 +374,7 @@ const Bootcamp3D = () => {
               </div>
               
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight text-left px-4">
-                Lancez Votre Carrière : <br />
-                <span className="text-primary">Bootcamp Intensif en Création 3D à Marrakech</span>
+                {currentBootcamp.heroTitle}
               </h1>
               
               <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl text-left px-4">
@@ -358,7 +387,10 @@ const Bootcamp3D = () => {
                   className="bg-primary hover:bg-primary/90 text-sm sm:text-base px-4 sm:px-6 py-3 w-full sm:w-auto"
                   onClick={handleRegistrationClick}
                 >
-                  S'inscrire au Bootcamp
+                  {localSelectedFormations.length === 1 
+                    ? `S'inscrire au ${currentBootcamp.title}` 
+                    : `S'inscrire (${localSelectedFormations.length} formations)`
+                  }
                 </Button>
                 <Button 
                   size="default" 
@@ -393,6 +425,105 @@ const Bootcamp3D = () => {
               <div className="flex flex-col gap-3 items-center lg:items-end">
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Formation Selector Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Choisissez Vos Spécialisations 3D</h2>
+            <p className="text-lg text-gray-600">Sélectionnez une ou plusieurs formations qui correspondent à vos objectifs professionnels</p>
+            {localSelectedFormations.length > 1 && (
+              <div className="mt-4 inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                <CheckCircle className="h-4 w-4 mr-2" />
+                {localSelectedFormations.length} formations sélectionnées
+              </div>
+            )}
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {bootcamps.map((bootcamp, index) => (
+              <Card 
+                key={bootcamp.id}
+                className={`cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
+                  localSelectedFormations.includes(bootcamp.id)
+                    ? 'ring-2 ring-primary shadow-lg scale-105' 
+                    : 'hover:shadow-lg'
+                }`}
+                onClick={() => handleFormationToggle(bootcamp.id)}
+              >
+                <CardHeader className="text-center pb-4">
+                  <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${bootcamp.gradient} flex items-center justify-center text-white mx-auto mb-4`}>
+                    {bootcamp.id === 1 && <Box className="h-8 w-8" />}
+                    {bootcamp.id === 2 && <Palette className="h-8 w-8" />}
+                    {bootcamp.id === 3 && <Lightbulb className="h-8 w-8" />}
+                  </div>
+                  <CardTitle className="text-xl font-bold text-gray-900 mb-2">
+                    {bootcamp.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm text-gray-600 mb-4">
+                    {bootcamp.subtitle}
+                  </CardDescription>
+                  {localSelectedFormations.includes(bootcamp.id) && (
+                    <Badge className="bg-primary text-primary-foreground">
+                      {localSelectedFormations.length === 1 ? 'Formation sélectionnée' : 'Sélectionnée'}
+                    </Badge>
+                  )}
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="space-y-3">
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Clock className="h-4 w-4 mr-2 text-primary" />
+                      {bootcamp.practical?.duree}
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Users className="h-4 w-4 mr-2 text-primary" />
+                      {bootcamp.practical?.format}
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Calendar className="h-4 w-4 mr-2 text-primary" />
+                      {bootcamp.practical?.rentree}
+                    </div>
+                  </div>
+                  <Button 
+                    className={`w-full mt-4 ${
+                      localSelectedFormations.includes(bootcamp.id)
+                        ? 'bg-primary hover:bg-primary/90' 
+                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleFormationToggle(bootcamp.id);
+                    }}
+                  >
+                    {localSelectedFormations.includes(bootcamp.id) 
+                      ? (localSelectedFormations.length === 1 ? 'Formation sélectionnée' : 'Sélectionnée') 
+                      : 'Sélectionner cette formation'
+                    }
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-lg px-8 py-4"
+              onClick={handleRegistrationClick}
+            >
+              {localSelectedFormations.length === 1 
+                ? `S'inscrire à la Formation Sélectionnée` 
+                : `S'inscrire aux ${localSelectedFormations.length} Formations Sélectionnées`
+              }
+            </Button>
+            {localSelectedFormations.length > 1 && (
+              <p className="text-sm text-gray-600 mt-2">
+                Vous serez contacté pour organiser les formations multiples
+              </p>
+            )}
           </div>
         </div>
       </section>
@@ -457,7 +588,7 @@ const Bootcamp3D = () => {
                   </div>
                   <h3 className="text-2xl font-semibold text-gray-900 mb-2">Certification Supemir Marrakech Academy</h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    À l'issue du bootcamp, vous recevez une attestation officielle de Supemir Marrakech Academy, attestant
+                    À l'issue du bootcamp, vous recevez un certificat exécutif de Supemir Marrakech Academy, attestant
                     de vos compétences pratiques en création 3D (modélisation, shading, lighting, rendu Cycles).
                   </p>
                   <div className="grid sm:grid-cols-3 gap-3">
@@ -473,12 +604,12 @@ const Bootcamp3D = () => {
             </div>
 
             {/* What you get + Recognition */}
-            <div className="grid sm:grid-cols-2 gap-8">
+            <div className="grid sm:grid-cols-2 gap-8 items-stretch">
               <div className="h-full rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">Ce que vous obtenez</h4>
-                <ul className="space-y-3 text-gray-700">
+                <ul className="text-gray-700 grid grid-cols-1 xs:grid-cols-2 gap-x-6 gap-y-3">
                   {[
-                    'Attestation officielle Supemir',
+                    'Certificat Exécutif',
                     'Portfolio (1 scène complète + rendus)',
                     'Accès ressources (modèles, textures)',
                     'Reconnaissance professionnelle'
@@ -672,7 +803,7 @@ const Bootcamp3D = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-4 group-hover:bg-gradient-to-br group-hover:from-primary/5 group-hover:to-transparent rounded-2xl transition-colors">
-                    <ul className="text-gray-600 space-y-2 list-disc list-inside">
+                  <ul className="text-gray-600 grid grid-cols-2 gap-3 list-none">
                       {currentBootcamp.programDetails?.[step - 1]?.bullets?.map((li: string) => (
                         <li key={li}>{li}</li>
                       ))}
@@ -739,8 +870,16 @@ const Bootcamp3D = () => {
           <div className="hidden sm:flex items-center gap-3 text-sm text-gray-700">
             <Clock className="h-4 w-4 text-primary" />
             5 séances • Marrakech
+            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+              Places limitées
+            </span>
           </div>
-          <Button size="sm" className="rounded-full px-5" onClick={handleRegistrationClick}>S’inscrire maintenant</Button>
+          <Button size="sm" className="rounded-full px-5" onClick={handleRegistrationClick}>
+            {localSelectedFormations.length === 1 
+              ? `S'inscrire au ${currentBootcamp.title}` 
+              : `S'inscrire (${localSelectedFormations.length} formations)`
+            }
+          </Button>
         </div>
       </div>
 
@@ -749,15 +888,25 @@ const Bootcamp3D = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Prêt à Créer en 3D ?</h2>
-            <p className="text-xl text-gray-600 mb-8">Rejoignez le Bootcamp 3D et réalisez une scène complète avec rendu Cycles.</p>
+            <p className="text-xl text-gray-600 mb-8">
+              {localSelectedFormations.length === 1 
+                ? `Rejoignez le ${currentBootcamp.title} et maîtrisez les techniques professionnelles de création 3D.`
+                : `Rejoignez nos ${localSelectedFormations.length} formations 3D et maîtrisez les techniques professionnelles de création 3D.`
+              }
+            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-4" onClick={handleRegistrationClick}>S'inscrire au Bootcamp</Button>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-4" onClick={handleRegistrationClick}>
+                {localSelectedFormations.length === 1 
+                  ? `S'inscrire au ${currentBootcamp.title}` 
+                  : `S'inscrire aux ${localSelectedFormations.length} Formations`
+                }
+              </Button>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Contactez-nous pour plus d'informations</h3>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <div className="flex items-center"><Mail className="h-5 w-5 text-primary mr-2" /><span className="text-gray-700">info@supemir.ma</span></div>
-                <div className="flex items-center"><Phone className="h-5 w-5 text-primary mr-2" /><span className="text-gray-700">+212 5XX XXX XXX</span></div>
+                <div className="flex items-center"><Mail className="h-5 w-5 text-primary mr-2" /><span className="text-gray-700">marrakech-academy@supemir.com</span></div>
+                <div className="flex items-center"><Phone className="h-5 w-5 text-primary mr-2" /><span className="text-gray-700">+212 661497647</span></div>
               </div>
             </div>
           </div>
@@ -771,6 +920,9 @@ const Bootcamp3D = () => {
         <RegistrationForm 
           onClose={handleCloseRegistration}
           selectedFormation={currentBootcamp.formationId}
+          selectedFormations={localSelectedFormations.map(id => 
+            bootcamps.find(b => b.id === id)?.formationId
+          ).filter(Boolean) as string[]}
         />
       )}
     </div>
