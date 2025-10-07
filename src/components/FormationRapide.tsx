@@ -393,7 +393,7 @@ const FormationRapide = () => {
 
   return (
     <section ref={formationRef} id="formation-certifiee" className="py-20 pt-24 bg-gradient-to-br from-supemir-magenta/10 via-supemir-blue/10 to-supemir-green/10">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className={`text-center mb-8 transition-all duration-1000 ${
           isFormationVisible ? 'animate-fade-in' : 'opacity-0 translate-y-[30px]'
         }`}>
@@ -413,7 +413,7 @@ const FormationRapide = () => {
         </div>
 
         {/* Category Switcher */}
-        <div className="flex flex-wrap justify-center gap-3 mb-8">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
           {categories.map((category) => {
             const IconComponent = category.icon;
             const isSelected = selectedCategory === category.id;
@@ -422,7 +422,7 @@ const FormationRapide = () => {
               <button
                 key={category.id}
                 onClick={() => handleCategoryChange(category.id)}
-                className={`group relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:scale-105 ${
+                className={`group relative overflow-hidden rounded-xl sm:rounded-2xl p-3 sm:p-4 transition-all duration-300 hover:scale-105 ${
                   isSelected 
                     ? `bg-gradient-to-r ${category.color} text-white shadow-xl` 
                     : 'bg-white text-gray-700 hover:shadow-lg border-2 border-gray-200 hover:border-gray-300'
@@ -436,7 +436,7 @@ const FormationRapide = () => {
                       isSelected ? 'text-white' : 'text-gray-600 group-hover:text-gray-800'
                     }`} />
                   </div>
-                  <span className={`font-semibold text-sm ${
+                  <span className={`font-semibold text-xs sm:text-sm ${
                     isSelected ? 'text-white' : 'text-gray-800 group-hover:text-gray-900'
                   }`}>
                     {category.name}
@@ -456,7 +456,7 @@ const FormationRapide = () => {
 
         {/* Hover-based Formation Display */}
         {currentFormation && (
-          <div className="max-w-4xl mx-auto">
+          <div className="w-full max-w-none mx-auto">
             <div 
               className={`bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in select-none relative cursor-pointer ${currentFormation.isSpecial ? 'ring-2 ring-yellow-400 ring-opacity-50' : ''}`}
               onClick={handleMouseClick}
@@ -464,9 +464,9 @@ const FormationRapide = () => {
               onTouchMove={handleTouchMove}
             >
 
-              <div className="grid lg:grid-cols-2 gap-0 h-80">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-64 sm:h-80">
                 {/* Left side - Image */}
-                <div className="relative h-80">
+                <div className="relative h-64 sm:h-80">
                   <img 
                     src={currentFormation.image} 
                     alt={currentFormation.title}
@@ -510,7 +510,7 @@ const FormationRapide = () => {
                 </div>
 
                 {/* Right side - Content */}
-                <div className="p-4 flex flex-col justify-between h-80">
+                <div className="p-3 sm:p-4 flex flex-col justify-between h-64 sm:h-80">
                   <div>
                     <div className="flex items-center text-supemir-blue mb-2">
                       <Award className="h-3 w-3 mr-1" />
@@ -555,23 +555,26 @@ const FormationRapide = () => {
             </div>
 
             {/* Formation Counter */}
-            <div className="text-center mt-4">
-              <div className="inline-flex items-center space-x-3 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+            <div className="text-center mt-3 sm:mt-4">
+              <div className="inline-flex items-center space-x-2 sm:space-x-3 bg-white/80 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 shadow-lg">
                 <span className="text-xs text-gray-600">
                   {currentFormationIndex + 1} / {filteredFormations.length}
                 </span>
-                <div className="flex space-x-2">
-                  {filteredFormations.map((_, index) => (
+                <div className="flex space-x-1 sm:space-x-2">
+                  {filteredFormations.slice(0, 5).map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentFormationIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-colors ${
+                      className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors ${
                         index === currentFormationIndex 
                           ? 'bg-supemir-orange' 
                           : 'bg-gray-300 hover:bg-gray-400'
                       }`}
                     />
                   ))}
+                  {filteredFormations.length > 5 && (
+                    <span className="text-xs text-gray-500">...</span>
+                  )}
                 </div>
               </div>
             </div>

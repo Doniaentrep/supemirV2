@@ -142,17 +142,17 @@ const Header = () => {
       {/* Top bar */}
       <div className="bg-primary text-white py-2">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm text-white">
-          <div className="flex items-center gap-4 text-white">
+          <div className="flex items-center gap-2 sm:gap-4 text-white">
             <div className="flex items-center text-white hover:text-accent transition-colors">
-              <Phone className="h-4 w-4 mr-2" />
-              <span className="text-white">+212 661497647</span>
+              <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              <span className="text-white text-xs sm:text-sm">+212 661497647</span>
             </div>
-            <div className="flex items-center text-white hover:text-accent transition-colors">
+            <div className="hidden sm:flex items-center text-white hover:text-accent transition-colors">
               <Mail className="h-4 w-4 mr-2" />
               <span className="text-white">marrakech-academy@supemir.com</span>
             </div>
           </div>
-          <div className="text-xs min-w-[200px] text-right text-white">
+          <div className="text-xs min-w-[150px] sm:min-w-[200px] text-right text-white">
             <div 
               key={currentTestimonialIndex}
               className="animate-fade-in text-white"
@@ -167,13 +167,13 @@ const Header = () => {
       </div>
 
       {/* Main header */}
-      <div className="container mx-auto px-4 py-0.5">
+      <div className="container mx-auto px-4 py-1 sm:py-0.5">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img 
               src="/lovable-uploads/22bfe7cb-9525-46c0-8482-70745ca3bbfa.png" 
               alt="Supemir Logo" 
-              className="h-12 w-auto"
+              className="h-10 sm:h-12 w-auto"
             />
           </Link>
 
@@ -227,12 +227,12 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 space-y-4 animate-slide-up">
-            <button onClick={() => navigateAndScrollTo('hero')} className="block text-foreground hover:text-supemir-magenta transition-colors duration-300 text-left">Accueil</button>
+          <nav className="lg:hidden mt-4 pb-4 space-y-3 animate-slide-up">
+            <button onClick={() => navigateAndScrollTo('hero')} className="block text-foreground hover:text-supemir-magenta transition-colors duration-300 text-left text-sm sm:text-base">Accueil</button>
             
             {/* Mobile Programmes Section */}
             <div className="space-y-2">
-              <div className="text-foreground font-medium text-left">Programmes</div>
+              <div className="text-foreground font-medium text-left text-sm sm:text-base">Programmes</div>
               {dropdownMenus.programmes.items.map((item, index) => (
                 <button
                   key={index}
@@ -240,18 +240,18 @@ const Header = () => {
                     item.action();
                     setIsMenuOpen(false);
                   }}
-                  className="block text-foreground/80 hover:text-supemir-magenta transition-colors duration-300 text-left ml-4"
+                  className="block text-foreground/80 hover:text-supemir-magenta transition-colors duration-300 text-left ml-4 text-sm sm:text-base"
                 >
                   {item.label}
                 </button>
               ))}
             </div>
 
-            <button onClick={() => scrollToSection('stats')} className="block text-foreground hover:text-supemir-magenta transition-colors duration-300 text-left">À Propos</button>
-            <button onClick={() => scrollToSection('footer')} className="block text-foreground hover:text-supemir-magenta transition-colors duration-300 text-left">Contact</button>
+            <button onClick={() => scrollToSection('stats')} className="block text-foreground hover:text-supemir-magenta transition-colors duration-300 text-left text-sm sm:text-base">À Propos</button>
+            <button onClick={() => scrollToSection('footer')} className="block text-foreground hover:text-supemir-magenta transition-colors duration-300 text-left text-sm sm:text-base">Contact</button>
             <Button 
               onClick={handleInscription}
-              className="w-full bg-gradient-to-r from-supemir-magenta to-supemir-green text-white font-semibold animate-glow mt-4"
+              className="w-full bg-gradient-to-r from-supemir-magenta to-supemir-green text-white font-semibold animate-glow mt-4 text-sm sm:text-base"
             >
               🚀 Inscription
             </Button>

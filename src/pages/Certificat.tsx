@@ -147,9 +147,16 @@ const Certificat = () => {
         </div>
 
         {/* Certificats Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
           {certificatsData.map((certificat) => (
-            <Card key={certificat.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Card 
+              key={certificat.id} 
+              className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-primary/30 active:scale-95"
+              onClick={() => {
+                console.log('Certificate clicked:', certificat.id);
+                navigate(`/certificat/${certificat.id}`);
+              }}
+            >
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between mb-2">
                   <Badge variant="secondary" className="bg-primary/10 text-primary">
@@ -166,6 +173,9 @@ const Certificat = () => {
                 <CardDescription className="text-gray-600">
                   {certificat.description}
                 </CardDescription>
+                <div className="text-xs text-primary/70 mt-2 group-hover:text-primary transition-colors">
+                  👆 Cliquez pour voir les détails
+                </div>
               </CardHeader>
               
               <CardContent className="space-y-4">
@@ -223,10 +233,14 @@ const Certificat = () => {
 
                 {/* Action Button */}
                 <Button 
-                  className="w-full bg-primary hover:bg-primary/90"
-                  onClick={() => navigate(`/certificat/${certificat.id}`)}
+                  className="w-full bg-primary hover:bg-primary/90 active:bg-primary/80"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    console.log('Certificate details button clicked:', certificat.id);
+                    navigate(`/certificat/${certificat.id}`);
+                  }}
                 >
-                  Voir les détails
+                  📋 Voir les détails
                 </Button>
               </CardContent>
             </Card>

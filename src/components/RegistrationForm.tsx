@@ -30,7 +30,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
   
   // Get the smart formation type
   const smartFormationType = getFormationType();
-  const isFormationTypeLocked = smartFormationType !== null;
+  const isFormationTypeLocked = false; // Allow users to change program type - giving students full choice
   
   // Get available formations based on context
   const availableFormations = getAvailableFormations();
@@ -56,17 +56,13 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
     'modelisation-3d-animation': 'Modélisation 3D & Animation'
   };
 
-  // Handle formation selection within the form
+  // Handle formation selection within the form - giving students full freedom to choose
   const handleFormationToggle = (formationId: string) => {
     setFormSelectedFormations(prev => {
       if (prev.includes(formationId)) {
-        // Remove formation if already selected
+        // Remove formation if already selected - allow complete freedom
         const newSelection = prev.filter(id => id !== formationId);
-        // If no formations selected, keep at least one if we have available formations
-        if (newSelection.length === 0 && availableFormations.length > 0) {
-          return [availableFormations[0]];
-        }
-        return newSelection;
+        return newSelection; // Allow students to deselect all if they want
       } else {
         // Add formation if not selected
         return [...prev, formationId];
@@ -106,14 +102,14 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
     const formationToUse = contextFormation || selectedFormation || preselectedFormation;
     const programTypeToUse = smartFormationType || preselectedProgramType;
     
-    // Initialize form selections
+    // Initialize form selections - giving students choice instead of forcing defaults
     if (formationsToUse.length > 0) {
       setFormSelectedFormations(formationsToUse);
     } else if (formationToUse) {
       setFormSelectedFormations([formationToUse]);
-    } else if (availableFormations.length > 0) {
-      // If no pre-selections, default to first available formation
-      setFormSelectedFormations([availableFormations[0]]);
+    } else {
+      // Don't force any default selection - let students choose freely
+      setFormSelectedFormations([]);
     }
     
     if (formationsToUse.length > 0) {
@@ -336,8 +332,64 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
     }
   };
 
+  const isValidEmail = (email: string) => {
+    // Simple RFC 5322-like check
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
+  };
+
+  const normalizePhoneForWhatsapp = (raw: string) => {
+    // Keep digits only
+    const digits = raw.replace(/\D/g, "");
+    // If starts with 0 and looks like Moroccan mobile (06/07), convert to +2126/7...
+    if (/^0[6-7]\d{8}$/.test(digits)) {
+      return `+212${digits.slice(1)}`;
+    }
+    // If already starts with 212 and length valid
+    if (/^212[6-7]\d{8}$/.test(digits)) {
+      return `+${digits}`;
+    }
+    // If already in +2126... format
+    if (/^\+212[6-7]\d{8}$/.test(raw)) {
+      return raw;
+    }
+    return raw; // fallback
+  };
+
+  const isValidMoroccanMobile = (phone: string) => {
+    const digits = phone.replace(/\D/g, "");
+    // Accept 06XXXXXXXXX, 07XXXXXXXXX, 2126XXXXXXXX, 2127XXXXXXXX, +2126XXXXXXXX, +2127XXXXXXXX
+    return /^0[6-7]\d{8}$/.test(digits) || /^\+?212[6-7]\d{8}$/.test(digits);
+  };
+
   const handleSubmit = async () => {
     try {
+      // Client-side validation
+      if (!formData.firstName || !formData.lastName) {
+        alert("Veuillez saisir votre prénom et votre nom.");
+        return;
+      }
+      if (!isValidEmail(formData.email)) {
+        alert("Veuillez saisir une adresse email valide.");
+        return;
+      }
+      if (!isValidMoroccanMobile(formData.phone)) {
+        alert("Veuillez saisir un numéro mobile marocain valide (06/07 …).");
+        return;
+      }
+      if (formData.interests.length === 0) {
+        alert("Veuillez sélectionner au moins un centre d'intérêt.");
+        return;
+      }
+      if (!formData.programType) {
+        alert("Veuillez sélectionner le type de formation souhaité.");
+        return;
+      }
+      if (formData.programType === 'formation-certifiee' && formSelectedFormations.length === 0) {
+        alert("Veuillez sélectionner au moins une formation de votre choix.");
+        return;
+      }
+
+      const normalizedPhone = normalizePhoneForWhatsapp(formData.phone);
       const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL as string | undefined;
       
       // Log submission data for debugging
@@ -355,6 +407,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             ...formData,
+            phone: normalizedPhone,
             interests: formData.interests.join(', '), // Convert array to string for better spreadsheet compatibility
             submittedAt: new Date().toISOString(),
             site: 'supemirV2'
@@ -446,7 +499,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
       case 3:
         return formData.interests.length > 0;
       case 4:
-        return formData.programType && (formData.programType !== "formation-certifiee" || formData.specificProgram);
+        return formData.programType && (formData.programType !== "formation-certifiee" || formSelectedFormations.length > 0);
       default:
         return false;
     }
@@ -469,7 +522,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
       }}
     >
       <div 
-        className="w-full max-w-2xl max-h-[90vh] overflow-y-auto relative shadow-2xl border-0 bg-white rounded-lg" 
+        className="w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl max-h-[90vh] sm:max-h-[95vh] overflow-y-auto relative shadow-2xl border-0 bg-white rounded-lg lg:rounded-xl" 
         style={{
           zIndex: 999999,
           position: 'relative',
@@ -515,45 +568,49 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
                 <h3 className="text-lg font-semibold">Informations Personnelles</h3>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                 <div>
-                  <Label htmlFor="firstName">Prénom *</Label>
+                  <Label htmlFor="firstName" className="text-sm lg:text-base">Prénom *</Label>
                   <Input
                     id="firstName"
                     value={formData.firstName}
                     onChange={(e) => handleInputChange('firstName', e.target.value)}
                     placeholder="Votre prénom"
+                    className="h-10 lg:h-12 text-sm lg:text-base"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="lastName">Nom *</Label>
+                  <Label htmlFor="lastName" className="text-sm lg:text-base">Nom *</Label>
                   <Input
                     id="lastName"
                     value={formData.lastName}
                     onChange={(e) => handleInputChange('lastName', e.target.value)}
                     placeholder="Votre nom"
+                    className="h-10 lg:h-12 text-sm lg:text-base"
                   />
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                 <div>
-                  <Label htmlFor="email">Email *</Label>
+                  <Label htmlFor="email" className="text-sm lg:text-base">Email *</Label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     placeholder="votre@email.com"
+                    className="h-10 lg:h-12 text-sm lg:text-base"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="phone">Téléphone *</Label>
+                  <Label htmlFor="phone" className="text-sm lg:text-base">Téléphone *</Label>
                   <Input
                     id="phone"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     placeholder="+212 6XX XXX XXX"
+                    className="h-10 lg:h-12 text-sm lg:text-base"
                   />
                 </div>
               </div>
@@ -624,7 +681,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
                   </div>
                 )}
                 
-                <div className="grid md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
                   {interestOptions.map((interest) => {
                     const isPreselected = (selectedFormation || preselectedFormation || preselectedProgram) && 
                       ((selectedFormation && getPreselectedInterestFromFormation(selectedFormation) === interest) ||
@@ -632,13 +689,14 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
                        (preselectedProgram && getPreselectedInterestFromProgram(preselectedProgram) === interest));
                     
                     return (
-                      <div key={interest} className="flex items-center space-x-2">
+                      <div key={interest} className="flex items-center space-x-2 lg:space-x-3 p-2 lg:p-3 rounded-lg hover:bg-gray-50 transition-colors">
                         <Checkbox
                           id={interest}
                           checked={formData.interests.includes(interest)}
                           onCheckedChange={(checked) => handleInterestChange(interest, checked as boolean)}
+                          className="h-4 w-4 lg:h-5 lg:w-5"
                         />
-                        <Label htmlFor={interest} className="text-sm cursor-pointer">
+                        <Label htmlFor={interest} className="text-sm lg:text-base cursor-pointer flex-1">
                           {interest}
                           {isPreselected && <span className="text-xs text-blue-600 ml-1">💡</span>}
                         </Label>
@@ -681,7 +739,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
                 <select 
                   value={formData.programType} 
                   onChange={(e) => handleInputChange('programType', e.target.value)}
-                  disabled={isFormationTypeLocked}
+                  disabled={false}
                   className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="">Sélectionnez le type de formation</option>
@@ -704,7 +762,10 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
 
               {formData.programType === "formation-certifiee" && (
                 <div>
-                  <Label>Formation(s) souhaitée(s) *</Label>
+                  <Label>Formation(s) de votre choix *</Label>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Sélectionnez une ou plusieurs formations selon vos intérêts et objectifs professionnels
+                  </p>
                   <div className="space-y-3">
                     {/* Formation Selection Cards */}
                     <div className="grid gap-2">
@@ -739,7 +800,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
                             </div>
                             {formSelectedFormations.includes(formationId) && (
                               <Badge className="bg-primary text-primary-foreground text-xs">
-                                Sélectionnée
+                                Choisie
                               </Badge>
                             )}
                           </div>
@@ -751,22 +812,27 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
                     <div className="mt-3 p-3 bg-gray-50 rounded-lg">
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-gray-700">
-                          Formations sélectionnées:
+                          Formations choisies:
                         </span>
                         <span className="text-sm font-bold text-primary">
                           {formSelectedFormations.length}
                         </span>
                       </div>
-                      {formSelectedFormations.length > 1 && (
-                        <p className="text-xs text-green-600 mt-2">
-                          ✅ Vous serez contacté pour organiser les formations multiples
+                      {formSelectedFormations.length === 0 && (
+                        <p className="text-xs text-orange-600 mt-2">
+                          ⚠️ Veuillez choisir au moins une formation qui vous intéresse
                         </p>
                       )}
                       {formSelectedFormations.length === 1 && (
                         <p className="text-xs text-blue-600 mt-2">
-                          💡 Formation unique sélectionnée
-                    </p>
-                  )}
+                          ✅ Formation unique sélectionnée
+                        </p>
+                      )}
+                      {formSelectedFormations.length > 1 && (
+                        <p className="text-xs text-green-600 mt-2">
+                          ✅ Excellente sélection ! Nous vous contacterons pour organiser votre parcours personnalisé
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -801,11 +867,12 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex justify-between pt-6 border-t">
+          <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 pt-6 border-t">
             <Button
               variant="outline"
               onClick={prevStep}
               disabled={currentStep === 1}
+              className="w-full sm:w-auto min-h-[48px] sm:min-h-[44px] text-sm lg:text-base"
             >
               Précédent
             </Button>
@@ -814,7 +881,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
               <Button
                 onClick={nextStep}
                 disabled={!isStepValid()}
-                className="bg-primary hover:bg-primary/90"
+                className="bg-primary hover:bg-primary/90 w-full sm:w-auto min-h-[48px] sm:min-h-[44px] text-sm lg:text-base"
               >
                 Suivant
               </Button>
@@ -822,7 +889,7 @@ const RegistrationForm = ({ isOpen = true, onClose, preselectedFormation, presel
               <Button
                 onClick={handleSubmit}
                 disabled={!isStepValid()}
-                className="bg-gradient-to-r from-supemir-magenta to-supemir-green text-white"
+                className="bg-gradient-to-r from-supemir-magenta to-supemir-green text-white w-full sm:w-auto min-h-[48px] sm:min-h-[44px] text-sm lg:text-base"
               >
                 🚀 Envoyer l'inscription
               </Button>

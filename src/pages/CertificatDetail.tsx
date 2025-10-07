@@ -13,6 +13,9 @@ const CertificatDetail = () => {
   const navigate = useNavigate();
   const { setSelectedFormation } = useFormation();
 
+  // Debug logging
+  console.log('CertificatDetail - certificat parameter:', certificat);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -217,7 +220,7 @@ const CertificatDetail = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Back Button */}
         <Button 
           variant="outline" 
@@ -229,7 +232,7 @@ const CertificatDetail = () => {
         </Button>
 
         {/* Header Section */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
           <div>
             <div className="flex items-center mb-4">
               <Award className="h-8 w-8 text-primary mr-3" />
@@ -237,7 +240,7 @@ const CertificatDetail = () => {
                 {currentCertificat.level}
               </Badge>
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {currentCertificat.title}
             </h1>
             <p className="text-xl text-gray-600 mb-6">

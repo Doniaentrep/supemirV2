@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import AboutUs from "@/components/AboutUs";
 import Programs from "@/components/Programs";
 import Partners from "@/components/Partners";
 import FormationRapide from "@/components/FormationRapide";
@@ -248,10 +249,13 @@ const Portfolio = () => {
 
 const Index = () => {
   return (
-    <div className="relative scroll-snap-container">
+    <div className="relative w-full min-h-screen overflow-x-hidden scroll-snap-container">
       <Header />
       <section id="hero" className="scroll-snap-section">
         <Hero />
+      </section>
+      <section id="about" className="scroll-snap-section">
+        <AboutUs />
       </section>
       <section id="programs" className="scroll-snap-section">
         <Programs />

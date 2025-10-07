@@ -100,7 +100,7 @@ const StudentTestimonials = () => {
 
   return (
     <section ref={testimonialsRef} className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className={`text-center mb-16 transition-all duration-1000 ${
           isTestimonialsVisible ? 'animate-fade-in' : 'opacity-0 translate-y-[30px]'
         }`}>

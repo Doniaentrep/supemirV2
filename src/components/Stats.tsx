@@ -9,8 +9,8 @@ const Stats = () => {
 
   return (
     <section id="stats" className="py-20 pt-24 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div ref={headerRef} className={`text-center mb-16 transition-all duration-1000 ${
+      <div className="container mx-auto px-4 sm:px-6">
+        <div ref={headerRef as React.RefObject<HTMLDivElement>} className={`text-center mb-16 transition-all duration-1000 ${
           isHeaderVisible ? 'animate-fade-in' : 'opacity-0 translate-y-[30px]'
         }`}>
           <Badge variant="secondary" className="mb-4">Excellence & Performance</Badge>
@@ -22,7 +22,7 @@ const Stats = () => {
           </p>
         </div>
 
-        <div ref={statsRef} className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-1000 ${
+        <div ref={statsRef as React.RefObject<HTMLDivElement>} className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-1000 ${
           isStatsVisible ? 'animate-fade-in' : 'opacity-0 translate-y-[30px]'
         }`}>
             <div className="text-center p-8 bg-background rounded-xl shadow-sm hover-lift transition-all duration-300" style={{animationDelay: '0.1s'}}>
@@ -54,7 +54,7 @@ const Stats = () => {
             </div>
         </div>
 
-        <div ref={partnershipRef} className={`text-center mt-16 transition-all duration-1000 ${
+        <div ref={partnershipRef as React.RefObject<HTMLDivElement>} className={`text-center mt-16 transition-all duration-1000 ${
           isPartnershipVisible ? 'animate-fade-in' : 'opacity-0 translate-y-[30px]'
         }`}>
           <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 border border-primary/20 hover-lift">

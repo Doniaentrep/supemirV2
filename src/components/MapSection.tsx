@@ -17,7 +17,8 @@ const MapSection = () => {
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = "212522249175"; // Remove the + for WhatsApp
+    // Use validated Moroccan mobile in E.164 without leading + for wa.me
+    const phoneNumber = "212661497647";
     const message = "Bonjour, je souhaite obtenir des informations sur SUPEMIR Marrakech Academy.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');

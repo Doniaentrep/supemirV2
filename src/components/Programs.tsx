@@ -274,7 +274,7 @@ const Programs = () => {
 
   return (
     <section id="programmes" className="py-4 pt-8 bg-gradient-to-br from-gray-50 to-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6">
         <div ref={programsRef as React.RefObject<HTMLDivElement>} className="text-center mb-2">
           <Badge className="mb-2 bg-gradient-to-r from-primary to-accent text-white px-3 py-1 text-sm">
             <Sparkles className="h-3 w-3 mr-1" />

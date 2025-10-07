@@ -60,63 +60,63 @@ const BootcampMarketingDigital = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 py-12 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 py-8 sm:py-12 lg:py-16 xl:py-20 overflow-hidden">
         <div className="pointer-events-none absolute -top-20 -left-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 -right-16 h-80 w-80 rounded-full bg-accent/10 blur-3xl" />
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            <div className="text-center px-4 lg:px-8">
-              <div className="mb-4 text-left">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center max-w-7xl mx-auto">
+            <div className="text-center lg:text-left px-2 sm:px-4 lg:px-8 order-2 lg:order-1">
+              <div className="mb-4">
                 
               </div>
               
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight text-left px-4">
-                Transformez Votre Carrière : <br />
-                <span className="text-primary">Bootcamp Intensif en Marketing Digital à Marrakech</span>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+                Transformez Votre Carrière : <br className="hidden sm:block" />
+                <span className="text-primary block sm:inline">Bootcamp Intensif en Marketing Digital à Marrakech</span>
               </h1>
               
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl text-left px-4">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Acquérez une expertise de pointe et un double certification pour dominer le paysage numérique, 
                 avec une intégration exclusive de l'IA par SkillsUp AI. Conçu pour les professionnels ambitieux.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 justify-start mb-8 px-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8 px-2 sm:px-4">
                 <Button 
-                  size="default" 
-                  className="bg-primary hover:bg-primary/90 text-sm sm:text-base px-4 sm:px-6 py-3 w-full sm:w-auto"
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 lg:py-4 w-full sm:w-auto min-h-[48px] sm:min-h-[52px]"
                   onClick={handleRegistrationClick}
                 >
                   S'inscrire au Bootcamp
                 </Button>
                 <Button 
-                  size="default" 
+                  size="lg" 
                   variant="outline"
-                  className="text-sm sm:text-base px-4 sm:px-6 py-3 w-full sm:w-auto"
+                  className="text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 lg:py-4 w-full sm:w-auto min-h-[48px] sm:min-h-[52px]"
                   onClick={() => scrollToSection('programme')}
                 >
                   Voir le programme
                 </Button>
                 <Button 
-                  size="default"
+                  size="lg"
                   variant="secondary"
-                  className="text-sm sm:text-base px-4 sm:px-6 py-3 bg-white text-primary border border-primary/30 hover:bg-primary/5 w-full sm:w-auto"
+                  className="text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 lg:py-4 bg-white text-primary border border-primary/30 hover:bg-primary/5 w-full sm:w-auto min-h-[48px] sm:min-h-[52px]"
                   onClick={() => scrollToSection('diplome')}
                 >
                   Diplôme & Certifs
                 </Button>
               </div>
               
-              <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 max-w-sm sm:max-w-md lg:max-w-lg mx-auto lg:mx-0">
                 {[{label:'Heures', value:'16h'}, {label:'Modules', value:'5'}, {label:'Certification', value:'Double'}].map((s) => (
-                  <div key={s.label} className="rounded-xl bg-white/70 backdrop-blur border border-gray-100 p-3 text-center">
-                    <div className="text-2xl font-extrabold text-primary">{s.value}</div>
-                    <div className="text-xs text-gray-600">{s.label}</div>
+                  <div key={s.label} className="rounded-xl lg:rounded-2xl bg-white/70 backdrop-blur border border-gray-100 p-3 sm:p-4 lg:p-5 text-center hover:shadow-md transition-shadow">
+                    <div className="text-lg sm:text-2xl lg:text-3xl font-extrabold text-primary">{s.value}</div>
+                    <div className="text-xs sm:text-sm text-gray-600">{s.label}</div>
                   </div>
                 ))}
               </div>
             </div>
             
-            <div className="relative flex justify-center lg:justify-end px-4 lg:px-8">
+            <div className="relative flex justify-center lg:justify-end px-2 sm:px-4 lg:px-8 mt-8 lg:mt-0 order-1 lg:order-2">
               
               {/* Floating badges */}
               <div className="flex flex-col gap-3 items-center lg:items-end">
@@ -127,22 +127,22 @@ const BootcampMarketingDigital = () => {
       </section>
 
       {/* Career Outcomes */}
-      <section id="carriere" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Débouchés & Carrières</h2>
-            <p className="text-xl text-gray-600">Des rôles tangibles, des résultats mesurables</p>
+      <section id="carriere" className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">Débouchés & Carrières</h2>
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto">Des rôles tangibles, des résultats mesurables</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {[
               {title:'Social Media Manager', stat:'+35% engagement', accent:'from-indigo-500 to-violet-500'},
               {title:'Growth Marketer', stat:'+20% conversions', accent:'from-emerald-500 to-teal-500'},
               {title:'Data/Analytics Marketer', stat:'ROAS x1.8', accent:'from-amber-500 to-orange-500'}
             ].map((item) => (
-              <div key={item.title} className="group rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.accent} text-white flex items-center justify-center mb-4 font-bold`}>{item.stat.split(' ')[0]}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600">Objectif type: {item.stat} 3 à 6 mois après mise en pratique.</p>
+              <div key={item.title} className="group rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-4 sm:p-6 lg:p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${item.accent} text-white flex items-center justify-center mb-3 sm:mb-4 lg:mb-5 font-bold text-sm sm:text-base lg:text-lg`}>{item.stat.split(' ')[0]}</div>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 lg:mb-3">{item.title}</h3>
+                <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">Objectif type: {item.stat} 3 à 6 mois après mise en pratique.</p>
               </div>
             ))}
           </div>
@@ -151,23 +151,23 @@ const BootcampMarketingDigital = () => {
 
 
       {/* Testimonials */}
-      <section id="faq" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Ils en parlent le mieux</h2>
-            <p className="text-lg text-gray-600">Retour d’expérience d’apprenants</p>
+      <section id="faq" className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Ils en parlent le mieux</h2>
+            <p className="text-base sm:text-lg text-gray-600">Retour d'expérience d'apprenants</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
             {[1,2,3].map((i) => (
               <Card key={i} className="hover:shadow-xl transition-shadow">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center mb-3">
                     {[...Array(5)].map((_, idx) => (
                       <Star key={idx} className="h-4 w-4 text-yellow-500 fill-yellow-500" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-4">Formation très concrète et immédiatement actionnable. Le module IA m’a fait gagner un temps fou sur nos campagnes.</p>
-                  <div className="text-sm text-gray-600 font-medium">Alumni Bootcamp 2024</div>
+                  <p className="text-sm sm:text-base text-gray-700 mb-4">Formation très concrète et immédiatement actionnable. Le module IA m'a fait gagner un temps fou sur nos campagnes.</p>
+                  <div className="text-xs sm:text-sm text-gray-600 font-medium">Alumni Bootcamp 2024</div>
                 </CardContent>
               </Card>
             ))}
@@ -176,22 +176,22 @@ const BootcampMarketingDigital = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-4xl font-bold text-gray-900 mb-3">Questions fréquentes</h2>
-            <p className="text-gray-600">Tout ce qu’il faut savoir avant de vous lancer</p>
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">Questions fréquentes</h2>
+            <p className="text-sm sm:text-base text-gray-600">Tout ce qu'il faut savoir avant de vous lancer</p>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {[
-              {q:"À qui s’adresse ce bootcamp ?", a:"Aux professionnels et étudiants souhaitant accélérer en marketing digital."},
+              {q:"À qui s'adresse ce bootcamp ?", a:"Aux professionnels et étudiants souhaitant accélérer en marketing digital."},
               {q:"Quel est le niveau requis ?", a:"Connaissances de base du marketing ou forte motivation à apprendre rapidement."},
               {q:"Y a-t-il un projet ?", a:"Oui, un mini‑projet par module et un cas fil rouge avec soutenance."}
             ].map((item, idx) => (
               <Card key={idx} className="border-gray-200">
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.q}</CardTitle>
-                  <CardDescription>{item.a}</CardDescription>
+                <CardHeader className="p-4 sm:p-6">
+                  <CardTitle className="text-base sm:text-lg">{item.q}</CardTitle>
+                  <CardDescription className="text-sm sm:text-base">{item.a}</CardDescription>
                 </CardHeader>
               </Card>
             ))}
@@ -200,26 +200,40 @@ const BootcampMarketingDigital = () => {
       </section>
 
       {/* Sticky CTA */}
-      <div className="fixed bottom-4 inset-x-0 px-4 z-40">
-        <div className="mx-auto max-w-3xl rounded-full px-4 py-3 flex items-center justify-between bg-white/25 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/20 border border-white/30 ring-1 ring-white/20 shadow-lg">
-          <div className="hidden sm:flex items-center gap-3 text-sm text-gray-700">
-            <Clock className="h-4 w-4 text-primary" />
-            16h (4 séances de 4h) • Marrakech
-            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+      <div className="fixed bottom-2 sm:bottom-4 lg:bottom-6 inset-x-2 sm:inset-x-4 lg:inset-x-6 xl:inset-x-8 z-40">
+        <div className="mx-auto max-w-3xl lg:max-w-4xl xl:max-w-5xl rounded-full px-3 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4 flex items-center justify-between bg-white/25 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/20 border border-white/30 ring-1 ring-white/20 shadow-lg lg:shadow-xl">
+          <div className="hidden sm:flex items-center gap-3 lg:gap-4 text-sm lg:text-base text-gray-700">
+            <Clock className="h-4 w-4 lg:h-5 lg:w-5 text-primary" />
+            <span className="hidden lg:inline">16h (4 séances de 4h) • Marrakech</span>
+            <span className="lg:hidden">16h • Marrakech</span>
+            <span className="ml-2 inline-flex items-center px-2 lg:px-3 py-0.5 lg:py-1 rounded-full bg-primary/10 text-primary text-xs lg:text-sm font-semibold">
               Places limitées
             </span>
           </div>
-          <Button size="sm" className="rounded-full px-5" onClick={handleRegistrationClick}>S’inscrire maintenant</Button>
+          <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 flex-1 sm:flex-initial">
+            <div className="sm:hidden flex items-center gap-2 text-xs lg:text-sm text-gray-700 flex-1">
+              <Clock className="h-3 w-3 lg:h-4 lg:w-4 text-primary" />
+              <span>16h • Marrakech</span>
+            </div>
+            <Button 
+              size="sm" 
+              className="rounded-full px-3 sm:px-5 lg:px-6 xl:px-8 py-2 lg:py-3 text-xs sm:text-sm lg:text-base whitespace-nowrap min-h-[40px] sm:min-h-[44px] lg:min-h-[48px]" 
+              onClick={handleRegistrationClick}
+            >
+              <span className="hidden sm:inline">S'inscrire maintenant</span>
+              <span className="sm:hidden">S'inscrire</span>
+            </Button>
+          </div>
         </div>
       </div>
       {/* Introduction Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-8">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">
               À Propos du Bootcamp
             </h2>
-            <div className="text-lg text-gray-700 leading-relaxed space-y-6">
+            <div className="text-base sm:text-lg text-gray-700 leading-relaxed space-y-4 sm:space-y-6">
               <p>
                 Dans un monde où le digital évolue à une vitesse fulgurante, maîtriser les stratégies de marketing numérique 
                 n'est plus une option, mais une nécessité. Le Bootcamp Marketing Digital de Supemir Marrakech Academy est une 
@@ -237,29 +251,29 @@ const BootcampMarketingDigital = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               Bénéfices Clés / Pourquoi choisir ce Bootcamp ?
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600">
               Choisir le Bootcamp Marketing Digital de Supemir Marrakech Academy, c'est investir dans une formation d'excellence
             </p>
           </div>
 
           {/* Cards styled like the Campus Life screenshot */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Certification (now first) */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white flex items-center justify-center mb-6 shadow-sm">
-                  <Award className="h-10 w-10" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white flex items-center justify-center mb-4 sm:mb-6 shadow-sm">
+                  <Award className="h-8 w-8 sm:h-10 sm:w-10" />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-3">
                   🎖️ Certification Supemir Marrakech Academy
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   Validez vos compétences avec une certification reconnue, délivrée par une école supérieure
                   réputée pour son excellence académique et son engagement envers la réussite de ses étudiants.
                 </p>
@@ -267,15 +281,15 @@ const BootcampMarketingDigital = () => {
             </div>
 
             {/* IA Integration (now second) */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 text-white flex items-center justify-center mb-6 shadow-sm">
-                  <Brain className="h-10 w-10" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 text-white flex items-center justify-center mb-4 sm:mb-6 shadow-sm">
+                  <Brain className="h-8 w-8 sm:h-10 sm:w-10" />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-3">
                   🚀 Intégration de l'Intelligence Artificielle
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   Bénéficiez d'un module exclusif sur l'intégration de l'IA dans le Digital Marketing,
                   conçu et animé par SkillsUp AI. Exploitez les dernières innovations pour optimiser
                   vos campagnes et vos analyses.
@@ -284,15 +298,15 @@ const BootcampMarketingDigital = () => {
             </div>
 
             {/* Resources */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-400 to-violet-500 text-white flex items-center justify-center mb-6 shadow-sm">
-                  <BookOpen className="h-10 w-10" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-indigo-400 to-violet-500 text-white flex items-center justify-center mb-4 sm:mb-6 shadow-sm">
+                  <BookOpen className="h-8 w-8 sm:h-10 sm:w-10" />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-3">
                   🎯 Ressources Exclusives et à Jour
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   Accédez à des supports pédagogiques exclusifs, conçus par des experts SMA, pour un
                   apprentissage de pointe et une veille constante sur les tendances du marché.
                 </p>
@@ -303,20 +317,20 @@ const BootcampMarketingDigital = () => {
       </section>
 
       {/* Diplôme & Certifications */}
-      <section id="diplome" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      <section id="diplome" className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               Diplôme et Certifications
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600">
               Un parcours certifiant, sanctionné par un certificat délivré par Supemir Marrakech Academy et incluant un module IA by SkillsUp AI.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {/* Hero certification card */}
-            <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-gradient-to-br from-primary/10 via-white to-accent/10 p-8 shadow-sm transition-all hover:shadow-xl">
+            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-gray-100 bg-gradient-to-br from-primary/10 via-white to-accent/10 p-6 sm:p-8 shadow-sm transition-all hover:shadow-xl">
               <div className="pointer-events-none absolute -top-16 -right-16 h-56 w-56 rounded-full bg-primary/10 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-accent/10 blur-3xl" />
               <div className="flex items-start gap-6">
@@ -334,10 +348,10 @@ const BootcampMarketingDigital = () => {
                     et une validation du module IA conçu par SkillsUp AI, attestant de vos compétences pratiques
                     en marketing digital et en intégration de l'intelligence artificielle.
                   </p>
-                  <div className="grid sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {[{label:'Format', value:'Présentiel'}, {label:'Durée', value:'16h (4x4h)'}, {label:'Langue', value:'Français'}].map((s) => (
                       <div key={s.label} className="rounded-xl bg-white/80 backdrop-blur border border-gray-100 p-3 text-center">
-                        <div className="text-base font-bold text-gray-900">{s.value}</div>
+                        <div className="text-sm sm:text-base font-bold text-gray-900">{s.value}</div>
                         <div className="text-xs text-gray-600">{s.label}</div>
                       </div>
                     ))}
@@ -347,8 +361,8 @@ const BootcampMarketingDigital = () => {
             </div>
 
             {/* What you get + Recognition */}
-            <div className="grid sm:grid-cols-2 gap-8 items-stretch">
-              <div className="h-full rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+              <div className="h-full rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">Ce que vous obtenez</h4>
                 <ul className="text-gray-700 grid grid-cols-1 xs:grid-cols-2 gap-x-6 gap-y-3">
                   {[ 
@@ -366,7 +380,7 @@ const BootcampMarketingDigital = () => {
                   ))}
                 </ul>
               </div>
-              <div className="h-full rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="h-full rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">Reconnaissance</h4>
                 <p className="text-gray-700 mb-4">Certificat partageable et valorisable sur LinkedIn et votre CV.</p>
                 <div className="flex items-center gap-3 text-sm text-gray-600">
@@ -375,16 +389,16 @@ const BootcampMarketingDigital = () => {
                 </div>
                 <div className="mt-6 grid grid-cols-4 gap-3">
                   <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
-                    <img src="/logos/LOGO-PM.png" alt="Supemir Marrakech Academy" className="max-w-full max-h-full object-contain" />
+                  <img src="/logos/LOGO-PM.png" alt="Supemir Marrakech Academy" loading="lazy" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
-                    <img src="/logos/ISO21001-2018.png" alt="ISO 21001:2018" className="max-w-full max-h-full object-contain" />
+                  <img src="/logos/ISO21001-2018.png" alt="ISO 21001:2018" loading="lazy" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
-                    <img src="/logos/iso2015-1024x395-1.webp" alt="ISO 9001:2015" className="max-w-full max-h-full object-contain" />
+                  <img src="/logos/iso2015-1024x395-1.webp" alt="ISO 9001:2015" loading="lazy" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div className="aspect-[3/2] rounded-xl bg-white border border-gray-200 flex items-center justify-center p-2">
-                    <img src="/logos/PL-Seal-final.webp" alt="Professional Learning" className="max-w-full max-h-full object-contain" />
+                  <img src="/logos/PL-Seal-final.webp" alt="Professional Learning" loading="lazy" className="max-w-full max-h-full object-contain" />
                   </div>
                 </div>
               </div>
@@ -405,26 +419,26 @@ const BootcampMarketingDigital = () => {
 
 
       {/* Objectives Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               Objectifs de la Formation
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600">
               À l'issue de ce bootcamp intensif, vous serez capable de :
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
             <div className="space-y-6">
               <div className="flex items-start">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                   <Target className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Maîtriser le Marketing Numérique</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Maîtriser le Marketing Numérique</h3>
+                  <p className="text-sm sm:text-base text-gray-600">
                     Acquérir une compréhension approfondie des concepts fondamentaux et des outils avancés du marketing numérique, 
                     incluant le SEO, le SEM, le marketing de contenu, et les médias sociaux.
                   </p>
@@ -436,8 +450,8 @@ const BootcampMarketingDigital = () => {
                   <TrendingUp className="h-6 w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Élaborer des Stratégies Marketing Efficaces</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Élaborer des Stratégies Marketing Efficaces</h3>
+                  <p className="text-sm sm:text-base text-gray-600">
                     Concevoir et mettre en œuvre des stratégies de marketing numérique intégrées, alignées sur les objectifs 
                     commerciaux et capables de générer un retour sur investissement significatif.
                   </p>
@@ -451,8 +465,8 @@ const BootcampMarketingDigital = () => {
                   <BarChart3 className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Analyser les Données pour la Prise de Décision</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Analyser les Données pour la Prise de Décision</h3>
+                  <p className="text-sm sm:text-base text-gray-600">
                     Comprendre comment collecter, interpréter et utiliser les données analytiques pour optimiser les performances 
                     des campagnes et prendre des décisions éclairées.
                   </p>
@@ -464,8 +478,8 @@ const BootcampMarketingDigital = () => {
                   <Award className="h-6 w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Obtenir une Certification Reconnue</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Obtenir une Certification Reconnue</h3>
+                  <p className="text-sm sm:text-base text-gray-600">
                     Être parfaitement préparé pour obtenir une certification reconnue dans le domaine du marketing numérique 
                     et du commerce électronique, renforçant ainsi votre crédibilité professionnelle.
                   </p>
@@ -477,16 +491,16 @@ const BootcampMarketingDigital = () => {
       </section>
 
       {/* Program Section */}
-      <section id="programme" className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      <section id="programme" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Decorative blur accents */}
         <div className="pointer-events-none absolute -top-10 -left-10 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-accent/10 blur-3xl" />
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
               Programme Détaillé
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600">
               Un parcours progressif et immersif couvrant les piliers essentiels du Marketing Digital
             </p>
           </div>
@@ -497,9 +511,9 @@ const BootcampMarketingDigital = () => {
           
           {/* Local UI state for this section */}
           {/* Note: kept inside component scope, defined above render using useState */}
-          <div className="max-w-5xl mx-auto mb-10">
+          <div className="max-w-5xl mx-auto mb-8 sm:mb-10">
             <div className="relative flex items-center justify-between">
-              <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full" />
+              <div className="absolute left-3 right-3 sm:left-6 sm:right-6 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full" />
               {[1,2,3,4,5].map((step) => (
                 <button
                   key={step}
@@ -508,14 +522,14 @@ const BootcampMarketingDigital = () => {
                   className="relative z-10 flex flex-col items-center focus:outline-none"
                   aria-pressed={activeProgramStep === step}
                 >
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center font-semibold transition-all duration-200 shadow-md ${
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-semibold transition-all duration-200 shadow-md text-sm sm:text-base ${
                     activeProgramStep === step
                       ? 'bg-gradient-to-br from-primary to-accent text-white ring-4 ring-primary/20 scale-105'
                       : 'bg-white text-primary ring-2 ring-primary/30 hover:ring-primary/50'
                   }`}>
                     {step}
                   </div>
-                  <span className={`mt-2 text-xs hidden sm:block transition-colors ${
+                  <span className={`mt-1 sm:mt-2 text-xs hidden sm:block transition-colors ${
                     activeProgramStep === step ? 'text-primary' : 'text-gray-600'
                   }`}>
                     {step === 1 ? 'Fondamentaux' : step === 2 ? 'Contenu' : step === 3 ? 'Analytics' : step === 4 ? 'Automation' : 'IA'}
@@ -529,18 +543,18 @@ const BootcampMarketingDigital = () => {
           <div className="max-w-4xl mx-auto">
           {activeProgramStep === 1 && (
             <Card className="group border-0 shadow-none bg-transparent transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01]">
-              <CardHeader className="rounded-2xl p-5 transition-all group-hover:bg-white group-hover:shadow-xl group-hover:ring-1 group-hover:ring-primary/10">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mb-4 ring-1 ring-primary/20 transition-transform group-hover:scale-105">
-                  <Target className="h-6 w-6 text-primary" />
+              <CardHeader className="rounded-xl sm:rounded-2xl p-4 sm:p-5 transition-all group-hover:bg-white group-hover:shadow-xl group-hover:ring-1 group-hover:ring-primary/10">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 ring-1 ring-primary/20 transition-transform group-hover:scale-105">
+                  <Target className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
-                <CardTitle className="text-lg flex items-center justify-between">
+                <CardTitle className="text-base sm:text-lg flex items-center justify-between">
                   Fondamentaux du Marketing Digital
                   <span className="ml-2 text-[10px] px-2 py-1 rounded-full bg-primary/10 text-primary font-semibold">Module 1</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-4 group-hover:bg-gradient-to-br group-hover:from-primary/5 group-hover:to-transparent rounded-2xl transition-colors">
-                <ul className="text-gray-600 space-y-2 list-disc list-inside">
-                  <li>Introduction au paysage digital et canaux d’acquisition</li>
+              <CardContent className="pt-3 sm:pt-4 group-hover:bg-gradient-to-br group-hover:from-primary/5 group-hover:to-transparent rounded-xl sm:rounded-2xl transition-colors">
+                <ul className="text-sm sm:text-base text-gray-600 space-y-2 list-disc list-inside">
+                  <li>Introduction au paysage digital et canaux d'acquisition</li>
                   <li>Fondamentaux SEO/SEA et bonnes pratiques</li>
                   <li>Stratégie Social Media et community building</li>
                 </ul>
@@ -632,26 +646,26 @@ const BootcampMarketingDigital = () => {
       </section>
 
       {/* Practical Information */}
-      <section id="infos" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      <section id="infos" className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               Informations Pratiques
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600">
               Pour s'adapter au mieux à votre emploi du temps de professionnel
             </p>
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <Card className="p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+            <Card className="p-6 sm:p-8">
+              <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
                 <div className="space-y-6">
                   <div className="flex items-center">
                     <Clock className="h-6 w-6 text-primary mr-3" />
                     <div>
                       <h3 className="font-bold text-gray-900">Durée</h3>
-                      <p className="text-gray-600">16h de formation réparties en 4 séances de 4h pour une expertise rapide et efficace</p>
+                      <p className="text-sm sm:text-base text-gray-600">16h de formation réparties en 4 séances de 4h pour une expertise rapide et efficace</p>
                     </div>
                   </div>
                   
@@ -659,7 +673,7 @@ const BootcampMarketingDigital = () => {
                     <Users className="h-6 w-6 text-primary mr-3" />
                     <div>
                       <h3 className="font-bold text-gray-900">Format</h3>
-                      <p className="text-gray-600">100% en présentiel, favorisant les échanges et l'apprentissage interactif</p>
+                      <p className="text-sm sm:text-base text-gray-600">100% en présentiel, favorisant les échanges et l'apprentissage interactif</p>
                     </div>
                   </div>
                 </div>
@@ -669,7 +683,7 @@ const BootcampMarketingDigital = () => {
                     <Calendar className="h-6 w-6 text-primary mr-3" />
                     <div>
                       <h3 className="font-bold text-gray-900">Rythme</h3>
-                      <p className="text-gray-600">4 séances de 4h chacune, pour concilier formation et activité professionnelle</p>
+                      <p className="text-sm sm:text-base text-gray-600">4 séances de 4h chacune, pour concilier formation et activité professionnelle</p>
                     </div>
                   </div>
                   
@@ -677,7 +691,7 @@ const BootcampMarketingDigital = () => {
                     <MapPin className="h-6 w-6 text-primary mr-3" />
                     <div>
                       <h3 className="font-bold text-gray-900">Prochaine rentrée</h3>
-                      <p className="text-gray-600">Octobre 2025 (Veuillez nous contacter pour les dates exactes des prochaines sessions)</p>
+                      <p className="text-sm sm:text-base text-gray-600">Octobre 2025 (Veuillez nous contacter pour les dates exactes des prochaines sessions)</p>
                     </div>
                   </div>
                 </div>
@@ -688,36 +702,36 @@ const BootcampMarketingDigital = () => {
       </section>
 
       {/* Call to Action */}
-      <section id="inscription" className="py-20 bg-gradient-to-br from-primary/10 to-accent/10">
-        <div className="container mx-auto px-4">
+      <section id="inscription" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary/10 to-accent/10">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
               Prêt à Transformer Votre Carrière ?
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8">
               Rejoignez le Bootcamp Marketing Digital et devenez un expert du marketing numérique avec l'intégration de l'IA
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
               <Button 
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-lg px-8 py-4"
+                className="bg-primary hover:bg-primary/90 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
                 onClick={handleRegistrationClick}
               >
                 S'inscrire au Bootcamp
               </Button>
             </div>
             
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Contactez-nous pour plus d'informations</h3>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Contactez-nous pour plus d'informations</h3>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
                 <div className="flex items-center">
-                  <Mail className="h-5 w-5 text-primary mr-2" />
-                  <span className="text-gray-700">marrakech-academy@supemir.com</span>
+                  <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-primary mr-2" />
+                  <span className="text-sm sm:text-base text-gray-700">marrakech-academy@supemir.com</span>
                 </div>
                 <div className="flex items-center">
-                  <Phone className="h-5 w-5 text-primary mr-2" />
-                  <span className="text-gray-700">+212 661497647</span>
+                  <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-primary mr-2" />
+                  <span className="text-sm sm:text-base text-gray-700">+212 661497647</span>
                 </div>
               </div>
             </div>

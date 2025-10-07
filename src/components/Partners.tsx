@@ -61,7 +61,7 @@ const Partners = () => {
 
   return (
     <section className="py-12 bg-gradient-to-r from-gray-50 to-white overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
             Nos <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Partenaires</span>
@@ -107,7 +107,7 @@ const Partners = () => {
             </div>
             <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
               <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span>Partenaires Officiels</span>
+              <span className="break-words">Partenaires Officiels</span>
             </div>
             <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
               <div className="w-2 h-2 bg-purple-500 rounded-full"></div>

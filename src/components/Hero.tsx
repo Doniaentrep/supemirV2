@@ -1,61 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, TrendingUp, Award, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Users, TrendingUp, Award } from "lucide-react";
 
 const Hero = () => {
-  const [isBookOpen, setIsBookOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const bookPages = [
-    {
-      title: "Notre Mission",
-      content: "Nous nous engageons à offrir un environnement d'apprentissage dynamique, où chaque apprenant est au cœur de nos préoccupations. Notre mission est de cultiver la curiosité, la créativité et la confiance chez nos étudiants.",
-      image: "🎯"
-    },
-    {
-      title: "Notre Philosophie",
-      content: "SUPEMIR = SUPER Motivation, Innovation & Réussite. Nous croyons que l'éducation doit éveiller le potentiel, nourrir l'innovation et inspirer la réussite dans chaque domaine.",
-      image: "💭"
-    },
-    {
-      title: "Notre Historique",
-      content: "Depuis 2004, SUPEMIR est une école supérieure privée marocaine autorisée par le Ministère de l'Enseignement Supérieur. Dirigée par un groupe d'entrepreneurs visionnaires, SUPEMIR propose des cursus diplômants allant de bac+3 à bac+5.",
-      image: "📜"
-    },
-    {
-      title: "Nos Valeurs",
-      content: "HUMANISME : Nous plaçons l'apprenant au cœur de nos préoccupations. ENTREPRENEURIAT : Nous encourageons l'innovation responsable. PROFESSIONNALISME : Nous visons l'excellence éducative et la collaboration.",
-      image: "💎"
-    },
-    {
-      title: "Notre Vision",
-      content: "Nous aspirons à être un modèle d'excellence éducative, en combinant les meilleures pratiques avec une approche innovante. Notre vision est de former des citoyens du monde capables de penser de manière critique et de collaborer.",
-      image: "🚀"
-    },
-    {
-      title: "Nos Programmes",
-      content: "Des formations en Informatique, Management, Cybersécurité, Finance, Marketing, Électrotechnique, Domaine de Santé et 3D, conçues pour répondre aux besoins du marché.",
-      image: "📚"
-    },
-    {
-      title: "Notre Approche",
-      content: "Nous ne transmettons pas seulement le savoir, nous façonnons l'avenir. Notre approche pédagogique combine théorie et pratique pour une formation complète.",
-      image: "🎓"
-    },
-    {
-      title: "Nos Partenaires",
-      content: "Plus de 50 partenaires entreprises et universités, incluant CNAM et des partenariats internationaux pour garantir l'excellence de nos formations.",
-      image: "🤝"
-    }
-  ];
-
-  const nextPage = () => {
-    setCurrentPage((prev) => (prev + 1) % bookPages.length);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prev) => (prev - 1 + bookPages.length) % bookPages.length);
-  };
 
   const scrollToPrograms = () => {
     console.log('Scroll to programs clicked');
@@ -130,36 +76,36 @@ const Hero = () => {
         <div className="absolute top-1/2 right-20 w-16 h-16 border-2 border-accent rounded-lg rotate-12 animate-float" style={{animationDelay: '2s'}}></div>
       </div>
 
-      <div className="container mx-auto px-4 py-4">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-4xl mx-auto">
           {/* Content */}
-          <div className="text-white relative z-10">
-            <div className="inline-flex items-center bg-accent/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
-              <Award className="h-4 w-4 text-accent mr-2" />
-              <span className="text-sm font-medium text-white">Excellence Académique à Marrakech</span>
+          <div className="text-white relative z-10 text-center">
+            <div className="inline-flex items-center bg-accent/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 mb-4">
+              <Award className="h-4 w-4 sm:h-5 sm:w-5 text-accent mr-2 flex-shrink-0" />
+              <span className="text-xs sm:text-sm font-medium text-white">Excellence Académique à Marrakech</span>
             </div>
             
-            <h1 className="text-2xl lg:text-3xl font-bold leading-tight mb-4 flowy-text text-white" style={{ animationDelay: '0.2s' }}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4 sm:mb-6 flowy-text text-white" style={{ animationDelay: '0.2s' }}>
               🚀 Démarrez votre 
               <span className="text-accent"> carrière de rêve</span> avec SMA !
             </h1>
             
-            <div className="mb-4">
-              <p className="text-lg font-medium text-accent mb-2 flowy-text" style={{ animationDelay: '0.4s' }}>SUPEMIR = SUPER Motivation, Innovation & Réussite</p>
-              <p className="text-base text-white font-medium italic flowy-text" style={{ animationDelay: '0.6s' }}>Là où la motivation nourrit l'innovation et inspire la réussite</p>
+            <div className="mb-4 sm:mb-6">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-accent mb-2 sm:mb-3 flowy-text break-words" style={{ animationDelay: '0.4s' }}>SUPEMIR = SUPER Motivation, Innovation & Réussite</p>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white font-medium italic flowy-text" style={{ animationDelay: '0.6s' }}>Là où la motivation nourrit l'innovation et inspire la réussite</p>
             </div>
             
-            <div className="space-y-2 mb-6 text-base">
+            <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-sm sm:text-base lg:text-lg">
               <p className="flex items-center text-white">
-                <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                <span className="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full mr-3 flex-shrink-0"></span>
                 Des formations qui éveillent votre potentiel
               </p>
               <p className="flex items-center text-white">
-                <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                <span className="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full mr-3 flex-shrink-0"></span>
                 Une expérience d'apprentissage qui réussit
               </p>
               <p className="flex items-center text-white">
-                <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                <span className="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full mr-3 flex-shrink-0"></span>
                 Votre futur commence ici
               </p>
             </div>
@@ -177,10 +123,10 @@ const Hero = () => {
                 style={{
                   background: 'linear-gradient(135deg, #ec4899, #f472b6)',
                   color: 'white',
-                  padding: '12px 24px',
+                  padding: '12px 20px',
                   borderRadius: '8px',
                   border: 'none',
-                  fontSize: '18px',
+                  fontSize: '16px',
                   fontWeight: 'bold',
                   cursor: 'pointer',
                   display: 'flex',
@@ -189,7 +135,9 @@ const Hero = () => {
                   boxShadow: '0 4px 15px rgba(236, 72, 153, 0.4)',
                   transition: 'all 0.3s ease',
                   zIndex: 1000,
-                  position: 'relative'
+                  position: 'relative',
+                  minHeight: '48px',
+                  justifyContent: 'center'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.05)';
@@ -216,10 +164,10 @@ const Hero = () => {
                 style={{
                   background: 'linear-gradient(135deg, #22c55e, #16a34a)',
                   color: 'white',
-                  padding: '12px 24px',
+                  padding: '12px 20px',
                   borderRadius: '8px',
                   border: 'none',
-                  fontSize: '18px',
+                  fontSize: '16px',
                   fontWeight: 'bold',
                   cursor: 'pointer',
                   display: 'flex',
@@ -228,7 +176,9 @@ const Hero = () => {
                   boxShadow: '0 4px 15px rgba(34, 197, 94, 0.4)',
                   transition: 'all 0.3s ease',
                   zIndex: 1000,
-                  position: 'relative'
+                  position: 'relative',
+                  minHeight: '48px',
+                  justifyContent: 'center'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.05)';
@@ -244,104 +194,31 @@ const Hero = () => {
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap gap-8">
+            <div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 justify-center">
               <div className="flex items-center">
-                <Users className="h-8 w-8 text-accent mr-3" />
+                <Users className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-accent mr-2 sm:mr-3 flex-shrink-0" />
                 <div>
-                  <p className="text-2xl font-bold text-white">500+</p>
-                  <p className="text-sm text-white opacity-90">Étudiants formés</p>
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white">300+</p>
+                  <p className="text-xs sm:text-sm text-white opacity-90">Étudiants formés</p>
                 </div>
               </div>
               <div className="flex items-center">
-                <TrendingUp className="h-8 w-8 text-accent mr-3" />
+                <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-accent mr-2 sm:mr-3 flex-shrink-0" />
                 <div>
-                  <p className="text-2xl font-bold text-white">95%</p>
-                  <p className="text-sm text-white opacity-90">Taux d'emploi</p>
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white">95%</p>
+                  <p className="text-xs sm:text-sm text-white opacity-90">Taux d'emploi</p>
                 </div>
               </div>
               <div className="flex items-center">
-                <Award className="h-8 w-8 text-accent mr-3" />
+                <Award className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-accent mr-2 sm:mr-3 flex-shrink-0" />
                 <div>
-                  <p className="text-2xl font-bold text-white">15+</p>
-                  <p className="text-sm text-white opacity-90">Années d'expérience</p>
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white">15+</p>
+                  <p className="text-xs sm:text-sm text-white opacity-90">Années d'expérience</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Interactive Book */}
-          <div className="relative animate-slide-up" style={{animationDelay: '0.3s'}}>
-            {!isBookOpen ? (
-              /* Book Cover */
-              <div 
-                className="relative z-10 bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8 border border-primary-foreground/20 hover-lift cursor-pointer transition-all duration-500 hover:scale-105"
-                onClick={() => setIsBookOpen(true)}
-              >
-                <div className="aspect-square rounded-xl bg-gradient-to-br from-accent to-accent/80 p-8 flex items-center justify-center animate-float shadow-2xl">
-                <div className="text-center">
-                  <div className="text-6xl font-bold text-accent-foreground mb-4">SUPEMIR</div>
-                  <div className="mt-6 text-accent-foreground/90">Nous ne transmettons pas seulement le savoir,</div>
-                  <div className="text-lg text-accent-foreground/90 font-semibold">nous façonnons l'avenir.</div>
-                    <div className="mt-4 text-accent-foreground/70 text-sm">📖 Cliquez pour ouvrir le livre</div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              /* Open Book */
-              <div className="relative z-10 bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8 border border-primary-foreground/20">
-                <div className="aspect-square rounded-xl bg-gradient-to-br from-accent to-accent/80 p-8 flex flex-col justify-between shadow-2xl">
-                  {/* Close Button */}
-                  <div className="flex justify-end mb-4">
-                    <button 
-                      onClick={() => setIsBookOpen(false)}
-                      className="p-2 rounded-full bg-accent-foreground/20 hover:bg-accent-foreground/30 transition-colors"
-                    >
-                      <X className="h-4 w-4 text-accent-foreground" />
-                    </button>
-                  </div>
-
-                  {/* Book Content */}
-                  <div className="flex-1 flex flex-col justify-center text-center">
-                    <div className="text-4xl mb-4">{bookPages[currentPage].image}</div>
-                    <h3 className="text-2xl font-bold text-accent-foreground mb-4">
-                      {bookPages[currentPage].title}
-                    </h3>
-                    <p className="text-accent-foreground/90 text-sm leading-relaxed">
-                      {bookPages[currentPage].content}
-                    </p>
-                  </div>
-
-                  {/* Page Navigation */}
-                  <div className="flex justify-between items-center mt-4">
-                    <button 
-                      onClick={prevPage}
-                      className="p-2 rounded-full bg-accent-foreground/20 hover:bg-accent-foreground/30 transition-colors"
-                    >
-                      <ChevronLeft className="h-4 w-4 text-accent-foreground" />
-                    </button>
-                    
-                    <div className="flex space-x-2">
-                      {bookPages.map((_, index) => (
-                        <div 
-                          key={index}
-                          className={`w-2 h-2 rounded-full transition-colors ${
-                            index === currentPage ? 'bg-accent-foreground' : 'bg-accent-foreground/30'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    
-                    <button 
-                      onClick={nextPage}
-                      className="p-2 rounded-full bg-accent-foreground/20 hover:bg-accent-foreground/30 transition-colors"
-                    >
-                      <ChevronRight className="h-4 w-4 text-accent-foreground" />
-                    </button>
-                </div>
-              </div>
-            </div>
-            )}
-          </div>
         </div>
       </div>
       
